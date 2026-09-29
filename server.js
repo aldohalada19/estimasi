@@ -20,7 +20,7 @@ app.get('/api/simulations', (req, res) => {
     });
 });
 
-// API: Simpan skenario baru dengan target kebun pct fleksibel
+// API: Simpan skenario baru dengan dukungan Multi-Blok (blocks_json)
 app.post('/api/simulations', (req, res) => {
     const {
         scenario_name,
@@ -36,7 +36,8 @@ app.post('/api/simulations', (req, res) => {
         kebutuhan_pabrik,
         total_pohon,
         produksi_harian,
-        supply_kebun_pct
+        supply_kebun_pct,
+        blocks_json
     } = req.body;
 
     if (!scenario_name || scenario_name.trim() === '') {
@@ -47,8 +48,8 @@ app.post('/api/simulations', (req, res) => {
         INSERT INTO simulations (
             scenario_name, luas_lahan, pohon_per_ha, usia_pohon,
             produksi_per_pohon, persentase_panen, siklus_bulan, hari_kerja_bulan, produksi_per_panen, target_kebun_pct,
-            kebutuhan_pabrik, total_pohon, produksi_harian, supply_kebun_pct
-        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+            kebutuhan_pabrik, total_pohon, produksi_harian, supply_kebun_pct, blocks_json
+        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
     `;
 
     const params = [
@@ -65,7 +66,8 @@ app.post('/api/simulations', (req, res) => {
         parseFloat(kebutuhan_pabrik) || 8000000,
         parseInt(total_pohon) || 0,
         parseFloat(produksi_harian) || 0,
-        parseFloat(supply_kebun_pct) || 0
+        parseFloat(supply_kebun_pct) || 0,
+        typeof blocks_json === 'string' ? blocks_json : JSON.stringify(blocks_json || [])
     ];
 
     db.run(query, params, function (err) {
@@ -75,7 +77,7 @@ app.post('/api/simulations', (req, res) => {
         }
         res.json({
             success: true,
-            message: 'Skenario berhasil disimpan ke SQLite!',
+            message: 'Skenario Multi-Blok berhasil disimpan ke SQLite!',
             data: { id: this.lastID, ...req.body }
         });
     });

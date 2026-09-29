@@ -10,7 +10,7 @@ const db = new sqlite3.Database(dbPath, (err) => {
     }
 });
 
-// Inisialisasi tabel simulasi dengan kolom target_kebun_pct fleksibel
+// Inisialisasi tabel simulasi dengan kolom blocks_json untuk Multi-Blok
 db.serialize(() => {
     db.run(`
         CREATE TABLE IF NOT EXISTS simulations (
@@ -29,6 +29,7 @@ db.serialize(() => {
             total_pohon INTEGER NOT NULL,
             produksi_harian REAL NOT NULL,
             supply_kebun_pct REAL NOT NULL,
+            blocks_json TEXT,
             created_at DATETIME DEFAULT CURRENT_TIMESTAMP
         )
     `, (err) => {
@@ -42,6 +43,7 @@ db.serialize(() => {
             db.run(`ALTER TABLE simulations ADD COLUMN hari_kerja_bulan INTEGER DEFAULT 20`, () => {});
             db.run(`ALTER TABLE simulations ADD COLUMN produksi_per_panen REAL DEFAULT 37.5`, () => {});
             db.run(`ALTER TABLE simulations ADD COLUMN target_kebun_pct REAL DEFAULT 10`, () => {});
+            db.run(`ALTER TABLE simulations ADD COLUMN blocks_json TEXT`, () => {});
         }
     });
 });

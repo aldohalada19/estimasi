@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simulasi Estimasi Kebun TMC - Target Fleksibel</title>
+    <title>Simulasi Estimasi Kebun TMC - Multi-Blok Portofolio Lahan</title>
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -23,7 +23,7 @@
                 <div class="logo-icon">🌴</div>
                 <div>
                     <h1>Simulasi Kebun TMC</h1>
-                    <p class="subtitle">Panen Setiap 3 Bulan Sekali | Target Kebun Fleksibel & Operasional 20 HK/Bulan</p>
+                    <p class="subtitle">Multi-Blok Lahan Perkebunan Fleksibel & Portofolio Supply Pabrik</p>
                 </div>
             </div>
             <div class="header-actions">
@@ -41,10 +41,10 @@
         
         <!-- Siklus Banner Info -->
         <div class="cycle-banner">
-            <div class="cycle-banner-icon"><i data-lucide="repeat"></i></div>
+            <div class="cycle-banner-icon"><i data-lucide="layers"></i></div>
             <div class="cycle-banner-text">
-                <strong>Siklus Panen: Setiap 3 Bulan (4 Panen/Tahun) | Target Kebun Fleksibel</strong>
-                <span>Target pasokan kebun internal dapat diatur bebas (misal: 5%, 10%, 20%, 50%, atau 100%). Kebutuhan pabrik harian: 400.000 Butir/Hari Kerja.</span>
+                <strong>Simulasi Multi-Blok Lahan Perkebunan (Karakteristik Fleksibel)</strong>
+                <span>Setiap blok lahan memiliki luas, kepadatan, dan produktivitas usia tersendiri. Tambahkan blok lahan baru hingga mencapai target yang telah diset!</span>
             </div>
         </div>
 
@@ -52,20 +52,20 @@
         <section class="kpi-grid">
             <div class="kpi-card">
                 <div class="kpi-header">
-                    <span class="kpi-label">Total Populasi Pohon</span>
-                    <div class="kpi-icon icon-tree"><i data-lucide="trees"></i></div>
+                    <span class="kpi-label">Total Luas Portofolio</span>
+                    <div class="kpi-icon icon-tree"><i data-lucide="map-pin"></i></div>
                 </div>
-                <div class="kpi-value" id="kpiTotalPohon">16.000</div>
-                <div class="kpi-subtext" id="kpiDensitySubtext">200 Ha × 80 Pohon/Ha</div>
+                <div class="kpi-value" id="kpiTotalLuas">200 Ha</div>
+                <div class="kpi-subtext" id="kpiTotalBlokSubtext">1 Blok Lahan Terdaftar</div>
             </div>
 
             <div class="kpi-card">
                 <div class="kpi-header">
-                    <span class="kpi-label">Hasil Kebun / 3 Bulan</span>
-                    <div class="kpi-icon icon-coconut"><i data-lucide="nut"></i></div>
+                    <span class="kpi-label">Total Populasi Pohon</span>
+                    <div class="kpi-icon icon-coconut"><i data-lucide="trees"></i></div>
                 </div>
-                <div class="kpi-value highlight-emerald" id="kpiProduksiSiklus">600.000</div>
-                <div class="kpi-subtext" id="kpiHasilPerPohonAnnual">Setahun: 150 Butir / Pohon</div>
+                <div class="kpi-value highlight-emerald" id="kpiTotalPohon">16.000</div>
+                <div class="kpi-subtext" id="kpiDensitySubtext">Rata-rata 80 Pohon/Ha</div>
             </div>
 
             <div class="kpi-card">
@@ -74,7 +74,7 @@
                     <div class="kpi-icon icon-target"><i data-lucide="target"></i></div>
                 </div>
                 <div class="kpi-value" id="kpiProduksiHarian">10.000</div>
-                <div class="kpi-subtext" id="kpiCoverageKebun">Target Kebun 10%: 40.000 / Hari Kerja</div>
+                <div class="kpi-subtext" id="kpiCoverageKebun">Target: 40.000 / HK</div>
             </div>
 
             <div class="kpi-card">
@@ -87,173 +87,88 @@
             </div>
         </section>
 
+        <!-- TARGET GAP ANALYSIS BANNER -->
+        <div class="card gap-analysis-card mb-4" id="gapAnalysisCard">
+            <div class="gap-analysis-header">
+                <div class="gap-icon"><i data-lucide="compass"></i></div>
+                <div class="gap-text">
+                    <h3 id="gapStatusTitle">Status Pemenuhan Target Kebun</h3>
+                    <p id="gapStatusDesc">Memuat analisis sisa kebutuhan lahan...</p>
+                </div>
+                <button id="btnAddBlockTop" class="btn btn-primary btn-sm">
+                    <i data-lucide="plus-circle"></i> + Tambah Blok Lahan Baru
+                </button>
+            </div>
+        </div>
+
         <!-- MAIN CONTENT LAYOUT: SLIDERS LEFT, VISUALIZATION RIGHT -->
         <div class="dashboard-grid">
             
-            <!-- LEFT COLUMN: SLIDER CONTROLS -->
-            <section class="card slider-card">
-                <div class="card-header">
-                    <h2><i data-lucide="sliders"></i> Parameter Input Simulasi</h2>
-                    <span class="badge badge-info">Target Fleksibel</span>
-                </div>
-
-                <div class="sliders-list">
+            <!-- LEFT COLUMN: MULTI-BLOCK SLIDERS -->
+            <section class="left-column-container">
+                
+                <!-- GLOBAL TARGET CONFIGURATION CARD -->
+                <div class="card global-config-card mb-4">
+                    <div class="card-header">
+                        <h2><i data-lucide="sliders"></i> Target & Operasional Global</h2>
+                        <span class="badge badge-info">Global Config</span>
+                    </div>
                     
-                    <!-- Slider 1: Luas Lahan -->
-                    <div class="form-group">
-                        <div class="form-label-row">
-                            <label for="luasLahanSlider">
-                                <i data-lucide="map-pin"></i> Luas Lahan Kebun
-                            </label>
-                            <div class="input-with-unit">
-                                <input type="number" id="luasLahanNum" min="1" max="10000" value="200">
-                                <span>Ha</span>
+                    <div class="sliders-list">
+                        <!-- Target Pasokan Kebun % -->
+                        <div class="form-group">
+                            <div class="form-label-row">
+                                <label for="targetKebunPctSlider">
+                                    <i data-lucide="target"></i> Target Pasokan Kebun Internal
+                                </label>
+                                <div class="input-with-unit">
+                                    <input type="number" id="targetKebunPctNum" min="1" max="100" step="1" value="10">
+                                    <span>% Pabrik</span>
+                                </div>
+                            </div>
+                            <input type="range" id="targetKebunPctSlider" min="1" max="100" step="1" value="10" class="custom-slider">
+                            <div class="slider-ticks">
+                                <span>1%</span>
+                                <span>10% (Std)</span>
+                                <span>25%</span>
+                                <span>50%</span>
+                                <span>100% (Mandiri)</span>
                             </div>
                         </div>
-                        <input type="range" id="luasLahanSlider" min="10" max="5000" step="10" value="200" class="custom-slider">
-                        <div class="slider-ticks">
-                            <span>10 Ha</span>
-                            <span id="tickLahanIdeal">800 Ha (Target 10%)</span>
-                            <span>2.500 Ha</span>
-                            <span>5.000 Ha</span>
-                        </div>
-                    </div>
 
-                    <!-- Slider 2: Jumlah Pohon per Ha -->
-                    <div class="form-group">
-                        <div class="form-label-row">
-                            <label for="pohonPerHaSlider">
-                                <i data-lucide="grid"></i> Kepadatan Pohon per Hektar
-                            </label>
-                            <div class="input-with-unit">
-                                <input type="number" id="pohonPerHaNum" min="10" max="300" value="80">
-                                <span>Pohon/Ha</span>
+                        <!-- Hari Kerja & Kebutuhan Pabrik -->
+                        <div class="form-row-2col">
+                            <div class="form-group">
+                                <label for="hariKerjaNum"><i data-lucide="briefcase"></i> Hari Kerja / Bln</label>
+                                <div class="input-with-unit">
+                                    <input type="number" id="hariKerjaNum" min="10" max="31" value="20">
+                                    <span>HK</span>
+                                </div>
                             </div>
-                        </div>
-                        <input type="range" id="pohonPerHaSlider" min="40" max="150" step="1" value="80" class="custom-slider">
-                        <div class="slider-ticks">
-                            <span>40 Pohon</span>
-                            <span>80 Pohon (Std)</span>
-                            <span>150 Pohon</span>
-                        </div>
-                    </div>
-
-                    <!-- Slider 3: Usia Pohon -->
-                    <div class="form-group">
-                        <div class="form-label-row">
-                            <label for="usiaPohonSlider">
-                                <i data-lucide="calendar"></i> Usia Rata-rata Pohon
-                            </label>
-                            <div class="input-with-unit">
-                                <input type="number" id="usiaPohonNum" min="1" max="40" value="10">
-                                <span>Tahun</span>
-                            </div>
-                        </div>
-                        <input type="range" id="usiaPohonSlider" min="1" max="35" step="1" value="10" class="custom-slider">
-                        <div class="slider-ticks">
-                            <span>1 Th (TBM)</span>
-                            <span>10 Th (Produksi Puncak)</span>
-                            <span>35 Th (Tua)</span>
-                        </div>
-                        <div class="age-factor-badge" id="ageFactorBadge">
-                            <i data-lucide="shield-check"></i> Status Usia: Produksi Puncak (100%)
-                        </div>
-                    </div>
-
-                    <!-- Slider 4: Produksi per Pohon per Panen (3 Bulan) -->
-                    <div class="form-group">
-                        <div class="form-label-row">
-                            <label for="produksiPerPohonSlider">
-                                <i data-lucide="sparkles"></i> Produksi per Pohon / Panen (3 Bulan)
-                            </label>
-                            <div class="input-with-unit">
-                                <input type="number" id="produksiPerPohonNum" min="1" max="100" step="0.5" value="37.5">
-                                <span>Butir/Panen</span>
-                            </div>
-                        </div>
-                        <input type="range" id="produksiPerPohonSlider" min="5" max="80" step="0.5" value="37.5" class="custom-slider">
-                        <div class="slider-ticks">
-                            <span>5 Butir</span>
-                            <span>37,5 Butir (Std)</span>
-                            <span>80 Butir</span>
-                        </div>
-                        <div class="slider-hint" id="annualYieldHint">
-                            💡 Total setahun: 37,5 × 4 panen = 150 butir / pohon / tahun
-                        </div>
-                    </div>
-
-                    <!-- Slider Fleksibel: Target Pasokan Kebun (%) -->
-                    <div class="form-group">
-                        <div class="form-label-row">
-                            <label for="targetKebunPctSlider">
-                                <i data-lucide="target"></i> Target Pasokan Kebun Internal
-                            </label>
-                            <div class="input-with-unit">
-                                <input type="number" id="targetKebunPctNum" min="1" max="100" step="1" value="10">
-                                <span>% Pabrik</span>
-                            </div>
-                        </div>
-                        <input type="range" id="targetKebunPctSlider" min="1" max="100" step="1" value="10" class="custom-slider">
-                        <div class="slider-ticks">
-                            <span>1%</span>
-                            <span>10% (Std)</span>
-                            <span>25%</span>
-                            <span>50%</span>
-                            <span>100% (Mandiri)</span>
-                        </div>
-                        <div class="slider-hint" id="targetKebunHint">
-                            🎯 Target kebun diset: <strong>10%</strong> dari pasokan pabrik (40.000 butir/HK)
-                        </div>
-                    </div>
-
-                    <!-- Slider 5: Efisiensi Panen Kebun -->
-                    <div class="form-group">
-                        <div class="form-label-row">
-                            <label for="persentasePanenSlider">
-                                <i data-lucide="percent"></i> Efisiensi Panen Kebun
-                            </label>
-                            <div class="input-with-unit">
-                                <input type="number" id="persentasePanenNum" min="1" max="100" step="1" value="100">
-                                <span>%</span>
-                            </div>
-                        </div>
-                        <input type="range" id="persentasePanenSlider" min="50" max="100" step="1" value="100" class="custom-slider">
-                        <div class="slider-ticks">
-                            <span>50%</span>
-                            <span>80%</span>
-                            <span>100% (Optimal)</span>
-                        </div>
-                    </div>
-
-                    <!-- Kebutuhan Pabrik & Operasional Input -->
-                    <div class="form-group divider-top">
-                        <div class="form-label-row">
-                            <label for="hariKerjaNum">
-                                <i data-lucide="briefcase"></i> Hari Kerja per Bulan
-                            </label>
-                            <div class="input-with-unit">
-                                <input type="number" id="hariKerjaNum" min="10" max="31" value="20">
-                                <span>HK/Bulan</span>
+                            <div class="form-group">
+                                <label for="kebutuhanPabrikNum"><i data-lucide="factory"></i> Kebutuhan Pabrik / Bln</label>
+                                <div class="input-with-unit">
+                                    <input type="number" id="kebutuhanPabrikNum" min="100000" max="20000000" step="500000" value="8000000">
+                                    <span>Butir</span>
+                                </div>
                             </div>
                         </div>
                     </div>
-
-                    <div class="form-group">
-                        <div class="form-label-row">
-                            <label for="kebutuhanPabrikNum">
-                                <i data-lucide="factory"></i> Kebutuhan Pabrik per Bulan
-                            </label>
-                            <div class="input-with-unit">
-                                <input type="number" id="kebutuhanPabrikNum" min="100000" max="20000000" step="500000" value="8000000">
-                                <span>Butir/Bulan</span>
-                            </div>
-                        </div>
-                        <div class="slider-hint">
-                            ℹ️ Target 3 Bulan (60 HK) = <strong id="lblKebutuhan3Bulan">24.000.000</strong> | Setahun = <strong id="lblKebutuhanTahunan">96.000.000</strong> Butir
-                        </div>
-                    </div>
-
                 </div>
+
+                <!-- BLOCKS CONTAINER HEADER & TOOLBAR -->
+                <div class="blocks-toolbar-header">
+                    <h2><i data-lucide="grid"></i> Daftar Blok Lahan Perkebunan</h2>
+                    <button id="btnAddBlock" class="btn btn-primary btn-sm">
+                        <i data-lucide="plus-circle"></i> Tambah Blok
+                    </button>
+                </div>
+
+                <!-- DYNAMIC MULTI-BLOCK CARDS LIST -->
+                <div id="blocksListContainer" class="blocks-list">
+                    <!-- Dynamic Block Cards Rendered Here by app.js -->
+                </div>
+
             </section>
 
             <!-- RIGHT COLUMN: CHARTS & ANALYSIS -->
@@ -262,7 +177,7 @@
                 <!-- Supply vs Target Chart Card -->
                 <div class="card chart-card">
                     <div class="card-header">
-                        <h2><i data-lucide="pie-chart"></i> Rasio Pemenuhan Pasokan (Per 3 Bulan)</h2>
+                        <h2><i data-lucide="pie-chart"></i> Rasio Pemenuhan Pasokan per Blok (Per 3 Bulan)</h2>
                         <div class="kebutuhan-info">
                             Kebutuhan 3 Bulan: <strong id="lblTotalKebutuhanSiklus">24.000.000</strong> Butir
                         </div>
@@ -290,7 +205,7 @@
                 <!-- Summary Table breakdown -->
                 <div class="card summary-card">
                     <div class="card-header">
-                        <h2><i data-lucide="bar-chart-2"></i> Rincian Pasokan Pabrik vs Kebun (Fleksibel)</h2>
+                        <h2><i data-lucide="bar-chart-2"></i> Rincian Pasokan Portofolio Lahan</h2>
                     </div>
                     <div class="table-responsive">
                         <table class="table-summary">
@@ -350,9 +265,9 @@
                         <tr>
                             <th>No</th>
                             <th>Nama Skenario</th>
-                            <th>Luas (Ha)</th>
+                            <th>Total Luas (Ha)</th>
                             <th>Pohon/Ha</th>
-                            <th>Usia</th>
+                            <th>Jml Blok</th>
                             <th>Target Kebun (%)</th>
                             <th>Hasil / 3 Bulan</th>
                             <th>Hasil / Hari Kerja</th>
@@ -376,23 +291,23 @@
     <div class="modal-overlay" id="saveModal">
         <div class="modal">
             <div class="modal-header">
-                <h3><i data-lucide="bookmark"></i> Simpan Skenario Simulasi</h3>
+                <h3><i data-lucide="bookmark"></i> Simpan Skenario Multi-Blok</h3>
                 <button class="modal-close" id="btnCloseModal">&times;</button>
             </div>
             <div class="modal-body">
                 <form id="saveScenarioForm">
                     <div class="form-group">
                         <label for="scenarioNameInput">Nama Skenario</label>
-                        <input type="text" id="scenarioNameInput" class="form-control" placeholder="Contoh: Skenario Target Kebun 20%" required>
+                        <input type="text" id="scenarioNameInput" class="form-control" placeholder="Contoh: Skenario Portofolio 3 Blok 800 Ha" required>
                     </div>
                     <div class="scenario-summary-preview">
-                        <h4>Ringkasan Parameter Saat Ini:</h4>
+                        <h4>Ringkasan Portofolio Lahan:</h4>
                         <ul>
-                            <li>Luas Lahan: <strong id="prevLuas">200 Ha</strong></li>
-                            <li>Kepadatan: <strong id="prevDensity">80 Pohon/Ha</strong></li>
-                            <li>Usia Pohon: <strong id="prevUsia">10 Tahun</strong></li>
+                            <li>Total Blok Lahan: <strong id="prevBlockCount">1 Blok</strong></li>
+                            <li>Total Luas Lahan: <strong id="prevLuas">200 Ha</strong></li>
                             <li>Target Kebun (%): <strong id="prevTargetPct">10%</strong></li>
-                            <li>Total Hasil per 3 Bulan: <strong id="prevHasilPanen">600.000 Butir</strong></li>
+                            <li>Total Pohon: <strong id="prevTotalPohon">16.000 Pohon</strong></li>
+                            <li>Total Hasil / 3 Bulan: <strong id="prevHasilPanen">600.000 Butir</strong></li>
                             <li>Rata-rata / Hari Kerja: <strong id="prevHasilHarian" class="text-emerald">10.000 Butir/HK</strong></li>
                         </ul>
                     </div>
