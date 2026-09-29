@@ -576,7 +576,9 @@ document.addEventListener('DOMContentLoaded', () => {
         if (elements.progressTargetMarker) elements.progressTargetMarker.style.left = `${markerPosPct}%`;
         if (elements.markerLabel) elements.markerLabel.textContent = `Target ${data.targetKebunPct}%`;
 
-        if (elements.lblPercentTercapai) elements.lblPercentTercapai.textContent = `${data.coverageTotalPabrik.toFixed(1)}% tercover dari kebun sendiri (${formatNumber(data.totalProduksiSiklus)} / ${formatNumber(data.kebutuhanPabrikSiklus)} per 3 bulan)`;
+        if (elements.lblPercentTercapai) {
+            elements.lblPercentTercapai.innerHTML = `<span class="percent-highlight">${data.coverageTotalPabrik.toFixed(1)}%</span> tercover dari kebun sendiri (${formatNumber(data.totalProduksiSiklus)} / ${formatNumber(data.kebutuhanPabrikSiklus)} per 3 bulan)`;
+        }
 
         // Target Gap Banner Update
         if (elements.gapAnalysisCard) {

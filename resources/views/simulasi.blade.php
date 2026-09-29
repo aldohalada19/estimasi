@@ -222,7 +222,7 @@
                         </div>
                         <div class="gauge-labels">
                             <span>0%</span>
-                            <span id="lblPercentTercapai">2,5% tercover dari Kebun (Target 10%)</span>
+                            <span id="lblPercentTercapai"><span class="percent-highlight">10,0%</span> tercover dari kebun sendiri (2.400.000 / 24.000.000 per 3 bulan)</span>
                             <span>100% Pabrik</span>
                         </div>
                     </div>
