@@ -253,6 +253,16 @@
             background: #faf5ff;
         }
 
+        .block-card.c-amber {
+            border-top: 6px solid #d97706;
+            background: #fffdf5;
+        }
+
+        .block-card.c-total {
+            border-top: 6px solid #047857;
+            background: #f0fdf4;
+        }
+
         .card-badge {
             display: inline-block;
             font-size: 8.5pt;
@@ -265,6 +275,7 @@
         .badge-tmc { background: #dcfce7; color: #15803d; }
         .badge-binjeita { background: #e0f2fe; color: #0369a1; }
         .badge-ekspansi { background: #f3e8ff; color: #6b21a8; }
+        .badge-amber { background: #fef3c7; color: #b45309; }
 
         .card-title {
             font-family: 'Outfit', sans-serif;
@@ -573,7 +584,7 @@
 
         <div class="slide-footer">
             <div><strong>PERKEBUNAN TMC (MEMBER OF RAI)</strong></div>
-            <div>Slide <strong>2</strong> of 6</div>
+            <div>Slide <strong>2</strong> of 7</div>
         </div>
     </div>
 
@@ -650,18 +661,97 @@
 
         <div class="slide-footer">
             <div><strong>PERKEBUNAN TMC (MEMBER OF RAI)</strong></div>
-            <div>Slide <strong>3</strong> of 6</div>
+            <div>Slide <strong>3</strong> of 7</div>
         </div>
     </div>
 
     <!-- ========================================== -->
-    <!-- SLIDE 4: MATRIKS KOMPARASI PORTOFOLIO      -->
+    <!-- SLIDE 4: SKENARIO ALTERNATIF TANPA BLOK 2  -->
+    <!-- ========================================== -->
+    <div class="slide">
+        <div>
+            <div class="slide-header">
+                <div class="slide-category">Simulasi Alternatif Portofolio (2 Blok)</div>
+                <h2 class="slide-title">3. Skenario Alternatif: Pemenuhan Target 10% Tanpa Blok 2 (Hanya Blok 1 + Lahan Baru)</h2>
+            </div>
+
+            <!-- 3 Column Blocks Grid -->
+            <div class="blocks-grid">
+                <!-- Blok 1 -->
+                <div class="block-card c-tmc">
+                    <span class="card-badge badge-tmc">TAHAP 1: EKSISTING</span>
+                    <h3 class="card-title">Blok 1 (Kebun TMC)</h3>
+                    <table class="attr-table">
+                        <tr><td>Status Lahan</td><td>Eksisting (Milik Sendiri)</td></tr>
+                        <tr><td>Luas Lahan</td><td>200 Ha</td></tr>
+                        <tr><td>Kerapatan</td><td>50 Pohon / Ha</td></tr>
+                        <tr><td>Populasi Pohon</td><td>10.000 Pohon</td></tr>
+                        <tr><td>Usia Rata-rata</td><td>15 Thn (Puncak 100%)</td></tr>
+                        <tr><td>Yield Panen</td><td>20 Butir / Pohon</td></tr>
+                        <tr><td>Hasil / 3 Bulan</td><td>200.000 Butir</td></tr>
+                        <tr><td>Pasokan Harian</td><td>3.333 Butir / HK</td></tr>
+                        <tr><td style="color:#059669; font-weight:700;">Porsi Target 10%</td><td style="color:#059669;">8,33%</td></tr>
+                    </table>
+                </div>
+
+                <!-- Lahan Baru (Pengganti) -->
+                <div class="block-card c-amber">
+                    <span class="card-badge badge-amber">KEBUTUHAN LAHAN BARU</span>
+                    <h3 class="card-title">Lahan Baru (Pengganti)</h3>
+                    <table class="attr-table">
+                        <tr><td>Status Lahan</td><td>Ekspansi Baru (Tanpa Blok 2)</td></tr>
+                        <tr><td>Luas Lahan</td><td>2.200 Ha</td></tr>
+                        <tr><td>Kerapatan</td><td>50 Pohon / Ha</td></tr>
+                        <tr><td>Populasi Pohon</td><td>110.000 Pohon</td></tr>
+                        <tr><td>Usia Rata-rata</td><td>15 Thn (Puncak 100%)</td></tr>
+                        <tr><td>Yield Panen</td><td>20 Butir / Pohon</td></tr>
+                        <tr><td>Hasil / 3 Bulan</td><td>2.200.000 Butir</td></tr>
+                        <tr><td>Pasokan Harian</td><td>36.667 Butir / HK</td></tr>
+                        <tr><td style="color:#d97706; font-weight:700;">Porsi Target 10%</td><td style="color:#d97706;">91,67%</td></tr>
+                    </table>
+                </div>
+
+                <!-- Total Portofolio Alternatif -->
+                <div class="block-card c-total">
+                    <span class="card-badge badge-tmc">TOTAL PORTOFOLIO MANDIRI</span>
+                    <h3 class="card-title">Total Portofolio (2 Blok)</h3>
+                    <table class="attr-table">
+                        <tr><td>Status Portofolio</td><td>Target 10% Terpenuhi Penuh</td></tr>
+                        <tr><td>Total Luas Lahan</td><td>2.400 Ha</td></tr>
+                        <tr><td>Kerapatan Rata-rata</td><td>50 Pohon / Ha</td></tr>
+                        <tr><td>Total Populasi Pohon</td><td>120.000 Pohon</td></tr>
+                        <tr><td>Usia Rata-rata</td><td>15 Thn (Puncak 100%)</td></tr>
+                        <tr><td>Yield Panen</td><td>20 Butir / Pohon</td></tr>
+                        <tr><td>Hasil / 3 Bulan</td><td>2.400.000 Butir</td></tr>
+                        <tr><td>Pasokan Harian</td><td>40.000 Butir / HK</td></tr>
+                        <tr><td style="color:#047857; font-weight:700;">Porsi Target 10%</td><td style="color:#047857;">100,00% (TUNTAS)</td></tr>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Bottom GAP Alert Banner -->
+            <div class="gap-alert-card" style="background:#eff6ff; border-color:#93c5fd; color:#1e3a8a;">
+                <strong style="color:#1d4ed8;">KOMPARASI STRATEGIS (DENGAN BLOK 2 VS TANPA BLOK 2):</strong><br>
+                &bull; <strong>Skenario 3 Blok (Dengan Deal Binjeita 135 Ha @ 58 pohn/Ha):</strong> Kebutuhan lahan baru adalah <strong>2.044 Ha</strong> (Total portofolio <strong>2.379 Ha</strong> / 120.030 pohon menghasilkan 2.400.600 butir).<br>
+                &bull; <strong>Skenario 2 Blok (Tanpa Deal Binjeita / Murni Blok 1 + Lahan Baru):</strong> Kebutuhan lahan baru bertambah <strong>156 Ha menjadi 2.200 Ha</strong> (Total portofolio <strong>2.400 Ha</strong> / 120.000 pohon menghasilkan 2.400.000 butir).<br>
+                <em>Kedua skenario sama-sama mencapai 100% target pasokan kebun mandiri (40.000 butir/HK).</em>
+            </div>
+        </div>
+
+        <div class="slide-footer">
+            <div><strong>PERKEBUNAN TMC (MEMBER OF RAI)</strong></div>
+            <div>Slide <strong>4</strong> of 7</div>
+        </div>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- SLIDE 5: MATRIKS KOMPARASI PORTOFOLIO      -->
     <!-- ========================================== -->
     <div class="slide">
         <div>
             <div class="slide-header">
                 <div class="slide-category">Matriks Data Skenario Terverifikasi</div>
-                <h2 class="slide-title">3. Matriks Komparasi Portofolio Kumulatif (2.379 Ha)</h2>
+                <h2 class="slide-title">4. Matriks Komparasi Portofolio Kumulatif (2.379 Ha)</h2>
             </div>
 
             <!-- Matrix Table -->
@@ -752,18 +842,18 @@
 
         <div class="slide-footer">
             <div><strong>PERKEBUNAN TMC (MEMBER OF RAI)</strong></div>
-            <div>Slide <strong>4</strong> of 6</div>
+            <div>Slide <strong>5</strong> of 7</div>
         </div>
     </div>
 
     <!-- ========================================== -->
-    <!-- SLIDE 5: NERACA ALOKASI PASOKAN PABRIK     -->
+    <!-- SLIDE 6: NERACA ALOKASI PASOKAN PABRIK     -->
     <!-- ========================================== -->
     <div class="slide">
         <div>
             <div class="slide-header">
                 <div class="slide-category">Alokasi & Ketahanan Pasokan</div>
-                <h2 class="slide-title">4. Neraca Alokasi Pasokan Pabrik (Siklus & Tahunan)</h2>
+                <h2 class="slide-title">5. Neraca Alokasi Pasokan Pabrik (Siklus & Tahunan)</h2>
             </div>
 
             <!-- Panels Grid -->
@@ -826,18 +916,18 @@
 
         <div class="slide-footer">
             <div><strong>PERKEBUNAN TMC (MEMBER OF RAI)</strong></div>
-            <div>Slide <strong>5</strong> of 6</div>
+            <div>Slide <strong>6</strong> of 7</div>
         </div>
     </div>
 
     <!-- ========================================== -->
-    <!-- SLIDE 6: KESIMPULAN & REKOMENDASI          -->
+    <!-- SLIDE 7: KESIMPULAN & REKOMENDASI          -->
     <!-- ========================================== -->
     <div class="slide">
         <div>
             <div class="slide-header">
                 <div class="slide-category">Rekomendasi Keputusan Investasi</div>
-                <h2 class="slide-title">5. Kesimpulan Portofolio & Rekomendasi Investasi</h2>
+                <h2 class="slide-title">6. Kesimpulan Portofolio & Rekomendasi Investasi</h2>
             </div>
 
             <!-- 3 Recommendation Cards -->
@@ -855,8 +945,8 @@
                 <div class="rec-item r-green">
                     <div class="rec-num">02</div>
                     <div class="rec-content">
-                        <h4>Alokasi Capex Lahan Ekspansi Blok 3 (2.044 Ha)</h4>
-                        <p>Mengesahkan penganggaran modal (CAPEX) untuk akuisisi/pembukaan lahan ekspansi Blok 3 seluas 2.044 Ha. Blok 3 adalah penentu utama yang menyumbang 85,17% dari target kebutuhan supply 10% kebun TMC (2.044.000 butir/3 bulan).</p>
+                        <h4>Alokasi Capex Lahan Ekspansi Blok 3 (2.044 Ha / 2.200 Ha)</h4>
+                        <p>Mengesahkan penganggaran modal (CAPEX) untuk lahan ekspansi seluas 2.044 Ha (jika deal Binjeita berlanjut) atau 2.200 Ha (jika murni mandiri tanpa Binjeita) guna menjamin target supply 10% tercapai penuh.</p>
                     </div>
                 </div>
 
@@ -872,13 +962,13 @@
 
             <!-- Executive Banner -->
             <div class="exec-banner">
-                RINGKASAN EKSEKUTIF: Portofolio 3 Blok seluas 2.379 Ha (120.030 pohon) menghasilkan 2.400.600 butir/3 bulan, TUNTAS memenuhi 100% kebutuhan supply perkebunan TMC (10% dari target produksi harian pabrik 400.000 butir kelapa/hari).
+                RINGKASAN EKSEKUTIF: Portofolio kebun mandiri menghasilkan pasokan 2.400.000 butir/3 bulan (40.000 butir/HK), TUNTAS memenuhi 100% kebutuhan supply perkebunan TMC (10% target harian produksi pabrik 400.000 butir kelapa/hari).
             </div>
         </div>
 
         <div class="slide-footer">
             <div><strong>PERKEBUNAN TMC (MEMBER OF RAI)</strong></div>
-            <div>Slide <strong>6</strong> of 6</div>
+            <div>Slide <strong>7</strong> of 7</div>
         </div>
     </div>
 

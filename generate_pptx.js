@@ -68,7 +68,7 @@ async function createPresentation() {
     }
 
     // Helper: Add Standard Footer
-    function addFooter(slide, pageNum, totalPages = 6) {
+    function addFooter(slide, pageNum, totalPages = 7) {
         slide.addText('PERKEBUNAN TMC (MEMBER OF RAI)', {
             x: 0.8,
             y: 7.0,
@@ -489,11 +489,183 @@ async function createPresentation() {
     }
 
     // ==========================================
-    // SLIDE 4: MATRIKS KOMPARASI PORTOFOLIO LENGKAP
+    // SLIDE 4: SKENARIO ALTERNATIF TANPA BLOK 2
     // ==========================================
     {
         const slide = pptx.addSlide();
-        addHeader(slide, '3. Matriks Komparasi Portofolio Kumulatif (2.379 Ha)');
+        addHeader(slide, '3. Skenario Alternatif: Pemenuhan Target 10% Tanpa Blok 2 (Hanya Blok 1 + Lahan Baru)');
+
+        const altCols = [
+            {
+                tag: 'TAHAP 1: EKSISTING',
+                tagBg: 'dcfce7',
+                tagColor: '15803d',
+                title: 'Blok 1 (Kebun TMC)',
+                borderColor: COLORS.primary,
+                bg: COLORS.white,
+                items: [
+                    ['Status Lahan', 'Eksisting (Milik Sendiri)'],
+                    ['Luas Lahan', '200 Ha'],
+                    ['Kerapatan', '50 Pohon / Ha'],
+                    ['Populasi Pohon', '10.000 Pohon'],
+                    ['Usia Rata-rata', '15 Thn (Puncak 100%)'],
+                    ['Yield Panen', '20 Butir / Pohon'],
+                    ['Hasil / 3 Bulan', '200.000 Butir'],
+                    ['Pasokan Harian', '3.333 Butir / HK'],
+                    ['Porsi Target 10%', '8,33% (Baru 0,83% Pabrik)']
+                ]
+            },
+            {
+                tag: 'KEBUTUHAN LAHAN BARU',
+                tagBg: 'fef3c7',
+                tagColor: 'b45309',
+                title: 'Lahan Baru (Pengganti)',
+                borderColor: COLORS.accentAmber,
+                bg: 'fffdf5',
+                items: [
+                    ['Status Lahan', 'Ekspansi Baru (Tanpa Blok 2)'],
+                    ['Luas Lahan', '2.200 Ha'],
+                    ['Kerapatan', '50 Pohon / Ha'],
+                    ['Populasi Pohon', '110.000 Pohon'],
+                    ['Usia Rata-rata', '15 Thn (Puncak 100%)'],
+                    ['Yield Panen', '20 Butir / Pohon'],
+                    ['Hasil / 3 Bulan', '2.200.000 Butir'],
+                    ['Pasokan Harian', '36.667 Butir / HK'],
+                    ['Porsi Target 10%', '91,67% (Penutup Defisit)']
+                ]
+            },
+            {
+                tag: 'TOTAL PORTOFOLIO MANDIRI',
+                tagBg: 'd1fae5',
+                tagColor: '065f46',
+                title: 'Total Portofolio (2 Blok)',
+                borderColor: COLORS.primaryDark,
+                bg: 'f0fdf4',
+                items: [
+                    ['Status Portofolio', 'Target 10% Terpenuhi Penuh'],
+                    ['Total Luas Lahan', '2.400 Ha'],
+                    ['Kerapatan Rata-rata', '50 Pohon / Ha'],
+                    ['Total Populasi Pohon', '120.000 Pohon'],
+                    ['Usia Rata-rata', '15 Thn (Puncak 100%)'],
+                    ['Yield Panen', '20 Butir / Pohon'],
+                    ['Hasil / 3 Bulan', '2.400.000 Butir'],
+                    ['Pasokan Harian', '40.000 Butir / HK'],
+                    ['Porsi Target 10%', '100,00% (TUNTAS)']
+                ]
+            }
+        ];
+
+        altCols.forEach((col, idx) => {
+            const colX = 0.8 + idx * (3.73 + 0.25);
+            
+            // Box Container
+            slide.addShape(pptx.ShapeType.roundRect, {
+                x: colX,
+                y: 1.5,
+                w: 3.73,
+                h: 3.9,
+                rectRadius: 0.08,
+                fill: { color: col.bg },
+                line: { color: col.borderColor, width: 2 }
+            });
+
+            // Badge
+            slide.addShape(pptx.ShapeType.roundRect, {
+                x: colX + 0.2,
+                y: 1.68,
+                w: 2.3,
+                h: 0.28,
+                rectRadius: 0.06,
+                fill: { color: col.tagBg },
+                line: { color: col.tagBg, width: 0 }
+            });
+            slide.addText(col.tag, {
+                x: colX + 0.2,
+                y: 1.68,
+                w: 2.3,
+                h: 0.28,
+                fontSize: 8,
+                bold: true,
+                color: col.tagColor,
+                align: 'center',
+                valign: 'middle',
+                fontFace: 'Arial'
+            });
+
+            // Block Title
+            slide.addText(col.title, {
+                x: colX + 0.2,
+                y: 2.05,
+                w: 3.33,
+                h: 0.4,
+                fontSize: 12,
+                bold: true,
+                color: COLORS.navy,
+                fontFace: 'Arial'
+            });
+
+            // Block Items
+            col.items.forEach((it, itIdx) => {
+                const itemY = 2.45 + itIdx * 0.31;
+                slide.addText(it[0], {
+                    x: colX + 0.2,
+                    y: itemY,
+                    w: 1.6,
+                    h: 0.28,
+                    fontSize: 8,
+                    color: COLORS.grayMuted,
+                    fontFace: 'Arial'
+                });
+                slide.addText(it[1], {
+                    x: colX + 1.8,
+                    y: itemY,
+                    w: 1.73,
+                    h: 0.28,
+                    fontSize: 8,
+                    bold: true,
+                    color: COLORS.navy,
+                    align: 'right',
+                    fontFace: 'Arial'
+                });
+            });
+        });
+
+        // Bottom Comparison Banner
+        slide.addShape(pptx.ShapeType.roundRect, {
+            x: 0.8,
+            y: 5.55,
+            w: 11.7,
+            h: 1.25,
+            rectRadius: 0.08,
+            fill: { color: 'eff6ff' },
+            line: { color: '93c5fd', width: 1.5 }
+        });
+
+        const compText = [
+            { text: 'KOMPARASI STRATEGIS (DENGAN BLOK 2 VS TANPA BLOK 2):\n', options: { fontSize: 10, bold: true, color: '1d4ed8' } },
+            { text: '• Skenario 3 Blok (Dengan Deal Binjeita 135 Ha @ 58 pohn/Ha): ', options: { fontSize: 8.5, bold: true, color: COLORS.navy } },
+            { text: 'Kebutuhan lahan baru 2.044 Ha (Total portofolio 2.379 Ha / 120.030 pohon menghasilkan 2.400.600 butir).\n', options: { fontSize: 8.5, color: COLORS.slate } },
+            { text: '• Skenario 2 Blok (Tanpa Deal Binjeita / Murni Blok 1 + Lahan Baru): ', options: { fontSize: 8.5, bold: true, color: COLORS.navy } },
+            { text: 'Kebutuhan lahan baru bertambah 156 Ha menjadi 2.200 Ha (Total portofolio 2.400 Ha / 120.000 pohon menghasilkan 2.400.000 butir).\n', options: { fontSize: 8.5, color: COLORS.slate } },
+            { text: 'Kedua skenario sama-sama mencapai 100% target pasokan kebun mandiri (40.000 butir/HK).', options: { fontSize: 8.5, italic: true, color: '15803d', bold: true } }
+        ];
+        slide.addText(compText, {
+            x: 1.1,
+            y: 5.65,
+            w: 11.1,
+            h: 1.05,
+            fontFace: 'Arial'
+        });
+
+        addFooter(slide, 4);
+    }
+
+    // ==========================================
+    // SLIDE 5: MATRIKS KOMPARASI PORTOFOLIO LENGKAP
+    // ==========================================
+    {
+        const slide = pptx.addSlide();
+        addHeader(slide, '4. Matriks Komparasi Portofolio Kumulatif (2.379 Ha)');
 
         // Structured Table
         const tableData = [
@@ -587,15 +759,15 @@ async function createPresentation() {
             fontFace: 'Arial'
         });
 
-        addFooter(slide, 4);
+        addFooter(slide, 5);
     }
 
     // ==========================================
-    // SLIDE 5: ALOKASI PASOKAN PABRIK AKHIR
+    // SLIDE 6: ALOKASI PASOKAN PABRIK AKHIR
     // ==========================================
     {
         const slide = pptx.addSlide();
-        addHeader(slide, '4. Neraca Alokasi Pasokan Pabrik (Siklus & Tahunan)');
+        addHeader(slide, '5. Neraca Alokasi Pasokan Pabrik (Siklus & Tahunan)');
 
         // Left Container: Siklus 3 Bulan
         slide.addShape(pptx.ShapeType.roundRect, {
@@ -806,15 +978,15 @@ async function createPresentation() {
             });
         });
 
-        addFooter(slide, 5);
+        addFooter(slide, 6);
     }
 
     // ==========================================
-    // SLIDE 6: KESIMPULAN & REKOMENDASI KEPUTUSAN
+    // SLIDE 7: KESIMPULAN & REKOMENDASI KEPUTUSAN
     // ==========================================
     {
         const slide = pptx.addSlide();
-        addHeader(slide, '5. Kesimpulan Portofolio & Rekomendasi Investasi');
+        addHeader(slide, '6. Kesimpulan Portofolio & Rekomendasi Investasi');
 
         // Main Recommendation Cards (3 Cards)
         const recs = [
@@ -921,7 +1093,7 @@ async function createPresentation() {
             fontFace: 'Arial'
         });
 
-        addFooter(slide, 6);
+        addFooter(slide, 7);
     }
 
     // Save File

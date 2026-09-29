@@ -68,6 +68,28 @@ Untuk memperkuat ketahanan rantai pasok dan melindungi perusahaan dari ketergant
 
 ---
 
+### Skenario Alternatif: Pemenuhan Target 10% Tanpa Blok 2 (Hanya Blok 1 + Lahan Baru)
+Jika kesepakatan lahan Blok 2 (Binjeita 135 Ha) tidak direalisasikan dan perusahaan memilih pemenuhan murni melalui pembukaan lahan baru:
+- **Kondisi Awal (Blok 1 Eksisting)**: Menghasilkan **200.000 butir / 3 bulan (3.333 butir/HK)** $\rightarrow$ Menutup **8,33%** dari target 10%.
+- **Sisa Defisit yang Harus Ditutup**: 2.400.000 - 200.000 = **2.200.000 butir / 3 bulan** (defisit **36.667 butir / HK** atau 91,67% dari target 10%).
+- **Spesifikasi Teknis Kebutuhan Lahan Baru**:
+  - **Luas Lahan Baru**: **2.200 Ha**
+  - **Kerapatan Pohon**: **50 pohon / Ha**
+  - **Populasi Pohon Baru**: 2.200 Ha x 50 pohon = **110.000 pohon**
+  - **Usia Rata-rata**: 15 tahun (*fase produktivitas puncak 100%*)
+  - **Yield Panen**: 20 butir / pohon / panen (kuartal 3 bulan)
+  - **Hasil per Kuartal (3 Bulan)**: 110.000 pohon x 20 butir = **2.200.000 butir**
+  - **Pasokan Harian**: 2.200.000 / 60 HK = **36.667 butir / HK**
+  - **Posisi Porsi terhadap Target 10%**: **91,67%** (atau 9,17% dari total kebutuhan harian pabrik).
+- **Total Portofolio Skenario 2 (Blok 1 + Lahan Baru 2.200 Ha)**:
+  - **Total Luas Lahan**: 200 Ha + 2.200 Ha = **2.400 Ha**
+  - **Total Populasi Pohon**: 10.000 + 110.000 = **120.000 pohon**
+  - **Total Produksi per 3 Bulan**: 200.000 + 2.200.000 = **2.400.000 butir**
+  - **Total Pasokan Harian**: 3.333 + 36.667 = **40.000 butir / HK**
+  - **Pencapaian Target 10%**: **100,00% TUNTAS** (10,00% dari target produksi harian pabrik 400.000 butir/HK).
+
+---
+
 ## 3. Matriks Komparasi Portofolio Kumulatif
 
 | Komponen Parameter | Blok 1 (Kebun TMC) | Blok 2 (Binjeita) | Blok 3 (Lahan Ekspansi) | **TOTAL PORTOFOLIO** |
