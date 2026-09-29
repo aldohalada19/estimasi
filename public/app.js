@@ -63,11 +63,9 @@ document.addEventListener('DOMContentLoaded', () => {
         // KPI Cards
         kpiTotalLuas: document.getElementById('kpiTotalLuas'),
         kpiTotalBlokSubtext: document.getElementById('kpiTotalBlokSubtext'),
-        kpiTotalPohon: document.getElementById('kpiTotalPohon'),
-        kpiDensitySubtext: document.getElementById('kpiDensitySubtext'),
         kpiProduksiSiklus: document.getElementById('kpiProduksiSiklus'),
-        kpiHasilPerPohonAnnual: document.getElementById('kpiHasilPerPohonAnnual'),
-        kpiProduksiHarian: document.getElementById('kpiProduksiHarian'),
+        kpiProduksiHarianSubtext: document.getElementById('kpiProduksiHarianSubtext'),
+        kpiTargetKebunVal: document.getElementById('kpiTargetKebunVal'),
         kpiCoverageKebun: document.getElementById('kpiCoverageKebun'),
         kpiPembelianLuarSiklus: document.getElementById('kpiPembelianLuarSiklus'),
 
@@ -433,18 +431,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // KPI Cards
         elements.kpiTotalLuas.textContent = `${formatNumber(data.totalLuas)} Ha`;
-        elements.kpiTotalBlokSubtext.textContent = `${blocksArray.length} Blok Lahan Terdaftar`;
-
-        elements.kpiTotalPohon.textContent = formatNumber(data.totalPohon);
-        const avgDensity = data.totalLuas > 0 ? Math.round(data.totalPohon / data.totalLuas) : 0;
-        elements.kpiDensitySubtext.textContent = `Rata-rata ${avgDensity} Pohon/Ha`;
+        elements.kpiTotalBlokSubtext.textContent = `${blocksArray.length} Blok Lahan Terdaftar (${formatNumber(data.totalPohon)} Pohon)`;
 
         elements.kpiProduksiSiklus.textContent = `${formatNumber(data.totalProduksiSiklus)}`;
-        const avgYieldTree = data.totalPohon > 0 ? Math.round(data.totalProduksiTahunan / data.totalPohon) : 0;
-        elements.kpiHasilPerPohonAnnual.textContent = `Rata-rata: ${avgYieldTree} Butir/Pohon/Thn`;
+        elements.kpiProduksiHarianSubtext.textContent = `${formatNumber(data.totalProduksiHarian)} Butir / HK (Rata-rata)`;
 
-        elements.kpiProduksiHarian.textContent = `${formatNumber(data.totalProduksiHarian)}`;
-        elements.kpiCoverageKebun.textContent = `Target ${data.targetKebunPct}%: ${formatNumber(data.targetKebunHarian)} / HK (${data.coverageTargetKebun.toFixed(1)}% teruji)`;
+        elements.kpiTargetKebunVal.textContent = `${formatNumber(data.targetKebunHarian)}`;
+        elements.kpiCoverageKebun.textContent = `Aktual: ${formatNumber(data.totalProduksiHarian)} / HK (${data.coverageTargetKebun.toFixed(1)}% tercapai)`;
 
         elements.kpiPembelianLuarSiklus.textContent = `${formatNumber(data.pembelianLuarSiklus)}`;
 
