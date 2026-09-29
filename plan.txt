@@ -1,0 +1,15 @@
+
+saya ingin membuat simulasi sederhana mengenai estimasi kebun yang dengan mempertimbangkan produktivitas dan luas lahan.
+
+kondisi sekarang Kebun TMC sudah punya 200 Ha dengan jumlah pohon per hektar 80 pohon kelapa dan sudah produksi semua (sudah bisa dipanen)
+
+perusahaan butuh 400 ribu butir kelapa per hari. target rencana kebun 10% per dari kebun (bisa supply sekitar 40 ribu butir per hari), sisanya dari pembelian kelapa.
+
+buatkan simulasi bentuk slider yang ada slider, dengan tampilan sederhana dan menarik, dengan asumsi berikut:
+- Luas lahan bisa diinput oleh user (default 200)
+- Jumlah pohon per hektar bisa diinput oleh user (default 80)
+- Usia pohon bisa diinput oleh user (default 10)
+- Produksi per pohon bisa diinput oleh user (default 10)
+- Persentase panen bisa diinput oleh user (default 10%)
+
+kalau bisa simulasi bisa di save. setiap simulasi bisa di save, jadi buatkan dalam sqlite ataupun file yang bisa disimpan dalam bentuk database sederhana.
