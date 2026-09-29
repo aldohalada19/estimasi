@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simulasi Estimasi Kebun TMC - Multi-Blok Portofolio Lahan</title>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <title>Simulasi Estimasi Kebun TMC - Laravel Framework (SQLite)</title>
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,7 +13,7 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
-    <link rel="stylesheet" href="style.css?v=2.0">
+    <link rel="stylesheet" href="{{ asset('style.css') }}?v=3.0">
 </head>
 <body>
 
@@ -22,8 +23,8 @@
             <div class="logo-area">
                 <div class="logo-icon">🌴</div>
                 <div>
-                    <h1>Simulasi Kebun TMC</h1>
-                    <p class="subtitle">Multi-Blok Lahan Perkebunan Fleksibel & Portofolio Supply Pabrik</p>
+                    <h1>Simulasi Kebun TMC <span style="font-size:0.75rem; background:rgba(239, 68, 68, 0.2); color:#f87171; border:1px solid rgba(239, 68, 68, 0.4); padding:2px 8px; border-radius:6px; margin-left:8px; vertical-align:middle;">Laravel Edition</span></h1>
+                    <p class="subtitle">Multi-Blok Lahan Perkebunan Fleksibel & Portofolio Supply Pabrik (SQLite Backend)</p>
                 </div>
             </div>
             <div class="header-actions">
@@ -43,8 +44,8 @@
         <div class="cycle-banner">
             <div class="cycle-banner-icon"><i data-lucide="layers"></i></div>
             <div class="cycle-banner-text">
-                <strong>Simulasi Multi-Blok Lahan Perkebunan (Real-Time Dynamic Connection)</strong>
-                <span>Setiap perubahan slider pada setiap blok akan langsung memperbarui kalkulasi hasil blok, total portofolio, chart, dan target pasokan secara real-time!</span>
+                <strong>Simulasi Multi-Blok Lahan Perkebunan (Laravel MVC & SQLite)</strong>
+                <span>Setiap perubahan slider pada setiap blok langsung memperbarui kalkulasi hasil blok, total portofolio, chart, dan target pasokan secara real-time!</span>
             </div>
         </div>
 
@@ -56,7 +57,7 @@
                     <div class="kpi-icon icon-tree"><i data-lucide="map-pin"></i></div>
                 </div>
                 <div class="kpi-value" id="kpiTotalLuas">200 Ha</div>
-                <div class="kpi-subtext" id="kpiTotalBlokSubtext">1 Blok Lahan Terdaftar (16.000 Pohon)</div>
+                <div class="kpi-subtext" id="kpiTotalBlokSubtext">1 Blok Lahan Terdaftar (10.000 Pohon)</div>
             </div>
 
             <div class="kpi-card">
@@ -64,8 +65,8 @@
                     <span class="kpi-label">Produksi Kebun (3 Bulan)</span>
                     <div class="kpi-icon icon-coconut"><i data-lucide="nut"></i></div>
                 </div>
-                <div class="kpi-value highlight-emerald" id="kpiProduksiSiklus">600.000</div>
-                <div class="kpi-subtext" id="kpiProduksiHarianSubtext">10.000 Butir / HK (Rata-rata)</div>
+                <div class="kpi-value highlight-emerald" id="kpiProduksiSiklus">200.000</div>
+                <div class="kpi-subtext" id="kpiProduksiHarianSubtext">3.333 Butir / HK (Rata-rata)</div>
             </div>
 
             <div class="kpi-card">
@@ -73,8 +74,8 @@
                     <span class="kpi-label" id="lblKpiTargetKebunTitle">Target Pasokan Kebun (10%)</span>
                     <div class="kpi-icon icon-target"><i data-lucide="target"></i></div>
                 </div>
-                <div class="kpi-value" id="kpiTargetKebunVal">40.000</div>
-                <div class="kpi-subtext" id="kpiCoverageKebun">Aktual: 10.000 / HK (25,0% tercapai)</div>
+                <div class="kpi-value" id="kpiTargetKebunVal">2.400.000</div>
+                <div class="kpi-subtext" id="kpiCoverageKebun">Target: 40.000/HK | Aktual: 3.333/HK (8.3% tercapai)</div>
             </div>
 
             <div class="kpi-card">
@@ -82,7 +83,7 @@
                     <span class="kpi-label">Beli Kelapa Luar / 3 Bulan</span>
                     <div class="kpi-icon icon-shopping"><i data-lucide="shopping-cart"></i></div>
                 </div>
-                <div class="kpi-value highlight-amber" id="kpiPembelianLuarSiklus">23.400.000</div>
+                <div class="kpi-value highlight-amber" id="kpiPembelianLuarSiklus">23.800.000</div>
                 <div class="kpi-subtext" id="kpiPembelianLuarSubtext">Defisit Pasokan 60 HK</div>
             </div>
         </section>
@@ -101,64 +102,63 @@
             </div>
         </div>
 
-        <!-- MAIN CONTENT LAYOUT: SLIDERS LEFT, VISUALIZATION RIGHT -->
+        <!-- MAIN CONTENT LAYOUT: FULL WIDTH SINGLE COLUMN FLOW -->
         <div class="dashboard-grid">
             
-            <!-- LEFT COLUMN: MULTI-BLOCK SLIDERS -->
-            <section class="left-column-container">
+            <!-- GLOBAL TARGET CONFIGURATION CARD -->
+            <div class="card global-config-card mb-4">
+                <div class="card-header">
+                    <h2><i data-lucide="sliders"></i> Target & Operasional Global</h2>
+                    <span class="badge badge-info">Global Config</span>
+                </div>
                 
-                <!-- GLOBAL TARGET CONFIGURATION CARD -->
-                <div class="card global-config-card mb-4">
-                    <div class="card-header">
-                        <h2><i data-lucide="sliders"></i> Target & Operasional Global</h2>
-                        <span class="badge badge-info">Global Config</span>
-                    </div>
-                    
-                    <div class="sliders-list">
-                        <!-- Target Pasokan Kebun % -->
-                        <div class="form-group">
-                            <div class="form-label-row">
-                                <label for="targetKebunPctSlider">
-                                    <i data-lucide="target"></i> Target Pasokan Kebun Internal
-                                </label>
-                                <div class="input-with-unit">
-                                    <input type="number" id="targetKebunPctNum" min="1" max="100" step="1" value="10">
-                                    <span>% Pabrik</span>
-                                </div>
-                            </div>
-                            <input type="range" id="targetKebunPctSlider" min="1" max="100" step="1" value="10" class="custom-slider">
-                            <div class="slider-ticks">
-                                <span>1%</span>
-                                <span>10% (Std)</span>
-                                <span>25%</span>
-                                <span>50%</span>
-                                <span>100% (Mandiri)</span>
-                            </div>
-                            <div class="slider-hint" id="targetKebunHint">
-                                🎯 Target kebun diset: <strong>10%</strong> dari pasokan pabrik (40.000 butir/HK)
+                <div class="sliders-list">
+                    <!-- Target Pasokan Kebun % -->
+                    <div class="form-group">
+                        <div class="form-label-row">
+                            <label for="targetKebunPctSlider">
+                                <i data-lucide="target"></i> Target Pasokan Kebun Internal
+                            </label>
+                            <div class="input-with-unit">
+                                <input type="number" id="targetKebunPctNum" min="1" max="100" step="1" value="10">
+                                <span>% Pabrik</span>
                             </div>
                         </div>
+                        <input type="range" id="targetKebunPctSlider" min="1" max="100" step="1" value="10" class="custom-slider">
+                        <div class="slider-ticks">
+                            <span>1%</span>
+                            <span>10% (Std)</span>
+                            <span>25%</span>
+                            <span>50%</span>
+                            <span>100% (Mandiri)</span>
+                        </div>
+                        <div class="slider-hint" id="targetKebunHint">
+                            🎯 Target kebun diset: <strong>10%</strong> dari pasokan pabrik (40.000 butir/HK)
+                        </div>
+                    </div>
 
-                        <!-- Hari Kerja & Kebutuhan Pabrik -->
-                        <div class="form-row-2col">
-                            <div class="form-group">
-                                <label for="hariKerjaNum"><i data-lucide="briefcase"></i> Hari Kerja / Bln</label>
-                                <div class="input-with-unit">
-                                    <input type="number" id="hariKerjaNum" min="10" max="31" value="20">
-                                    <span>HK</span>
-                                </div>
+                    <!-- Hari Kerja & Kebutuhan Pabrik -->
+                    <div class="form-row-2col">
+                        <div class="form-group">
+                            <label for="hariKerjaNum"><i data-lucide="briefcase"></i> Hari Kerja / Bln</label>
+                            <div class="input-with-unit">
+                                <input type="number" id="hariKerjaNum" min="10" max="31" value="20">
+                                <span>HK</span>
                             </div>
-                            <div class="form-group">
-                                <label for="kebutuhanPabrikNum"><i data-lucide="factory"></i> Kebutuhan Pabrik / Bln</label>
-                                <div class="input-with-unit">
-                                    <input type="number" id="kebutuhanPabrikNum" min="100000" max="20000000" step="500000" value="8000000">
-                                    <span>Butir</span>
-                                </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="kebutuhanPabrikNum"><i data-lucide="factory"></i> Kebutuhan Pabrik / Bln</label>
+                            <div class="input-with-unit">
+                                <input type="number" id="kebutuhanPabrikNum" min="100000" max="20000000" step="500000" value="8000000">
+                                <span>Butir</span>
                             </div>
                         </div>
                     </div>
                 </div>
+            </div>
 
+            <!-- BLOCKS SECTION -->
+            <section class="left-column-container">
                 <!-- BLOCKS CONTAINER HEADER & TOOLBAR -->
                 <div class="blocks-toolbar-header">
                     <h2><i data-lucide="grid"></i> Daftar Blok Lahan Perkebunan</h2>
@@ -200,12 +200,10 @@
                 <div id="blocksListContainer" class="blocks-list">
                     <!-- Dynamic Block Cards Rendered Here by app.js -->
                 </div>
-
             </section>
 
-            <!-- RIGHT COLUMN: CHARTS & ANALYSIS -->
+            <!-- CHARTS & ANALYSIS SECTION -->
             <section class="right-column">
-                
                 <!-- Supply vs Target Chart Card -->
                 <div class="card chart-card">
                     <div class="card-header">
@@ -278,14 +276,13 @@
                         </table>
                     </div>
                 </div>
-
             </section>
         </div>
 
         <!-- SAVED SCENARIOS SECTION -->
         <section class="card saved-scenarios-section mt-4">
             <div class="card-header">
-                <h2><i data-lucide="database"></i> Skenario Simulasi Tersimpan (SQLite DB)</h2>
+                <h2><i data-lucide="database"></i> Skenario Simulasi Tersimpan (Laravel Eloquent / SQLite)</h2>
                 <button id="btnRefreshScenarios" class="btn btn-sm btn-outline">
                     <i data-lucide="refresh-cw"></i> Refresh Data
                 </button>
@@ -323,11 +320,12 @@
     <div class="modal-overlay" id="saveModal">
         <div class="modal">
             <div class="modal-header">
-                <h3><i data-lucide="bookmark"></i> Simpan Skenario Multi-Blok</h3>
+                <h3><i data-lucide="bookmark"></i> Simpan Skenario Multi-Blok (Laravel SQLite)</h3>
                 <button class="modal-close" id="btnCloseModal">&times;</button>
             </div>
             <div class="modal-body">
                 <form id="saveScenarioForm">
+                    @csrf
                     <div class="form-group">
                         <label for="scenarioNameInput">Nama Skenario</label>
                         <input type="text" id="scenarioNameInput" class="form-control" placeholder="Contoh: Skenario Portofolio 3 Blok 800 Ha" required>
@@ -338,9 +336,9 @@
                             <li>Total Blok Lahan: <strong id="prevBlockCount">1 Blok</strong></li>
                             <li>Total Luas Lahan: <strong id="prevLuas">200 Ha</strong></li>
                             <li>Target Kebun (%): <strong id="prevTargetPct">10%</strong></li>
-                            <li>Total Pohon: <strong id="prevTotalPohon">16.000 Pohon</strong></li>
-                            <li>Total Hasil / 3 Bulan: <strong id="prevHasilPanen">600.000 Butir</strong></li>
-                            <li>Rata-rata / Hari Kerja: <strong id="prevHasilHarian" class="text-emerald">10.000 Butir/HK</strong></li>
+                            <li>Total Pohon: <strong id="prevTotalPohon">10.000 Pohon</strong></li>
+                            <li>Total Hasil / 3 Bulan: <strong id="prevHasilPanen">200.000 Butir</strong></li>
+                            <li>Rata-rata / Hari Kerja: <strong id="prevHasilHarian" class="text-emerald">3.333 Butir/HK</strong></li>
                         </ul>
                     </div>
                     <div class="modal-footer">
@@ -355,6 +353,6 @@
     <!-- TOAST NOTIFICATION CONTAINER -->
     <div id="toastContainer" class="toast-container"></div>
 
-    <script src="app.js?v=2.0"></script>
+    <script src="{{ asset('app.js') }}?v=3.0"></script>
 </body>
 </html>

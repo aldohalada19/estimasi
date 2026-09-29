@@ -684,9 +684,14 @@ document.addEventListener('DOMContentLoaded', () => {
         };
 
         try {
+            const csrfToken = document.querySelector('meta[name="csrf-token"]')?.getAttribute('content');
             const res = await fetch('/api/simulations', {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
+                headers: { 
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json',
+                    'X-CSRF-TOKEN': csrfToken || ''
+                },
                 body: JSON.stringify(payload)
             });
             const result = await res.json();
@@ -695,7 +700,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 closeModal();
                 loadSavedScenarios();
             } else {
-                showToast(`Gagal menyimpan: ${result.error}`, 'danger');
+                showToast(`Gagal menyimpan: ${result.error || result.message || 'Error validasi'}`, 'danger');
             }
         } catch (err) {
             showToast(`Error menghubungi server API SQLite`, 'danger');
@@ -834,13 +839,20 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!confirm(`Hapus skenario "${name}" dari database SQLite?`)) return;
 
         try {
-            const res = await fetch(`/api/simulations/${id}`, { method: 'DELETE' });
+            const csrfToken = document.querySelector('meta[name="csrf-token"]')?.getAttribute('content');
+            const res = await fetch(`/api/simulations/${id}`, { 
+                method: 'DELETE',
+                headers: {
+                    'Accept': 'application/json',
+                    'X-CSRF-TOKEN': csrfToken || ''
+                }
+            });
             const result = await res.json();
             if (result.success) {
                 showToast(`Skenario "${name}" berhasil dihapus.`);
                 loadSavedScenarios();
             } else {
-                showToast(`Gagal menghapus: ${result.error}`, 'danger');
+                showToast(`Gagal menghapus: ${result.error || result.message}`, 'danger');
             }
         } catch (err) {
             showToast(`Error menghubungi server API`, 'danger');
