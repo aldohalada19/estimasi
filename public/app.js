@@ -169,6 +169,39 @@ document.addEventListener('DOMContentLoaded', () => {
         elements.kebutuhanPabrikNum.addEventListener(evt, recalculatePortfolio);
     });
 
+    // Synchronize ALL live DOM inputs back into blocksArray state
+    function syncDOMToState() {
+        blocksArray.forEach(block => {
+            const card = document.getElementById(`card_${block.id}`);
+            if (!card) return;
+
+            const nameInput = document.getElementById(`input_name_${block.id}`) || card.querySelector('.block-name-input');
+            if (nameInput && nameInput.value.trim() !== '') {
+                block.name = nameInput.value.trim();
+            }
+
+            const luasInput = document.getElementById(`num_luas_${block.id}`);
+            if (luasInput && !isNaN(parseFloat(luasInput.value))) {
+                block.luasLahan = parseFloat(luasInput.value);
+            }
+
+            const densityInput = document.getElementById(`num_density_${block.id}`);
+            if (densityInput && !isNaN(parseFloat(densityInput.value))) {
+                block.pohonPerHa = parseFloat(densityInput.value);
+            }
+
+            const usiaInput = document.getElementById(`num_usia_${block.id}`);
+            if (usiaInput && !isNaN(parseFloat(usiaInput.value))) {
+                block.usiaPohon = parseFloat(usiaInput.value);
+            }
+
+            const yieldInput = document.getElementById(`num_yield_${block.id}`);
+            if (yieldInput && !isNaN(parseFloat(yieldInput.value))) {
+                block.produksiPerPanen = parseFloat(yieldInput.value);
+            }
+        });
+    }
+
     // Dynamic Multi-Block UI Renderer
     function renderBlocksUI() {
         elements.blocksListContainer.innerHTML = '';
@@ -184,7 +217,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 <div class="block-card-header">
                     <div class="block-title-area">
                         <div class="block-icon"><i data-lucide="map-pin"></i></div>
-                        <input type="text" class="block-name-input" value="${escapeHtml(block.name)}" onchange="updateBlockField('${block.id}', 'name', this.value)">
+                        <div class="block-name-wrapper">
+                            <i data-lucide="edit-3" class="edit-icon-hint"></i>
+                            <input type="text" id="input_name_${block.id}" class="block-name-input" value="${escapeHtml(block.name)}" placeholder="Nama Blok Lahan..." title="Klik untuk mengubah nama blok (terhubung database)">
+                        </div>
                     </div>
                     ${blocksArray.length > 1 ? `
                         <button type="button" class="btn-delete-block" onclick="removeBlock('${block.id}')">
@@ -280,11 +316,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
             elements.blocksListContainer.appendChild(blockCard);
 
-            // Bind Event Listeners for this Block
+            // Bind Event Listeners for this Block Sliders & Numbers
             bindBlockSlider(block.id, 'luas', 'luasLahan');
             bindBlockSlider(block.id, 'density', 'pohonPerHa');
             bindBlockSlider(block.id, 'usia', 'usiaPohon');
             bindBlockSlider(block.id, 'yield', 'produksiPerPanen');
+
+            // Dynamic live binding for Block Name
+            const nameInput = blockCard.querySelector(`#input_name_${block.id}`);
+            if (nameInput) {
+                ['input', 'change', 'keyup', 'blur'].forEach(evt => {
+                    nameInput.addEventListener(evt, () => {
+                        block.name = nameInput.value.trim() || block.name;
+                        recalculatePortfolio();
+                    });
+                });
+            }
         });
 
         if (window.lucide) lucide.createIcons();
@@ -342,6 +389,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Add Block
     function addBlock() {
+        syncDOMToState();
         const newId = `block_${Date.now()}`;
         const blockNum = blocksArray.length + 1;
         const newBlock = {
@@ -376,6 +424,7 @@ document.addEventListener('DOMContentLoaded', () => {
             showToast('Simulasi minimal harus memiliki 1 blok lahan!', 'danger');
             return;
         }
+        syncDOMToState();
         const block = blocksArray.find(b => b.id === blockId);
         const name = block ? block.name : 'Blok';
         blocksArray = blocksArray.filter(b => b.id !== blockId);
@@ -639,6 +688,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Save Modal Handling
     elements.btnOpenSaveModal.addEventListener('click', () => {
+        syncDOMToState();
         const data = calculatePortfolioData();
         elements.prevBlockCount.textContent = `${blocksArray.length} Blok Lahan`;
         elements.prevLuas.textContent = `${formatNumber(data.totalLuas)} Ha`;
@@ -647,7 +697,10 @@ document.addEventListener('DOMContentLoaded', () => {
         elements.prevHasilPanen.textContent = `${formatNumber(data.totalProduksiSiklus)} Butir`;
         elements.prevHasilHarian.textContent = `${formatNumber(data.totalProduksiHarian)} Butir/HK`;
 
-        elements.scenarioNameInput.value = `Skenario ${blocksArray.length} Blok (${formatNumber(data.totalLuas)} Ha) - ${new Date().toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit' })}`;
+        // Suggest scenario name based on block names
+        const blockNamesSummary = blocksArray.map(b => b.name.replace(/Blok \d+\s*\((.*?)\)/, '$1').replace(/Blok \d+/, '').trim()).filter(Boolean).join(' + ');
+        const nameSuffix = blockNamesSummary ? ` [${blockNamesSummary}]` : '';
+        elements.scenarioNameInput.value = `Skenario ${blocksArray.length} Blok (${formatNumber(data.totalLuas)} Ha)${nameSuffix} - ${new Date().toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit' })}`;
         elements.saveModal.classList.add('active');
     });
 
@@ -661,6 +714,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Save Scenario to SQLite API
     elements.saveScenarioForm.addEventListener('submit', async (e) => {
         e.preventDefault();
+        syncDOMToState();
         const scenarioName = elements.scenarioNameInput.value.trim();
         if (!scenarioName) return;
 
@@ -708,13 +762,18 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Load Saved Scenarios from SQLite API
-    async function loadSavedScenarios() {
+    async function loadSavedScenarios(autoLoadLatest = false) {
         elements.scenariosTableBody.innerHTML = `<tr><td colspan="11" class="text-center text-muted">Memuat skenario tersimpan...</td></tr>`;
         try {
             const res = await fetch('/api/simulations');
             const result = await res.json();
             if (result.success && result.data.length > 0) {
                 renderScenariosTable(result.data);
+                if (autoLoadLatest && !window.initialScenarioLoaded) {
+                    window.initialScenarioLoaded = true;
+                    // Auto-load latest saved scenario so user instantly sees their latest configuration
+                    applyScenario(result.data[0].id, false);
+                }
             } else {
                 elements.scenariosTableBody.innerHTML = `<tr><td colspan="11" class="text-center text-muted">Belum ada skenario yang tersimpan di SQLite.</td></tr>`;
             }
@@ -723,7 +782,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    elements.btnRefreshScenarios.addEventListener('click', loadSavedScenarios);
+    elements.btnRefreshScenarios.addEventListener('click', () => loadSavedScenarios(false));
 
     // Render Scenarios Table
     function renderScenariosTable(scenarios) {
@@ -734,13 +793,23 @@ document.addEventListener('DOMContentLoaded', () => {
                 day: '2-digit', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit'
             });
 
-            let blockCount = 1;
+            let blocksList = [];
             if (item.blocks_json) {
-                try {
-                    const parsed = JSON.parse(item.blocks_json);
-                    if (Array.isArray(parsed)) blockCount = parsed.length;
-                } catch (e) {}
+                if (Array.isArray(item.blocks_json)) {
+                    blocksList = item.blocks_json;
+                } else if (typeof item.blocks_json === 'string') {
+                    try {
+                        blocksList = JSON.parse(item.blocks_json);
+                    } catch (e) {
+                        blocksList = [];
+                    }
+                }
             }
+
+            const blockCount = Array.isArray(blocksList) && blocksList.length > 0 ? blocksList.length : 1;
+            const blockNamesStr = Array.isArray(blocksList) && blocksList.length > 0
+                ? blocksList.map(b => b.name || 'Blok').join(', ')
+                : '';
 
             const targetPct = item.target_kebun_pct || 10;
             const totalLuas = item.luas_lahan || 200;
@@ -748,7 +817,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
             tr.innerHTML = `
                 <td>${index + 1}</td>
-                <td><strong>${escapeHtml(item.scenario_name)}</strong></td>
+                <td>
+                    <strong>${escapeHtml(item.scenario_name)}</strong>
+                    ${blockNamesStr ? `<div style="font-size: 0.76rem; color: #94a3b8; margin-top: 3px; display: flex; align-items: center; gap: 4px;"><i data-lucide="layers" style="width:12px;height:12px;color:#10b981;"></i> <span style="color:#cbd5e1;">${escapeHtml(blockNamesStr)}</span></div>` : ''}
+                </td>
                 <td>${formatNumber(totalLuas)}</td>
                 <td>${item.pohon_per_ha || 80}</td>
                 <td><span class="badge badge-info">${blockCount} Blok</span></td>
@@ -776,7 +848,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Global action: Apply Scenario (reconstructs all blocks!)
-    window.applyScenario = function (id) {
+    window.applyScenario = function (id, showNotification = true) {
         const item = (window.savedScenariosCache || []).find(s => s.id == id);
         if (!item) {
             console.error('Scenario not found for id:', id);
@@ -785,17 +857,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
         let parsedBlocks = null;
         if (item.blocks_json) {
-            try {
-                parsedBlocks = typeof item.blocks_json === 'string' ? JSON.parse(item.blocks_json) : item.blocks_json;
-            } catch (e) {
-                console.error('Error parsing blocks_json:', e);
+            if (Array.isArray(item.blocks_json)) {
+                parsedBlocks = item.blocks_json;
+            } else if (typeof item.blocks_json === 'string') {
+                try {
+                    parsedBlocks = JSON.parse(item.blocks_json);
+                } catch (e) {
+                    console.error('Error parsing blocks_json:', e);
+                }
             }
         }
 
         if (Array.isArray(parsedBlocks) && parsedBlocks.length > 0) {
             blocksArray = parsedBlocks.map((b, idx) => ({
-                id: b.id || `block_${idx + 1}`,
-                name: b.name || `Blok ${idx + 1}`,
+                id: b.id || `block_${Date.now()}_${idx + 1}`,
+                name: (b.name && b.name.trim()) ? b.name.trim() : (b.nama && b.nama.trim()) ? b.nama.trim() : `Blok ${idx + 1}`,
                 luasLahan: parseFloat(b.luasLahan) || 0,
                 pohonPerHa: parseFloat(b.pohonPerHa) || 0,
                 usiaPohon: parseFloat(b.usiaPohon) || 10,
@@ -825,12 +901,12 @@ document.addEventListener('DOMContentLoaded', () => {
         if (elements.kebutuhanPabrikNum) elements.kebutuhanPabrikNum.value = parseFloat(item.kebutuhan_pabrik) || 8000000;
 
         renderBlocksUI();
-        showToast(`Skenario "${item.scenario_name}" (${blocksArray.length} Blok) berhasil dimuat!`);
-
-        // Smooth scroll to blocks list so user immediately sees the loaded blocks
-        const blocksToolbar = document.querySelector('.blocks-toolbar-header');
-        if (blocksToolbar) {
-            blocksToolbar.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        if (showNotification) {
+            showToast(`Skenario "${item.scenario_name}" (${blocksArray.length} Blok) berhasil dimuat!`);
+            const blocksToolbar = document.querySelector('.blocks-toolbar-header');
+            if (blocksToolbar) {
+                blocksToolbar.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
         }
     };
 
@@ -880,5 +956,5 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Initial load & calculation
     renderBlocksUI();
-    loadSavedScenarios();
+    loadSavedScenarios(true);
 });

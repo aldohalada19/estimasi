@@ -51,9 +51,14 @@ class SimulationController extends Controller
             'blocks_json'         => 'nullable'
         ]);
 
-        // Tangani blocks_json jika berupa string json dari fetch
-        if (isset($validated['blocks_json']) && is_string($validated['blocks_json'])) {
-            $validated['blocks_json'] = json_decode($validated['blocks_json'], true);
+        // Tangani blocks_json jika berupa string json dari fetch atau array
+        if (isset($validated['blocks_json'])) {
+            if (is_string($validated['blocks_json'])) {
+                $decoded = json_decode($validated['blocks_json'], true);
+                $validated['blocks_json'] = is_array($decoded) ? $decoded : [];
+            } elseif (!is_array($validated['blocks_json'])) {
+                $validated['blocks_json'] = [];
+            }
         }
 
         $simulation = Simulation::create($validated);
