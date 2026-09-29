@@ -4,34 +4,34 @@
 
 ---
 
-## 1. Ringkasan Eksekutif & Latar Belakang Kebijakan (10% Target)
+## 1. Ringkasan Eksekutif: Kebutuhan Pasokan Kelapa & Target Supply Kebun Sendiri (10%)
 
-### Profil Kebutuhan Bahan Baku Operasional Pabrik:
-- **Target Kebutuhan Bahan Baku Pabrik**: 8.000.000 butir / bulan (24.000.000 butir per siklus panen 3 bulan / 96.000.000 butir per tahun). *(Catatan: Merupakan target pemenuhan kebutuhan bahan baku operasional pabrik yang harus dicapai, bukan kapasitas olah yang telah berjalan saat ini)*.
-- **Hari Kerja Operasional**: 20 Hari Kerja (HK) / bulan (60 HK per siklus 3 bulan).
+### Profil Kebutuhan Bahan Baku Produksi Pabrik:
+- **Target Kebutuhan Produksi Pabrik**: 400.000 butir kelapa / hari kerja (20 HK/bulan = 8.000.000 butir/bulan atau 24.000.000 butir per kuartal 3 bulan / 96.000.000 butir per tahun). *(Catatan: Merupakan target pemenuhan kebutuhan bahan baku operasional pabrik yang harus dipenuhi secara berkesinambungan, bukan kapasitas olah aktual yang telah berjalan saat ini)*.
+- **Hari Kerja Operasional**: 20 Hari Kerja (HK) / bulan (60 HK per kuartal 3 bulan).
 - **Target Kebutuhan Harian Pabrik**: 400.000 butir / HK.
 
-### Mandat Kebijakan Target Pasokan Internal 10%:
-Untuk menjaga stabilitas operasional, melindungi perusahaan dari fluktuasi harga pasar luar, serta menjamin ketersediaan bahan baku berkualitas standar secara berkesinambungan, manajemen menetapkan target pemenuhan mandiri sebesar **10% dari total kebutuhan pabrik**:
-- **Target Pasokan per Siklus (3 Bulan)**: 10% x 24.000.000 = **2.400.000 butir**.
-- **Target Pasokan Harian**: 10% x 400.000 = **40.000 butir / HK**.
+### Kebutuhan Perusahaan: Supply dari Perkebunan TMC (10% Target Harian):
+Untuk memperkuat ketahanan rantai pasok dan melindungi perusahaan dari ketergantungan penuh terhadap pasar luar, perusahaan menetapkan kebutuhan pasokan mandiri dari kebun sendiri sebesar **10% per hari dari 400.000 butir kebutuhan produksi pabrik**:
+- **Target Pasokan Harian Kebun**: 10% x 400.000 = **40.000 butir / HK**.
+- **Target Pasokan per Kuartal (3 Bulan)**: 10% x 24.000.000 = **2.400.000 butir**.
 - **Target Pasokan Tahunan**: 10% x 96.000.000 = **9.600.000 butir / tahun**.
+- **Tujuan Strategis**: Berfungsi sebagai *core buffer stock*, pengendali HPP, dan jaminan ketersediaan bahan baku terstandar saat musim paceklik pasokan luar.
 
 ---
 
 ## 2. Analisis Bertahap: Portofolio Eksisting, Deal Berjalan, & Kebutuhan Ekspansi
 
-### Tahap 1: Lahan Eksisting — Blok 1 (Kebun TMC)
-- **Status**: Lahan aktif milik perusahaan.
+### Tahap 1: Lahan Eksisting — Blok 1 (Perkebunan TMC)
+- **Status**: Perkebunan aktif milik perusahaan.
 - **Luas Lahan**: **200 Ha**
 - **Kepadatan Pohon**: 50 pohon/Ha $\rightarrow$ **10.000 pohon**.
 - **Usia Rata-rata**: 15 tahun (*fase produksi puncak 100%*).
 - **Produktivitas Panen**: 20 butir / pohon / panen (3 bulan).
-- **Hasil Panen per 3 Bulan**: 10.000 pohon x 20 butir x 100% = **200.000 butir**.
-- **Pasokan Harian**: 200.000 / 60 HK = **3.333 butir / HK**.
+- **Hasil Panen Saat Ini**: Sesuai dengan pencatatan hasil panen saat ini di semua kebun produktif TMC, hasil panen per kuartal (3 bulan) telah membukukan hasil aktual mencapai **hampir 200.000 butir kelapa** (rata-rata **3.333 butir / HK**).
 - **Evaluasi Pencapaian**:
-  - Menyumbang **8,33%** dari target kebun 10% (atau baru **0,83%** dari total kebutuhan pabrik).
-  - Lahan eksisting belum memadai sebagai penopang mandiri pasokan pabrik.
+  - Menyumbang **8,33%** dari total kebutuhan supply kebun internal (atau **0,83%** dari total kebutuhan produksi harian pabrik).
+  - Terbukti berproduksi optimal, namun menyisakan defisit sebesar **2.200.000 butir / kuartal (36.667 butir/HK)** yang memerlukan integrasi lahan tambahan.
 
 ---
 
@@ -98,19 +98,19 @@ Untuk menjaga stabilitas operasional, melindungi perusahaan dari fluktuasi harga
 
 ## 5. Kerangka Bahan Paparan Presentasi (5 Slide)
 
-### Slide 1: Latar Belakang & Mandat Strategis
-- **Judul**: Urgensi Ketahanan Pasokan Bahan Baku Kelapa TMC
+### Slide 1: Urgensi Kebutuhan Supply Perkebunan TMC
+- **Judul**: Kebutuhan Pasokan Kelapa TMC: Target Supply Kebun Mandiri 10% / Hari
 - **Poin Utama**:
-  - Kebutuhan Pabrik: 24.000.000 butir per siklus panen 3 bulan (400.000 butir/HK).
-  - Target Kebun Internal: 10% (2.400.000 butir per 3 bulan / 40.000 butir per HK).
-  - Tujuan: Menjamin *buffer stock*, menekan risiko kelangkaan bahan baku di pasar, serta menstabilkan HPP.
+  - Kebutuhan Produksi Pabrik: 400.000 butir kelapa/hari kerja (24.000.000 butir per kuartal 3 bulan).
+  - Target Supply Kebun TMC: 10% per hari (40.000 butir/HK atau 2.400.000 butir per kuartal 3 bulan).
+  - Peran: Menjamin *buffer stock* operasional, menjaga stabilitas HPP, dan memitigasi fluktuasi harga pasar luar.
 
-### Slide 2: Realitas Saat Ini (Blok 1 Eksisting TMC)
-- **Judul**: Kemampuan Lahan Eksisting 200 Ha
+### Slide 2: Realitas Saat Ini (Blok 1 Perkebunan TMC)
+- **Judul**: Pencapaian Hasil Aktual Lahan Eksisting 200 Ha
 - **Poin Utama**:
-  - Lahan aktif 200 Ha dengan 10.000 pohon saat ini memasok 200.000 butir per 3 bulan (3.333 butir/HK).
-  - Kontribusi saat ini baru 0,83% dari kebutuhan pabrik (atau baru 8,33% dari target mandat 10%).
-  - Ketergantungan pada pasokan luar masih mencapai 99,17%.
+  - Sesuai hasil aktual saat ini di seluruh kebun TMC, produksi per kuartal 3 bulan mencapai hampir 200.000 butir kelapa (~3.333 butir/HK).
+  - Kontribusi saat ini menutup 8,33% dari target supply kebun internal (0,83% dari total kebutuhan pabrik).
+  - Masih dibutuhkan pasokan tambahan sebesar 2.200.000 butir/kuartal untuk melengkapi target 10%.
 
 ### Slide 3: Progres Akuisisi (Deal Blok 2 Binjeita 135 Ha)
 - **Judul**: Dampak Akuisisi Lahan Binjeita & Analisis Kesenjangan

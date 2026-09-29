@@ -196,52 +196,56 @@ async function createPresentation() {
     // ==========================================
     {
         const slide = pptx.addSlide();
-        addHeader(slide, '1. Latar Belakang & Mandat Target Pasokan Mandiri 10%');
+        addHeader(slide, '1. Kebutuhan Pasokan Kelapa TMC: Target Supply Kebun Mandiri 10% / Hari');
 
         // Top Narrative Card
         slide.addShape(pptx.ShapeType.roundRect, {
             x: 0.8,
-            y: 1.5,
+            y: 1.45,
             w: 11.7,
-            h: 1.5,
+            h: 1.65,
             rectRadius: 0.08,
             fill: { color: COLORS.bgLight },
             line: { color: COLORS.border, width: 1 }
         });
 
         const narrativeText = [
-            { text: 'Target Kebutuhan Bahan Baku Operasional Pabrik:\n', options: { fontSize: 11, bold: true, color: COLORS.navy } },
-            { text: '• Target pemenuhan bahan baku operasional pabrik kelapa terpadu TMC ditetapkan sebesar ', options: { fontSize: 9.5, color: COLORS.slate } },
-            { text: '8.000.000 butir/bulan (24.000.000 butir per 3 bulan / 96.000.000 butir/tahun)', options: { fontSize: 9.5, bold: true, color: COLORS.navy } },
-            { text: ' dengan operasional 20 Hari Kerja/bulan (400.000 butir/HK). Angka ini adalah target kebutuhan bahan baku untuk kelancaran pabrik (bukan kapasitas olah yang telah berjalan saat ini).\n', options: { fontSize: 9.5, color: COLORS.slate } },
-            { text: '• Mandat Kebijakan Direksi: ', options: { fontSize: 9.5, bold: true, color: COLORS.primary } },
-            { text: 'Menetapkan target pasokan mandiri sebesar ', options: { fontSize: 9.5, color: COLORS.slate } },
-            { text: '10% (2.400.000 butir / 3 bulan atau 40.000 butir / HK) ', options: { fontSize: 9.5, bold: true, color: COLORS.primary } },
-            { text: 'guna menjamin buffer stock, menstabilkan HPP, serta melindungi pabrik dari fluktuasi harga dan kelangkaan bahan baku di pasar bebas.', options: { fontSize: 9.5, color: COLORS.slate } }
+            { text: '• Target Kebutuhan Produksi Pabrik: ', options: { fontSize: 9.5, bold: true, color: COLORS.primary } },
+            { text: 'Kebutuhan bahan baku produksi pabrik pengolahan kelapa terpadu TMC ditetapkan sebesar ', options: { fontSize: 8.5, color: COLORS.slate } },
+            { text: '400.000 butir kelapa/hari kerja ', options: { fontSize: 8.5, bold: true, color: COLORS.navy } },
+            { text: '(20 HK/bulan = 8.000.000 butir/bulan atau 24.000.000 butir per kuartal 3 bulan) yang harus dipenuhi secara stabil dan berkesinambungan.\n', options: { fontSize: 8.5, color: COLORS.slate } },
+            { text: '• Kebutuhan Perusahaan: Supply dari Perkebunan TMC (10% Target Harian): ', options: { fontSize: 9.5, bold: true, color: COLORS.primary } },
+            { text: 'Perusahaan menetapkan pemenuhan pasokan dari kebun internal sebesar ', options: { fontSize: 8.5, color: COLORS.slate } },
+            { text: '10% per hari (40.000 butir/hari kerja atau 2.400.000 butir per kuartal 3 bulan) ', options: { fontSize: 8.5, bold: true, color: COLORS.primary } },
+            { text: 'guna menjaga stabilitas HPP serta menjamin buffer stock operasional pabrik.\n', options: { fontSize: 8.5, color: COLORS.slate } },
+            { text: '• Realisasi Saat Ini - Perkebunan TMC Eksisting (Blok 1): ', options: { fontSize: 9.5, bold: true, color: COLORS.primary } },
+            { text: 'Sesuai hasil panen saat ini di seluruh kebun produktif TMC (Blok 1 seluas 200 Ha), produksi per kuartal (3 bulan) telah mencapai ', options: { fontSize: 8.5, color: COLORS.slate } },
+            { text: 'hampir 200.000 butir kelapa (3.333 butir/HK). ', options: { fontSize: 8.5, bold: true, color: COLORS.navy } },
+            { text: 'Hasil ini telah menutup 8,33% kebutuhan supply kebun internal (0,83% kebutuhan produksi pabrik), sehingga sisa kebutuhan sebesar 2.200.000 butir/kuartal diselesaikan melalui ekspansi lahan baru.', options: { fontSize: 8.5, color: COLORS.slate } }
         ];
         slide.addText(narrativeText, {
             x: 1.1,
-            y: 1.62,
+            y: 1.52,
             w: 11.1,
-            h: 1.25,
+            h: 1.5,
             fontFace: 'Arial'
         });
 
         // 4 KPI Summary Cards
         const kpiCards = [
-            { label: 'KEBUTUHAN PABRIK (3 BLN)', val: '24.000.000', sub: '400.000 Butir / HK', color: COLORS.navy, bg: COLORS.bgLight, border: COLORS.border },
-            { label: 'TARGET KEBUN MANDIRI (10%)', val: '2.400.000', sub: '40.000 Butir / HK', color: COLORS.primary, bg: 'ecfdf5', border: 'a7f3d0' },
-            { label: 'REALISASI 3 BLOK KEBUN', val: '2.400.600', sub: '40.010 Butir / HK (100,03%)', color: COLORS.primary, bg: 'ecfdf5', border: 'a7f3d0' },
-            { label: 'PEMBELIAN PETANI LUAR', val: '21.599.400', sub: '89,99% Total Pabrik', color: COLORS.accentAmber, bg: 'fffbeb', border: 'fde68a' }
+            { label: 'TARGET PRODUKSI PABRIK', val: '400.000', sub: 'Butir/Hari (24 Juta/3 Bln)', color: COLORS.navy, bg: COLORS.bgLight, border: COLORS.border },
+            { label: 'TARGET SUPPLY KEBUN (10%)', val: '40.000', sub: 'Butir/Hari (2,4 Juta/3 Bln)', color: COLORS.primary, bg: 'ecfdf5', border: 'a7f3d0' },
+            { label: 'HASIL SAAT INI (BLOK 1)', val: '~200.000', sub: 'Butir/3 Bln (3.333 Btr/HK)', color: COLORS.navy, bg: COLORS.bgLight, border: COLORS.border },
+            { label: 'PORTOFOLIO 3 BLOK KEBUN', val: '2.400.600', sub: '40.010 Butir/HK (100,03%)', color: COLORS.primary, bg: 'ecfdf5', border: 'a7f3d0' }
         ];
 
         kpiCards.forEach((kpi, idx) => {
             const cardX = 0.8 + idx * (2.75 + 0.23);
             slide.addShape(pptx.ShapeType.roundRect, {
                 x: cardX,
-                y: 3.25,
+                y: 3.3,
                 w: 2.75,
-                h: 1.6,
+                h: 1.55,
                 rectRadius: 0.08,
                 fill: { color: kpi.bg },
                 line: { color: kpi.border, width: 1.5 }
@@ -249,9 +253,9 @@ async function createPresentation() {
 
             slide.addText(kpi.label, {
                 x: cardX + 0.15,
-                y: 3.42,
+                y: 3.45,
                 w: 2.45,
-                h: 0.35,
+                h: 0.32,
                 fontSize: 8,
                 bold: true,
                 color: COLORS.grayMuted,
@@ -263,8 +267,8 @@ async function createPresentation() {
                 x: cardX + 0.15,
                 y: 3.82,
                 w: 2.45,
-                h: 0.55,
-                fontSize: 16,
+                h: 0.52,
+                fontSize: 15,
                 bold: true,
                 color: kpi.color,
                 align: 'center',
@@ -273,10 +277,10 @@ async function createPresentation() {
 
             slide.addText(kpi.sub, {
                 x: cardX + 0.15,
-                y: 4.4,
+                y: 4.38,
                 w: 2.45,
                 h: 0.3,
-                fontSize: 8,
+                fontSize: 7.5,
                 color: COLORS.slate,
                 align: 'center',
                 fontFace: 'Arial'
@@ -295,9 +299,9 @@ async function createPresentation() {
         });
 
         const bannerText = [
-            { text: 'Kesimpulan Latar Belakang:\n', options: { fontSize: 10.5, bold: true, color: '166534' } },
-            { text: 'Untuk mencukupi kuota 10% pasokan (2.400.000 butir), perusahaan tidak dapat hanya mengandalkan kebun yang ada saat ini. ', options: { fontSize: 9.5, color: COLORS.slate } },
-            { text: 'Diperlukan integrasi strategis antara lahan eksisting (Blok 1), tambahan deal akuisisi (Blok 2), serta penetapan alokasi lahan ekspansi baru (Blok 3) seluas 2.044 Ha.', options: { fontSize: 9.5, bold: true, color: '166534' } }
+            { text: 'Kesimpulan Analisis Pasokan:\n', options: { fontSize: 10.5, bold: true, color: '166534' } },
+            { text: 'Realisasi panen kebun eksisting (Blok 1) yang mencapai hampir 200.000 butir per kuartal membuktikan kelayakan produktivitas kebun TMC. ', options: { fontSize: 9.5, color: COLORS.slate } },
+            { text: 'Guna memenuhi target supply harian 10% (40.000 butir/HK), akuisisi Blok 2 (Binjeita 135 Ha) dan pengalokasian Blok 3 (Ekspansi 2.044 Ha) secara definitif menuntaskan sisa defisit 2.200.000 butir kelapa.', options: { fontSize: 9.5, bold: true, color: '166534' } }
         ];
         slide.addText(bannerText, {
             x: 1.1,
@@ -821,7 +825,7 @@ async function createPresentation() {
             {
                 num: '02',
                 title: 'Alokasi Capex Lahan Ekspansi Blok 3 (2.044 Ha)',
-                desc: 'Mengesahkan penganggaran modal (CAPEX) untuk akuisisi/pembukaan lahan ekspansi Blok 3 seluas 2.044 Ha. Blok 3 adalah penentu utama yang menyumbang 85,17% dari target mandat 10% (2.044.000 butir/3 bulan).',
+                desc: 'Mengesahkan penganggaran modal (CAPEX) untuk akuisisi/pembukaan lahan ekspansi Blok 3 seluas 2.044 Ha. Blok 3 adalah penentu utama yang menyumbang 85,17% dari target kebutuhan supply 10% kebun TMC (2.044.000 butir/3 bulan).',
                 accent: COLORS.primary
             },
             {
@@ -902,7 +906,7 @@ async function createPresentation() {
             line: { color: '10b981', width: 1 }
         });
 
-        slide.addText('RINGKASAN EKSEKUTIF: Portofolio 3 Blok seluas 2.379 Ha (120.030 pohon) menghasilkan 2.400.600 butir/3 bulan, TUNTAS memenuhi 100,03% dari target mandat pasokan mandiri 10% pabrik kelapa TMC.', {
+        slide.addText('RINGKASAN EKSEKUTIF: Portofolio 3 Blok seluas 2.379 Ha (120.030 pohon) menghasilkan 2.400.600 butir/3 bulan, TUNTAS memenuhi 100% kebutuhan supply perkebunan TMC (10% target harian produksi pabrik 400.000 butir kelapa/hari).', {
             x: 1.0,
             y: 6.18,
             w: 11.3,
