@@ -385,9 +385,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Main Portfolio Recalculator
     function calculatePortfolioData() {
-        const targetKebunPct = parseFloat(elements.targetKebunPctNum.value) || 10;
-        const hariKerjaBulan = parseInt(elements.hariKerjaNum.value) || 20;
-        const kebutuhanPabrikBulan = parseFloat(elements.kebutuhanPabrikNum.value) || 8000000;
+        const targetKebunPct = parseFloat(elements.targetKebunPctNum?.value) || 10;
+        const hariKerjaBulan = parseInt(elements.hariKerjaNum?.value) || 20;
+        const kebutuhanPabrikBulan = parseFloat(elements.kebutuhanPabrikNum?.value) || 8000000;
         const siklusBulan = GLOBAL_DEFAULTS.siklusBulan; // 3 bulan
 
         const kebutuhanPabrikSiklus = kebutuhanPabrikBulan * 3; // 24.000.000 per 3 bulan
@@ -404,12 +404,18 @@ document.addEventListener('DOMContentLoaded', () => {
         let totalProduksiSiklus = 0;
 
         const blockDetails = blocksArray.map(block => {
-            const ageInfo = getAgeFactor(block.usiaPohon);
-            const blockPohon = Math.round(block.luasLahan * block.pohonPerHa);
+            const luas = parseFloat(block.luasLahan) || 0;
+            const density = parseFloat(block.pohonPerHa) || 0;
+            const usia = parseFloat(block.usiaPohon) || 10;
+            const yieldPanen = parseFloat(block.produksiPerPanen) || 0;
+            const pctPanen = parseFloat(block.persentasePanen) || 100;
+
+            const ageInfo = getAgeFactor(usia);
+            const blockPohon = Math.round(luas * density);
             
             // Formula Produksi per Siklus Panen (3 Bulan) per blok:
             // Populasi Pohon * Produksi/Pohon/Panen * Age Factor * (% Panen / 100)
-            const blockProduksiSiklus = Math.round(blockPohon * block.produksiPerPanen * ageInfo.factor * (block.persentasePanen / 100));
+            const blockProduksiSiklus = Math.round(blockPohon * yieldPanen * ageInfo.factor * (pctPanen / 100));
             
             // Produksi Tahunan (4 kali siklus panen per tahun)
             const blockProduksiTahunan = blockProduksiSiklus * (12 / siklusBulan);
@@ -418,7 +424,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const totalHkSiklus = hariKerjaBulan * 3;
             const blockProduksiHarian = totalHkSiklus > 0 ? (blockProduksiSiklus / totalHkSiklus) : 0;
 
-            totalLuas += block.luasLahan;
+            totalLuas += luas;
             totalPohon += blockPohon;
             totalProduksiSiklus += blockProduksiSiklus;
             totalProduksiTahunan += blockProduksiTahunan;
@@ -766,58 +772,61 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Global action: Apply Scenario (reconstructs all blocks!)
     window.applyScenario = function (id) {
-        const item = (window.savedScenariosCache || []).find(s => s.id === id);
-        if (!item) return;
+        const item = (window.savedScenariosCache || []).find(s => s.id == id);
+        if (!item) {
+            console.error('Scenario not found for id:', id);
+            return;
+        }
 
+        let parsedBlocks = null;
         if (item.blocks_json) {
             try {
-                const parsed = JSON.parse(item.blocks_json);
-                if (Array.isArray(parsed) && parsed.length > 0) {
-                    blocksArray = parsed;
-                } else {
-                    blocksArray = [{
-                        id: 'block_1',
-                        name: 'Blok 1 (Kebun TMC)',
-                        luasLahan: item.luas_lahan || 200,
-                        pohonPerHa: item.pohon_per_ha || 80,
-                        usiaPohon: item.usia_pohon || 10,
-                        produksiPerPanen: item.produksi_per_panen || 37.5,
-                        persentasePanen: item.persentase_panen || 100
-                    }];
-                }
+                parsedBlocks = typeof item.blocks_json === 'string' ? JSON.parse(item.blocks_json) : item.blocks_json;
             } catch (e) {
-                blocksArray = [{
-                    id: 'block_1',
-                    name: 'Blok 1 (Kebun TMC)',
-                    luasLahan: item.luas_lahan || 200,
-                    pohonPerHa: item.pohon_per_ha || 80,
-                    usiaPohon: item.usia_pohon || 10,
-                    produksiPerPanen: item.produksi_per_panen || 37.5,
-                    persentasePanen: item.persentase_panen || 100
-                }];
+                console.error('Error parsing blocks_json:', e);
             }
+        }
+
+        if (Array.isArray(parsedBlocks) && parsedBlocks.length > 0) {
+            blocksArray = parsedBlocks.map((b, idx) => ({
+                id: b.id || `block_${idx + 1}`,
+                name: b.name || `Blok ${idx + 1}`,
+                luasLahan: parseFloat(b.luasLahan) || 0,
+                pohonPerHa: parseFloat(b.pohonPerHa) || 0,
+                usiaPohon: parseFloat(b.usiaPohon) || 10,
+                produksiPerPanen: parseFloat(b.produksiPerPanen) || 0,
+                persentasePanen: parseFloat(b.persentasePanen) || 100
+            }));
         } else {
             blocksArray = [{
                 id: 'block_1',
                 name: 'Blok 1 (Kebun TMC)',
-                luasLahan: item.luas_lahan || 200,
-                pohonPerHa: item.pohon_per_ha || 80,
-                usiaPohon: item.usia_pohon || 10,
-                produksiPerPanen: item.produksi_per_panen || 37.5,
-                persentasePanen: item.persentase_panen || 100
+                luasLahan: parseFloat(item.luas_lahan) || 200,
+                pohonPerHa: parseFloat(item.pohon_per_ha) || 50,
+                usiaPohon: parseFloat(item.usia_pohon) || 10,
+                produksiPerPanen: parseFloat(item.produksi_per_panen) || 20,
+                persentasePanen: parseFloat(item.persentase_panen) || 100
             }];
         }
 
-        const targetPct = item.target_kebun_pct || 10;
-        elements.targetKebunPctNum.value = targetPct;
-        elements.targetKebunPctSlider.value = targetPct;
-        updateSliderTrack(elements.targetKebunPctSlider);
+        const targetPct = parseFloat(item.target_kebun_pct) || 10;
+        if (elements.targetKebunPctNum) elements.targetKebunPctNum.value = targetPct;
+        if (elements.targetKebunPctSlider) {
+            elements.targetKebunPctSlider.value = targetPct;
+            updateSliderTrack(elements.targetKebunPctSlider);
+        }
 
-        elements.hariKerjaNum.value = item.hari_kerja_bulan || 20;
-        elements.kebutuhanPabrikNum.value = item.kebutuhan_pabrik || 8000000;
+        if (elements.hariKerjaNum) elements.hariKerjaNum.value = parseInt(item.hari_kerja_bulan) || 20;
+        if (elements.kebutuhanPabrikNum) elements.kebutuhanPabrikNum.value = parseFloat(item.kebutuhan_pabrik) || 8000000;
 
         renderBlocksUI();
-        showToast(`Skenario "${item.scenario_name}" dimuat!`);
+        showToast(`Skenario "${item.scenario_name}" (${blocksArray.length} Blok) berhasil dimuat!`);
+
+        // Smooth scroll to blocks list so user immediately sees the loaded blocks
+        const blocksToolbar = document.querySelector('.blocks-toolbar-header');
+        if (blocksToolbar) {
+            blocksToolbar.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
     };
 
     // Global action: Delete Scenario from SQLite DB
