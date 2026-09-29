@@ -69,12 +69,13 @@ async function createPresentation() {
 
     // Helper: Add Standard Footer
     function addFooter(slide, pageNum, totalPages = 6) {
-        slide.addText('PT Tri Mustika Cemerlang (TMC) • Divisi Estimasi & Pengembangan Kebun', {
+        slide.addText('PERKEBUNAN TMC (MEMBER OF RAI)', {
             x: 0.8,
             y: 7.0,
             w: 8.5,
             h: 0.3,
-            fontSize: 8,
+            fontSize: 8.5,
+            bold: true,
             color: COLORS.grayMuted,
             fontFace: 'Arial'
         });
@@ -180,12 +181,13 @@ async function createPresentation() {
             fontFace: 'Arial'
         });
 
-        slide.addText('PT TRI MUSTIKA CEMERLANG • DIVISI ESTIMASI & PENGEMBANGAN LAHAN', {
+        slide.addText('PERKEBUNAN TMC (MEMBER OF RAI)', {
             x: 1.0,
             y: 6.8,
             w: 11.3,
             h: 0.3,
-            fontSize: 8.5,
+            fontSize: 9,
+            bold: true,
             color: '6ee7b7',
             fontFace: 'Arial'
         });
