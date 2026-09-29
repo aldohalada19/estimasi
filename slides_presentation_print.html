@@ -1,0 +1,878 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>PAPARAN ESTIMASI STRATEGIS PORTOFOLIO KEBUN TMC - SLIDES</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Outfit:wght@600;700;800&display=swap');
+
+        @page {
+            size: 16in 9in;
+            margin: 0;
+        }
+
+        * {
+            box-sizing: border-box;
+            -webkit-print-color-adjust: exact !important;
+            print-color-adjust: exact !important;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: #ffffff;
+            color: #1e293b;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .slide {
+            width: 16in;
+            height: 9in;
+            padding: 0.75in 0.9in;
+            position: relative;
+            page-break-after: always;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            overflow: hidden;
+            background: #ffffff;
+        }
+
+        /* SLIDE HEADER */
+        .slide-header {
+            margin-bottom: 0.35in;
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 0.2in;
+        }
+
+        .slide-category {
+            font-size: 11pt;
+            font-weight: 700;
+            color: #059669;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 4px;
+        }
+
+        .slide-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 24pt;
+            font-weight: 800;
+            color: #0f172a;
+            margin: 0;
+            letter-spacing: -0.5px;
+        }
+
+        /* SLIDE FOOTER */
+        .slide-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid #cbd5e1;
+            padding-top: 0.15in;
+            font-size: 10pt;
+            color: #64748b;
+        }
+
+        .slide-footer strong {
+            color: #0f172a;
+        }
+
+        /* SLIDE 1: COVER SPECIFIC */
+        .slide-cover {
+            background: linear-gradient(135deg, #064e3b 0%, #022c22 100%);
+            color: #ffffff;
+            padding: 1.2in 1.2in;
+            justify-content: center;
+        }
+
+        .cover-pill {
+            display: inline-block;
+            background: rgba(16, 185, 129, 0.2);
+            border: 1px solid #10b981;
+            color: #6ee7b7;
+            font-size: 11pt;
+            font-weight: 700;
+            padding: 6px 18px;
+            border-radius: 9999px;
+            letter-spacing: 1px;
+            margin-bottom: 0.35in;
+            width: fit-content;
+        }
+
+        .cover-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 42pt;
+            font-weight: 800;
+            color: #ffffff;
+            line-height: 1.15;
+            margin: 0 0 0.25in 0;
+            letter-spacing: -1px;
+        }
+
+        .cover-subtitle {
+            font-size: 18pt;
+            color: #a7f3d0;
+            margin: 0 0 0.5in 0;
+            max-width: 12in;
+            line-height: 1.4;
+        }
+
+        .cover-meta-box {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid rgba(16, 185, 129, 0.4);
+            border-radius: 12px;
+            padding: 0.25in 0.35in;
+            max-width: 13.5in;
+        }
+
+        .cover-meta-box h4 {
+            margin: 0 0 8px 0;
+            font-size: 12pt;
+            color: #34d399;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .cover-meta-box p {
+            margin: 0;
+            font-size: 13pt;
+            color: #e2e8f0;
+            line-height: 1.5;
+        }
+
+        /* SLIDE 2: NARRATIVE & KPIS */
+        .narrative-card {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-left: 6px solid #059669;
+            border-radius: 10px;
+            padding: 0.25in 0.35in;
+            margin-bottom: 0.3in;
+            font-size: 13pt;
+            line-height: 1.6;
+            color: #334155;
+        }
+
+        .narrative-card strong {
+            color: #0f172a;
+        }
+
+        .kpi-row {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0.25in;
+            margin-bottom: 0.3in;
+        }
+
+        .kpi-box {
+            background: #f8fafc;
+            border: 1px solid #cbd5e1;
+            border-radius: 12px;
+            padding: 0.25in 0.2in;
+            text-align: center;
+        }
+
+        .kpi-box.highlight {
+            background: #ecfdf5;
+            border-color: #86efac;
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.1);
+        }
+
+        .kpi-box.amber {
+            background: #fffbeb;
+            border-color: #fde68a;
+        }
+
+        .kpi-box-label {
+            font-size: 9.5pt;
+            font-weight: 700;
+            color: #64748b;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+            letter-spacing: 0.5px;
+        }
+
+        .kpi-box-val {
+            font-family: 'Outfit', sans-serif;
+            font-size: 26pt;
+            font-weight: 800;
+            color: #0f172a;
+            margin-bottom: 6px;
+        }
+
+        .kpi-box.highlight .kpi-box-val {
+            color: #059669;
+        }
+
+        .kpi-box.amber .kpi-box-val {
+            color: #d97706;
+        }
+
+        .kpi-box-sub {
+            font-size: 10.5pt;
+            color: #64748b;
+        }
+
+        .conclusion-card {
+            background: #f0fdf4;
+            border: 1.5px solid #86efac;
+            border-radius: 10px;
+            padding: 0.2in 0.3in;
+            font-size: 12pt;
+            line-height: 1.5;
+            color: #166534;
+        }
+
+        /* SLIDE 3: 3-COLUMN BLOCKS */
+        .blocks-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0.3in;
+            margin-bottom: 0.25in;
+        }
+
+        .block-card {
+            background: #ffffff;
+            border: 1.5px solid #cbd5e1;
+            border-radius: 12px;
+            padding: 0.25in;
+        }
+
+        .block-card.c-tmc {
+            border-top: 6px solid #059669;
+        }
+
+        .block-card.c-binjeita {
+            border-top: 6px solid #0284c7;
+        }
+
+        .block-card.c-ekspansi {
+            border-top: 6px solid #7c3aed;
+            background: #faf5ff;
+        }
+
+        .card-badge {
+            display: inline-block;
+            font-size: 8.5pt;
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: 6px;
+            margin-bottom: 12px;
+        }
+
+        .badge-tmc { background: #dcfce7; color: #15803d; }
+        .badge-binjeita { background: #e0f2fe; color: #0369a1; }
+        .badge-ekspansi { background: #f3e8ff; color: #6b21a8; }
+
+        .card-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 18pt;
+            font-weight: 800;
+            color: #0f172a;
+            margin: 0 0 16px 0;
+        }
+
+        .attr-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 10.5pt;
+        }
+
+        .attr-table td {
+            padding: 6px 0;
+            border-bottom: 1px dashed #e2e8f0;
+        }
+
+        .attr-table td:last-child {
+            text-align: right;
+            font-weight: 700;
+            color: #0f172a;
+        }
+
+        .gap-alert-card {
+            background: #fef2f2;
+            border: 1.5px solid #fca5a5;
+            border-radius: 10px;
+            padding: 0.18in 0.3in;
+            font-size: 11.5pt;
+            line-height: 1.5;
+            color: #991b1b;
+        }
+
+        /* SLIDE 4: TABLE */
+        .matrix-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 11pt;
+            margin-bottom: 0.2in;
+        }
+
+        .matrix-table th, .matrix-table td {
+            padding: 10px 14px;
+            border: 1px solid #cbd5e1;
+        }
+
+        .matrix-table th {
+            background: #f1f5f9;
+            color: #0f172a;
+            font-weight: 800;
+            text-align: center;
+        }
+
+        .matrix-table td {
+            text-align: right;
+            color: #334155;
+        }
+
+        .matrix-table td:first-child {
+            text-align: left;
+            font-weight: 700;
+            color: #0f172a;
+        }
+
+        .matrix-table th.col-total {
+            background: #059669;
+            color: #ffffff;
+        }
+
+        .matrix-table td.col-total {
+            background: #ecfdf5;
+            color: #064e3b;
+            font-weight: 800;
+        }
+
+        .matrix-table tr.highlight-row {
+            background: #f8fafc;
+        }
+
+        /* SLIDE 5: SPLIT PANELS */
+        .panels-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.4in;
+            margin-bottom: 0.3in;
+        }
+
+        .panel-box {
+            background: #f8fafc;
+            border: 1.5px solid #cbd5e1;
+            border-radius: 12px;
+            padding: 0.3in;
+        }
+
+        .panel-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 15pt;
+            font-weight: 800;
+            color: #0f172a;
+            margin: 0 0 0.2in 0;
+            border-bottom: 1px solid #e2e8f0;
+            padding-bottom: 8px;
+        }
+
+        .share-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 14px 18px;
+            border-radius: 8px;
+            margin-bottom: 12px;
+        }
+
+        .share-row.mandiri {
+            background: #ecfdf5;
+            border: 1px solid #a7f3d0;
+        }
+
+        .share-row.luar {
+            background: #fffbeb;
+            border: 1px solid #fde68a;
+        }
+
+        .share-label {
+            font-size: 11pt;
+            font-weight: 700;
+            color: #0f172a;
+        }
+
+        .share-value {
+            font-family: 'Outfit', sans-serif;
+            font-size: 16pt;
+            font-weight: 800;
+        }
+
+        .share-row.mandiri .share-value { color: #059669; }
+        .share-row.luar .share-value { color: #d97706; }
+
+        .pillars-row {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0.3in;
+        }
+
+        .pillar-card {
+            background: #ffffff;
+            border: 1px solid #cbd5e1;
+            border-radius: 10px;
+            padding: 0.2in;
+        }
+
+        .pillar-title {
+            font-size: 11pt;
+            font-weight: 800;
+            color: #059669;
+            margin-bottom: 6px;
+        }
+
+        .pillar-desc {
+            font-size: 10pt;
+            color: #475569;
+            line-height: 1.45;
+        }
+
+        /* SLIDE 6: RECOMMENDATIONS */
+        .recs-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.22in;
+            margin-bottom: 0.3in;
+        }
+
+        .rec-item {
+            display: flex;
+            align-items: flex-start;
+            background: #ffffff;
+            border: 1.5px solid #cbd5e1;
+            border-radius: 12px;
+            padding: 0.25in;
+        }
+
+        .rec-item.r-blue { border-left: 8px solid #0284c7; }
+        .rec-item.r-green { border-left: 8px solid #059669; }
+        .rec-item.r-purple { border-left: 8px solid #7c3aed; }
+
+        .rec-num {
+            font-family: 'Outfit', sans-serif;
+            font-size: 26pt;
+            font-weight: 800;
+            margin-right: 0.3in;
+            line-height: 1;
+        }
+
+        .rec-item.r-blue .rec-num { color: #0284c7; }
+        .rec-item.r-green .rec-num { color: #059669; }
+        .rec-item.r-purple .rec-num { color: #7c3aed; }
+
+        .rec-content h4 {
+            margin: 0 0 6px 0;
+            font-family: 'Outfit', sans-serif;
+            font-size: 15pt;
+            font-weight: 800;
+            color: #0f172a;
+        }
+
+        .rec-content p {
+            margin: 0;
+            font-size: 11pt;
+            color: #334155;
+            line-height: 1.5;
+        }
+
+        .exec-banner {
+            background: #ecfdf5;
+            border: 1.5px solid #10b981;
+            border-radius: 10px;
+            padding: 0.2in 0.35in;
+            text-align: center;
+            font-size: 11.5pt;
+            font-weight: 700;
+            color: #064e3b;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ========================================== -->
+    <!-- SLIDE 1: COVER SLIDE                       -->
+    <!-- ========================================== -->
+    <div class="slide slide-cover">
+        <div>
+            <div class="cover-pill">ESTIMASI PORTOFOLIO STRATEGIS LAHAN</div>
+            <h1 class="cover-title">PAPARAN ESTIMASI STRATEGIS<br>PORTOFOLIO KEBUN TMC</h1>
+            <p class="cover-subtitle">Rencana Pencapaian Target Pasokan Mandiri 10% Pabrik Kelapa Terpadu</p>
+            <div class="cover-meta-box">
+                <h4>Basis Data Skenario Terverifikasi:</h4>
+                <p>
+                    <strong>Skenario 3 Blok (2.379 Ha) [Kebun TMC + Binjeita + Lahan Ekspansi] - 23.47</strong><br>
+                    Total Lahan: <strong>2.379 Ha</strong> &bull; Total Pohon: <strong>120.030 Pohon</strong> &bull; Output Panen: <strong>2.400.600 Butir / 3 Bulan (40.010 Butir / HK)</strong>
+                </p>
+            </div>
+        </div>
+        <div style="font-size: 10pt; color: #6ee7b7; border-top: 1px solid #047857; padding-top: 12px; margin-top: 0.3in;">
+            PT TRI MUSTIKA CEMERLANG (TMC) &bull; DIVISI ESTIMASI & PENGEMBANGAN KEBUN
+        </div>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- SLIDE 2: LATAR BELAKANG & TARGET 10%       -->
+    <!-- ========================================== -->
+    <div class="slide">
+        <div>
+            <div class="slide-header">
+                <div class="slide-category">Konteks Strategis & Operasional</div>
+                <h2 class="slide-title">1. Latar Belakang & Mandat Target Pasokan Mandiri 10%</h2>
+            </div>
+
+            <!-- Narrative Card -->
+            <div class="narrative-card">
+                <strong>Target Kebutuhan Bahan Baku Operasional Pabrik:</strong><br>
+                Target pemenuhan bahan baku operasional pabrik kelapa terpadu TMC ditetapkan sebesar <strong>8.000.000 butir/bulan (24.000.000 butir per 3 bulan / 96.000.000 butir/tahun)</strong> dengan operasional <strong>20 Hari Kerja (HK)/bulan (400.000 butir/HK)</strong>. Angka ini adalah target kebutuhan bahan baku untuk kelancaran pabrik (bukan kapasitas olah yang telah berjalan saat ini).<br><br>
+                <strong>Mandat Kebijakan Direksi:</strong><br>
+                Menetapkan target pasokan mandiri kebun internal sebesar <strong>10% (2.400.000 butir / 3 bulan atau 40.000 butir / HK)</strong> guna menjamin <em>buffer stock</em>, menstabilkan HPP, serta melindungi pabrik dari fluktuasi harga dan kelangkaan bahan baku di pasar bebas.
+            </div>
+
+            <!-- 4 KPI Box Row -->
+            <div class="kpi-row">
+                <div class="kpi-box">
+                    <div class="kpi-box-label">Target Kebutuhan Pabrik (3 Bln)</div>
+                    <div class="kpi-box-val">24.000.000</div>
+                    <div class="kpi-box-sub">400.000 Butir / HK</div>
+                </div>
+                <div class="kpi-box highlight">
+                    <div class="kpi-box-label">Target Mandiri Kebun (10%)</div>
+                    <div class="kpi-box-val">2.400.000</div>
+                    <div class="kpi-box-sub">40.000 Butir / HK</div>
+                </div>
+                <div class="kpi-box highlight">
+                    <div class="kpi-box-label">Realisasi Portofolio 3 Blok</div>
+                    <div class="kpi-box-val">2.400.600</div>
+                    <div class="kpi-box-sub">40.010 Butir / HK (100,03%)</div>
+                </div>
+                <div class="kpi-box amber">
+                    <div class="kpi-box-label">Pembelian Petani Luar</div>
+                    <div class="kpi-box-val">21.599.400</div>
+                    <div class="kpi-box-sub">89,99% Kebutuhan Pabrik</div>
+                </div>
+            </div>
+
+            <!-- Bottom Conclusion -->
+            <div class="conclusion-card">
+                <strong>Kesimpulan Latar Belakang:</strong> Untuk mencukupi kuota 10% pasokan (2.400.000 butir), perusahaan tidak dapat hanya mengandalkan kebun yang ada saat ini. Diperlukan integrasi strategis antara lahan eksisting (Blok 1), tambahan deal akuisisi (Blok 2), serta penetapan alokasi lahan ekspansi baru (Blok 3) seluas 2.044 Ha.
+            </div>
+        </div>
+
+        <div class="slide-footer">
+            <div>PT Tri Mustika Cemerlang (TMC) &bull; Divisi Estimasi & Pengembangan Kebun</div>
+            <div>Slide <strong>2</strong> of 6</div>
+        </div>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- SLIDE 3: ANALISIS TAHAPAN PORTOFOLIO       -->
+    <!-- ========================================== -->
+    <div class="slide">
+        <div>
+            <div class="slide-header">
+                <div class="slide-category">Struktur Pembentukan Portofolio</div>
+                <h2 class="slide-title">2. Analisis Bertahap Portofolio Lahan Menuju Target 10%</h2>
+            </div>
+
+            <!-- 3 Column Blocks Grid -->
+            <div class="blocks-grid">
+                <!-- Blok 1 -->
+                <div class="block-card c-tmc">
+                    <span class="card-badge badge-tmc">TAHAP 1: EKSISTING</span>
+                    <h3 class="card-title">Blok 1 (Kebun TMC)</h3>
+                    <table class="attr-table">
+                        <tr><td>Status Lahan</td><td>Eksisting</td></tr>
+                        <tr><td>Luas Lahan</td><td>200 Ha</td></tr>
+                        <tr><td>Kerapatan</td><td>50 Pohon / Ha</td></tr>
+                        <tr><td>Populasi Pohon</td><td>10.000 Pohon</td></tr>
+                        <tr><td>Usia Rata-rata</td><td>15 Thn (Puncak 100%)</td></tr>
+                        <tr><td>Yield Panen</td><td>20 Butir / Pohon</td></tr>
+                        <tr><td>Hasil / 3 Bulan</td><td>200.000 Butir</td></tr>
+                        <tr><td>Pasokan Harian</td><td>3.333 Butir / HK</td></tr>
+                        <tr><td style="color:#059669; font-weight:700;">Porsi Target 10%</td><td style="color:#059669;">8,33%</td></tr>
+                    </table>
+                </div>
+
+                <!-- Blok 2 -->
+                <div class="block-card c-binjeita">
+                    <span class="card-badge badge-binjeita">TAHAP 2: DEAL BARU</span>
+                    <h3 class="card-title">Blok 2 (Binjeita)</h3>
+                    <table class="attr-table">
+                        <tr><td>Status Lahan</td><td>Deal Akuisisi (135 Ha)</td></tr>
+                        <tr><td>Luas Lahan</td><td>135 Ha</td></tr>
+                        <tr><td>Kerapatan</td><td>58 Pohon / Ha</td></tr>
+                        <tr><td>Populasi Pohon</td><td>7.830 Pohon</td></tr>
+                        <tr><td>Usia Rata-rata</td><td>15 Thn (Puncak 100%)</td></tr>
+                        <tr><td>Yield Panen</td><td>20 Butir / Pohon</td></tr>
+                        <tr><td>Hasil / 3 Bulan</td><td>156.600 Butir</td></tr>
+                        <tr><td>Pasokan Harian</td><td>2.610 Butir / HK</td></tr>
+                        <tr><td style="color:#0284c7; font-weight:700;">Porsi Target 10%</td><td style="color:#0284c7;">6,53%</td></tr>
+                    </table>
+                </div>
+
+                <!-- Blok 3 -->
+                <div class="block-card c-ekspansi">
+                    <span class="card-badge badge-ekspansi">TAHAP 3: EKSPANSI KEBUN</span>
+                    <h3 class="card-title">Blok 3 (Lahan Ekspansi)</h3>
+                    <table class="attr-table">
+                        <tr><td>Status Lahan</td><td>Kebutuhan Lahan Baru</td></tr>
+                        <tr><td>Luas Lahan</td><td>2.044 Ha</td></tr>
+                        <tr><td>Kerapatan</td><td>50 Pohon / Ha</td></tr>
+                        <tr><td>Populasi Pohon</td><td>102.200 Pohon</td></tr>
+                        <tr><td>Usia Rata-rata</td><td>15 Thn (Puncak 100%)</td></tr>
+                        <tr><td>Yield Panen</td><td>20 Butir / Pohon</td></tr>
+                        <tr><td>Hasil / 3 Bulan</td><td>2.044.000 Butir</td></tr>
+                        <tr><td>Pasokan Harian</td><td>34.067 Butir / HK</td></tr>
+                        <tr><td style="color:#7c3aed; font-weight:700;">Porsi Target 10%</td><td style="color:#7c3aed;">85,17%</td></tr>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Bottom GAP Alert Banner -->
+            <div class="gap-alert-card">
+                <strong>ANALISIS GAP PASOKAN (KUNCI KEPUTUSAN EKSEKUTIF):</strong><br>
+                Akumulasi Blok 1 + Blok 2 (335 Ha) baru menghasilkan <strong>356.600 butir / 3 bulan (14,86% dari target 10%)</strong>. Masih terdapat <strong>DEFISIT sebesar 2.043.400 butir per 3 bulan (34.057 butir/HK)</strong>. Oleh karena itu, penyediaan Blok 3 seluas <strong>2.044 Ha</strong> adalah mutlak agar defisit tertutup 100%.
+            </div>
+        </div>
+
+        <div class="slide-footer">
+            <div>PT Tri Mustika Cemerlang (TMC) &bull; Divisi Estimasi & Pengembangan Kebun</div>
+            <div>Slide <strong>3</strong> of 6</div>
+        </div>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- SLIDE 4: MATRIKS KOMPARASI PORTOFOLIO      -->
+    <!-- ========================================== -->
+    <div class="slide">
+        <div>
+            <div class="slide-header">
+                <div class="slide-category">Matriks Data Skenario Terverifikasi</div>
+                <h2 class="slide-title">3. Matriks Komparasi Portofolio Kumulatif (2.379 Ha)</h2>
+            </div>
+
+            <!-- Matrix Table -->
+            <table class="matrix-table">
+                <thead>
+                    <tr>
+                        <th style="text-align:left;">Indikator Parameter</th>
+                        <th>Blok 1 (Kebun TMC)</th>
+                        <th>Blok 2 (Binjeita)</th>
+                        <th>Blok 3 (Lahan Ekspansi)</th>
+                        <th class="col-total">TOTAL PORTOFOLIO</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Status Lahan</td>
+                        <td style="text-align:center;">Eksisting</td>
+                        <td style="text-align:center;">Deal 135 Ha</td>
+                        <td style="text-align:center;">Lahan Baru Diperlukan</td>
+                        <td class="col-total" style="text-align:center;">100% Target Terpenuhi</td>
+                    </tr>
+                    <tr class="highlight-row">
+                        <td>Luas Lahan (Ha)</td>
+                        <td>200 Ha</td>
+                        <td>135 Ha</td>
+                        <td>2.044 Ha</td>
+                        <td class="col-total">2.379 Ha</td>
+                    </tr>
+                    <tr>
+                        <td>Kerapatan Pohon / Ha</td>
+                        <td>50 Pohon</td>
+                        <td>58 Pohon</td>
+                        <td>50 Pohon</td>
+                        <td class="col-total">50,5 Pohon (Rata-rata)</td>
+                    </tr>
+                    <tr class="highlight-row">
+                        <td>Populasi Pohon</td>
+                        <td>10.000</td>
+                        <td>7.830</td>
+                        <td>102.200</td>
+                        <td class="col-total">120.030 Pohon</td>
+                    </tr>
+                    <tr>
+                        <td>Usia Rata-rata Pohon</td>
+                        <td>15 Thn (Puncak 100%)</td>
+                        <td>15 Thn (Puncak 100%)</td>
+                        <td>15 Thn (Puncak 100%)</td>
+                        <td class="col-total">15 Thn (Puncak 100%)</td>
+                    </tr>
+                    <tr class="highlight-row">
+                        <td>Yield / Pohon / Panen (3 Bln)</td>
+                        <td>20 Butir</td>
+                        <td>20 Butir</td>
+                        <td>20 Butir</td>
+                        <td class="col-total">20 Butir</td>
+                    </tr>
+                    <tr style="background:#ecfdf5;">
+                        <td style="font-weight:800; color:#064e3b;">Hasil / Siklus (3 Bulan)</td>
+                        <td style="font-weight:700;">200.000 Butir</td>
+                        <td style="font-weight:700;">156.600 Butir</td>
+                        <td style="font-weight:700;">2.044.000 Butir</td>
+                        <td class="col-total" style="font-size:13pt; color:#064e3b;">2.400.600 Butir</td>
+                    </tr>
+                    <tr class="highlight-row">
+                        <td style="font-weight:700;">Pasokan Harian (60 HK)</td>
+                        <td>3.333 Btr/HK</td>
+                        <td>2.610 Btr/HK</td>
+                        <td>34.067 Btr/HK</td>
+                        <td class="col-total">40.010 Btr/HK</td>
+                    </tr>
+                    <tr style="background:#f0fdf4;">
+                        <td style="font-weight:800; color:#15803d;">Porsi Pemenuhan Target 10%</td>
+                        <td style="font-weight:700;">8,33%</td>
+                        <td style="font-weight:700;">6,53%</td>
+                        <td style="font-weight:700;">85,17%</td>
+                        <td class="col-total" style="font-size:12pt; color:#064e3b;">100,03% (TUNTAS)</td>
+                    </tr>
+                    <tr class="highlight-row">
+                        <td style="font-weight:700;">Coverage terhadap Total Pabrik</td>
+                        <td>0,83%</td>
+                        <td>0,65%</td>
+                        <td>8,52%</td>
+                        <td class="col-total">10,00% (Sesuai Target)</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="slide-footer">
+            <div>PT Tri Mustika Cemerlang (TMC) &bull; Divisi Estimasi & Pengembangan Kebun</div>
+            <div>Slide <strong>4</strong> of 6</div>
+        </div>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- SLIDE 5: NERACA ALOKASI PASOKAN PABRIK     -->
+    <!-- ========================================== -->
+    <div class="slide">
+        <div>
+            <div class="slide-header">
+                <div class="slide-category">Alokasi & Ketahanan Pasokan</div>
+                <h2 class="slide-title">4. Neraca Alokasi Pasokan Pabrik (Siklus & Tahunan)</h2>
+            </div>
+
+            <!-- Panels Grid -->
+            <div class="panels-grid">
+                <!-- Panel Kiri: 3 Bulan -->
+                <div class="panel-box">
+                    <h3 class="panel-title">ALOKASI PASOKAN / 3 BULAN (SIKLUS PANEN)</h3>
+                    <div class="share-row mandiri">
+                        <div>
+                            <div class="share-label">KEBUN MANDIRI TMC (3 BLOK): 10,00%</div>
+                            <div style="font-size:9.5pt; color:#047857;">40.010 Butir / HK (Buffer Pasokan Inti)</div>
+                        </div>
+                        <div class="share-value">2.400.600 Btr</div>
+                    </div>
+                    <div class="share-row luar">
+                        <div>
+                            <div class="share-label">PEMBELIAN DARI PETANI LUAR: 90,00%</div>
+                            <div style="font-size:9.5pt; color:#b45309;">359.990 Butir / HK (Mitra Petani Luar)</div>
+                        </div>
+                        <div class="share-value">21.599.400 Btr</div>
+                    </div>
+                </div>
+
+                <!-- Panel Kanan: Tahunan -->
+                <div class="panel-box">
+                    <h3 class="panel-title">ALOKASI PASOKAN TAHUNAN (4x SIKLUS PANEN)</h3>
+                    <div class="share-row mandiri">
+                        <div>
+                            <div class="share-label">TOTAL MANDIRI TAHUNAN: 10,00%</div>
+                            <div style="font-size:9.5pt; color:#047857;">Ketahanan Operasional Mandiri</div>
+                        </div>
+                        <div class="share-value">9.602.400 Btr</div>
+                    </div>
+                    <div class="share-row luar">
+                        <div>
+                            <div class="share-label">TOTAL BELI LUAR TAHUNAN: 90,00%</div>
+                            <div style="font-size:9.5pt; color:#b45309;">Kemitraan Petani & Pengepul</div>
+                        </div>
+                        <div class="share-value">86.397.600 Btr</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 3 Pillars of Value -->
+            <div class="pillars-row">
+                <div class="pillar-card">
+                    <div class="pillar-title">1. KONTROL MUTU & STANDARISASI</div>
+                    <div class="pillar-desc">Bahan baku dari kebun sendiri terjamin umur petik optimal, kadar air ideal, dan ukuran butir seragam sesuai spesifikasi mesin pabrik.</div>
+                </div>
+                <div class="pillar-card">
+                    <div class="pillar-title">2. MITIGASI VOLATILITAS HARGA</div>
+                    <div class="pillar-desc">Menurunkan sensitivitas HPP produk saat lonjakan harga kelapa di pasar bebas akibat musim paceklik atau persaingan eksportir mentah.</div>
+                </div>
+                <div class="pillar-card">
+                    <div class="pillar-title">3. BUFFER KONTINUITAS UTILITAS</div>
+                    <div class="pillar-desc">Pabrik tetap dapat beroperasi secara kontinyu dengan kapasitas dasar aman saat terjadi kendala logistik atau panen di petani mitra.</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="slide-footer">
+            <div>PT Tri Mustika Cemerlang (TMC) &bull; Divisi Estimasi & Pengembangan Kebun</div>
+            <div>Slide <strong>5</strong> of 6</div>
+        </div>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- SLIDE 6: KESIMPULAN & REKOMENDASI          -->
+    <!-- ========================================== -->
+    <div class="slide">
+        <div>
+            <div class="slide-header">
+                <div class="slide-category">Rekomendasi Keputusan Investasi</div>
+                <h2 class="slide-title">5. Kesimpulan Portofolio & Rekomendasi Investasi</h2>
+            </div>
+
+            <!-- 3 Recommendation Cards -->
+            <div class="recs-list">
+                <!-- Rec 1 -->
+                <div class="rec-item r-blue">
+                    <div class="rec-num">01</div>
+                    <div class="rec-content">
+                        <h4>Finalisasi Akuisisi Blok 2 (Binjeita 135 Ha)</h4>
+                        <p>Mempercepat penyelesaian proses kesepakatan (deal) lahan Binjeita seluas 135 Ha dengan estimasi kontribusi 156.600 butir/3 bulan (2.610 butir/HK). Langkah ini menaikkan rasio pasokan mandiri menjadi 14,86% dari target kebun.</p>
+                    </div>
+                </div>
+
+                <!-- Rec 2 -->
+                <div class="rec-item r-green">
+                    <div class="rec-num">02</div>
+                    <div class="rec-content">
+                        <h4>Alokasi Capex Lahan Ekspansi Blok 3 (2.044 Ha)</h4>
+                        <p>Mengesahkan penganggaran modal (CAPEX) untuk akuisisi/pembukaan lahan ekspansi Blok 3 seluas 2.044 Ha. Blok 3 adalah penentu utama yang menyumbang 85,17% dari target mandat 10% (2.044.000 butir/3 bulan).</p>
+                    </div>
+                </div>
+
+                <!-- Rec 3 -->
+                <div class="rec-item r-purple">
+                    <div class="rec-num">03</div>
+                    <div class="rec-content">
+                        <h4>Standarisasi Agronomi & Infrastruktur Logistik</h4>
+                        <p>Menerapkan protokol budidaya kelapa produktif terpadu dengan target kerapatan rata-rata 50,5 pohon/Ha dan produktivitas minimal 20 butir/pohon/panen, didukung konektivitas armada angkut langsung menuju pabrik TMC.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Executive Banner -->
+            <div class="exec-banner">
+                RINGKASAN EKSEKUTIF: Portofolio 3 Blok seluas 2.379 Ha (120.030 pohon) menghasilkan 2.400.600 butir/3 bulan, TUNTAS memenuhi 100,03% dari target mandat pasokan mandiri 10% pabrik kelapa TMC.
+            </div>
+        </div>
+
+        <div class="slide-footer">
+            <div>PT Tri Mustika Cemerlang (TMC) &bull; Divisi Estimasi & Pengembangan Kebun</div>
+            <div>Slide <strong>6</strong> of 6</div>
+        </div>
+    </div>
+
+</body>
+</html>

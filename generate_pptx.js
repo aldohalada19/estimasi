@@ -210,10 +210,10 @@ async function createPresentation() {
         });
 
         const narrativeText = [
-            { text: 'Kapasitas Olah Pabrik & Urgensi Pasokan:\n', options: { fontSize: 11, bold: true, color: COLORS.navy } },
-            { text: '• Pabrik kelapa terpadu TMC memiliki kapasitas olah sebesar ', options: { fontSize: 9.5, color: COLORS.slate } },
+            { text: 'Target Kebutuhan Bahan Baku Operasional Pabrik:\n', options: { fontSize: 11, bold: true, color: COLORS.navy } },
+            { text: '• Target pemenuhan bahan baku operasional pabrik kelapa terpadu TMC ditetapkan sebesar ', options: { fontSize: 9.5, color: COLORS.slate } },
             { text: '8.000.000 butir/bulan (24.000.000 butir per 3 bulan / 96.000.000 butir/tahun)', options: { fontSize: 9.5, bold: true, color: COLORS.navy } },
-            { text: ' dengan operasional 20 Hari Kerja/bulan (400.000 butir/HK).\n', options: { fontSize: 9.5, color: COLORS.slate } },
+            { text: ' dengan operasional 20 Hari Kerja/bulan (400.000 butir/HK). Angka ini adalah target kebutuhan bahan baku untuk kelancaran pabrik (bukan kapasitas olah yang telah berjalan saat ini).\n', options: { fontSize: 9.5, color: COLORS.slate } },
             { text: '• Mandat Kebijakan Direksi: ', options: { fontSize: 9.5, bold: true, color: COLORS.primary } },
             { text: 'Menetapkan target pasokan mandiri sebesar ', options: { fontSize: 9.5, color: COLORS.slate } },
             { text: '10% (2.400.000 butir / 3 bulan atau 40.000 butir / HK) ', options: { fontSize: 9.5, bold: true, color: COLORS.primary } },

@@ -6,10 +6,10 @@
 
 ## 1. Ringkasan Eksekutif & Latar Belakang Kebijakan (10% Target)
 
-### Profil Kapasitas & Operasional Pabrik:
-- **Kapasitas Olah Pabrik**: 8.000.000 butir / bulan (24.000.000 butir per siklus panen 3 bulan / 96.000.000 butir per tahun).
+### Profil Kebutuhan Bahan Baku Operasional Pabrik:
+- **Target Kebutuhan Bahan Baku Pabrik**: 8.000.000 butir / bulan (24.000.000 butir per siklus panen 3 bulan / 96.000.000 butir per tahun). *(Catatan: Merupakan target pemenuhan kebutuhan bahan baku operasional pabrik yang harus dicapai, bukan kapasitas olah yang telah berjalan saat ini)*.
 - **Hari Kerja Operasional**: 20 Hari Kerja (HK) / bulan (60 HK per siklus 3 bulan).
-- **Kebutuhan Harian Bahan Baku Pabrik**: 400.000 butir / HK.
+- **Target Kebutuhan Harian Pabrik**: 400.000 butir / HK.
 
 ### Mandat Kebijakan Target Pasokan Internal 10%:
 Untuk menjaga stabilitas operasional, melindungi perusahaan dari fluktuasi harga pasar luar, serta menjamin ketersediaan bahan baku berkualitas standar secara berkesinambungan, manajemen menetapkan target pemenuhan mandiri sebesar **10% dari total kebutuhan pabrik**:
