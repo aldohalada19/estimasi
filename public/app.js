@@ -18,9 +18,9 @@ document.addEventListener('DOMContentLoaded', () => {
         id: 'block_1',
         name: 'Blok 1 (Kebun TMC Eksisting)',
         luasLahan: 200,
-        pohonPerHa: 80,
+        pohonPerHa: 50,
         usiaPohon: 10,
-        produksiPerPanen: 37.5,
+        produksiPerPanen: 20,
         persentasePanen: 100
     };
 
@@ -54,10 +54,15 @@ document.addEventListener('DOMContentLoaded', () => {
         gapStatusTitle: document.getElementById('gapStatusTitle'),
         gapStatusDesc: document.getElementById('gapStatusDesc'),
 
+        // Total Portfolio Banner Elements
+        lblTotalBlokCountBadge: document.getElementById('lblTotalBlokCountBadge'),
+        lblTotalLuasBanner: document.getElementById('lblTotalLuasBanner'),
+        lblTotalPohonBanner: document.getElementById('lblTotalPohonBanner'),
+        lblTotalHasil3bBanner: document.getElementById('lblTotalHasil3bBanner'),
+        lblTotalPasokanHarianBanner: document.getElementById('lblTotalPasokanHarianBanner'),
+
         // Badges & Labels
         lblKpiTargetKebunTitle: document.getElementById('lblKpiTargetKebunTitle'),
-        lblKebutuhan3Bulan: document.getElementById('lblKebutuhan3Bulan'),
-        lblKebutuhanTahunan: document.getElementById('lblKebutuhanTahunan'),
         lblTotalKebutuhanSiklus: document.getElementById('lblTotalKebutuhanSiklus'),
 
         // KPI Cards
@@ -68,6 +73,7 @@ document.addEventListener('DOMContentLoaded', () => {
         kpiTargetKebunVal: document.getElementById('kpiTargetKebunVal'),
         kpiCoverageKebun: document.getElementById('kpiCoverageKebun'),
         kpiPembelianLuarSiklus: document.getElementById('kpiPembelianLuarSiklus'),
+        kpiPembelianLuarSubtext: document.getElementById('kpiPembelianLuarSubtext'),
 
         // Gauge & Labels
         kebunProgressBar: document.getElementById('kebunProgressBar'),
@@ -113,14 +119,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Helper: Age Factor Calculation & Description
     function getAgeFactor(usia) {
-        if (usia <= 3) return { factor: 0.0, label: 'TBM (Tanaman Belum Menghasilkan)', pct: '0%' };
-        if (usia === 4) return { factor: 0.40, label: 'TM Muda 1 (Mulai Berbuah)', pct: '40%' };
-        if (usia === 5) return { factor: 0.65, label: 'TM Muda 2 (Sedang Berkembang)', pct: '65%' };
-        if (usia === 6) return { factor: 0.85, label: 'TM Muda 3 (Mendekati Puncak)', pct: '85%' };
-        if (usia >= 7 && usia <= 20) return { factor: 1.00, label: 'Produksi Puncak / Prima', pct: '100%' };
-        if (usia >= 21 && usia <= 25) return { factor: 0.90, label: 'TM Tua 1 (Penurunan Ringan)', pct: '90%' };
-        if (usia >= 26 && usia <= 30) return { factor: 0.80, label: 'TM Tua 2 (Penurunan Sedang)', pct: '80%' };
-        return { factor: 0.70, label: 'TM Tua 3 (Penurunan Signifikan)', pct: '70%' };
+        if (usia <= 3) return { factor: 0.0, label: 'TBM (Belum Berbuah)', pct: '0%' };
+        if (usia === 4) return { factor: 0.40, label: 'TM 1 (Mulai Berbuah)', pct: '40%' };
+        if (usia === 5) return { factor: 0.65, label: 'TM 2 (Berkembang)', pct: '65%' };
+        if (usia === 6) return { factor: 0.85, label: 'TM 3 (Mendekati Puncak)', pct: '85%' };
+        if (usia >= 7 && usia <= 20) return { factor: 1.00, label: 'Produksi Puncak', pct: '100%' };
+        if (usia >= 21 && usia <= 25) return { factor: 0.90, label: 'TM Tua 1 (Penurunan)', pct: '90%' };
+        if (usia >= 26 && usia <= 30) return { factor: 0.80, label: 'TM Tua 2 (Penurunan)', pct: '80%' };
+        return { factor: 0.70, label: 'TM Tua 3 (Penurunan)', pct: '70%' };
     }
 
     // Number Formatter
@@ -130,10 +136,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Update Slider Track Color
     function updateSliderTrack(slider) {
-        const min = parseFloat(slider.min);
-        const max = parseFloat(slider.max);
-        const val = parseFloat(slider.value);
-        const percentage = ((val - min) / (max - min)) * 100;
+        const min = parseFloat(slider.min) || 0;
+        const max = parseFloat(slider.max) || 100;
+        const val = parseFloat(slider.value) || 0;
+        const percentage = Math.min(100, Math.max(0, ((val - min) / (max - min)) * 100));
         slider.style.background = `linear-gradient(90deg, #10b981 ${percentage}%, rgba(255, 255, 255, 0.1) ${percentage}%)`;
     }
 
@@ -144,18 +150,24 @@ document.addEventListener('DOMContentLoaded', () => {
             updateSliderTrack(slider);
             recalculatePortfolio();
         });
-        numberInput.addEventListener('input', () => {
-            let val = parseFloat(numberInput.value) || 0;
-            slider.value = val;
-            updateSliderTrack(slider);
-            recalculatePortfolio();
+        ['input', 'change', 'keyup'].forEach(evt => {
+            numberInput.addEventListener(evt, () => {
+                let val = parseFloat(numberInput.value);
+                if (!isNaN(val)) {
+                    slider.value = val;
+                    updateSliderTrack(slider);
+                    recalculatePortfolio();
+                }
+            });
         });
         updateSliderTrack(slider);
     }
 
     setupGlobalBinding(elements.targetKebunPctSlider, elements.targetKebunPctNum);
-    elements.hariKerjaNum.addEventListener('input', recalculatePortfolio);
-    elements.kebutuhanPabrikNum.addEventListener('input', recalculatePortfolio);
+    ['input', 'change', 'keyup'].forEach(evt => {
+        elements.hariKerjaNum.addEventListener(evt, recalculatePortfolio);
+        elements.kebutuhanPabrikNum.addEventListener(evt, recalculatePortfolio);
+    });
 
     // Dynamic Multi-Block UI Renderer
     function renderBlocksUI() {
@@ -181,21 +193,21 @@ document.addEventListener('DOMContentLoaded', () => {
                     ` : ''}
                 </div>
 
-                <div class="sliders-list">
+                <div class="block-sliders-grid">
                     <!-- Luas Lahan -->
                     <div class="form-group">
                         <div class="form-label-row">
                             <label><i data-lucide="map"></i> Luas Lahan Blok</label>
                             <div class="input-with-unit">
-                                <input type="number" id="num_luas_${block.id}" min="1" max="10000" value="${block.luasLahan}">
+                                <input type="number" id="num_luas_${block.id}" min="10" max="10000" value="${block.luasLahan}">
                                 <span>Ha</span>
                             </div>
                         </div>
-                        <input type="range" id="slider_luas_${block.id}" min="10" max="5000" step="10" value="${block.luasLahan}" class="custom-slider">
+                        <input type="range" id="slider_luas_${block.id}" min="10" max="10000" step="10" value="${block.luasLahan}" class="custom-slider">
                         <div class="slider-ticks">
                             <span>10 Ha</span>
-                            <span>1.000 Ha</span>
                             <span>5.000 Ha</span>
+                            <span>10.000 Ha</span>
                         </div>
                     </div>
 
@@ -208,7 +220,12 @@ document.addEventListener('DOMContentLoaded', () => {
                                 <span>Pohon</span>
                             </div>
                         </div>
-                        <input type="range" id="slider_density_${block.id}" min="40" max="150" step="1" value="${block.pohonPerHa}" class="custom-slider">
+                        <input type="range" id="slider_density_${block.id}" min="10" max="300" step="1" value="${block.pohonPerHa}" class="custom-slider">
+                        <div class="slider-ticks">
+                            <span>10 Pohon</span>
+                            <span>150 Pohon</span>
+                            <span>300 Pohon</span>
+                        </div>
                     </div>
 
                     <!-- Usia Pohon -->
@@ -220,7 +237,7 @@ document.addEventListener('DOMContentLoaded', () => {
                                 <span>Thn</span>
                             </div>
                         </div>
-                        <input type="range" id="slider_usia_${block.id}" min="1" max="35" step="1" value="${block.usiaPohon}" class="custom-slider">
+                        <input type="range" id="slider_usia_${block.id}" min="1" max="40" step="1" value="${block.usiaPohon}" class="custom-slider">
                         <div class="age-factor-badge" id="badge_usia_${block.id}">
                             <i data-lucide="shield-check"></i> Status: ${ageInfo.label} (${ageInfo.pct})
                         </div>
@@ -235,7 +252,28 @@ document.addEventListener('DOMContentLoaded', () => {
                                 <span>Btr</span>
                             </div>
                         </div>
-                        <input type="range" id="slider_yield_${block.id}" min="5" max="80" step="0.5" value="${block.produksiPerPanen}" class="custom-slider">
+                        <input type="range" id="slider_yield_${block.id}" min="1" max="100" step="0.5" value="${block.produksiPerPanen}" class="custom-slider">
+                        <div class="slider-ticks">
+                            <span>1 Btr</span>
+                            <span>50 Btr</span>
+                            <span>100 Btr</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- LIVE SUMMARY BOX INSIDE BLOCK CARD -->
+                <div class="block-summary-box">
+                    <div class="block-summary-item">
+                        <span class="block-summary-label">Populasi Pohon</span>
+                        <span class="block-summary-val" id="summary_trees_${block.id}">0 Pohon</span>
+                    </div>
+                    <div class="block-summary-item">
+                        <span class="block-summary-label">Hasil / 3 Bulan (Siklus Panen)</span>
+                        <span class="block-summary-val highlight-emerald" id="summary_yield3b_${block.id}">0 Btr</span>
+                    </div>
+                    <div class="block-summary-item">
+                        <span class="block-summary-label">Pasokan Harian (Pabrik)</span>
+                        <span class="block-summary-val" id="summary_yielddaily_${block.id}">0 Btr/HK</span>
                     </div>
                 </div>
             `;
@@ -257,12 +295,24 @@ document.addEventListener('DOMContentLoaded', () => {
     function bindBlockSlider(blockId, fieldKey, stateProp) {
         const slider = document.getElementById(`slider_${fieldKey}_${blockId}`);
         const numInput = document.getElementById(`num_${fieldKey}_${blockId}`);
-        const block = blocksArray.find(b => b.id === blockId);
 
-        if (!slider || !numInput || !block) return;
+        if (!slider || !numInput) return;
 
-        function updateStateVal(val) {
-            block[stateProp] = parseFloat(val) || 0;
+        function updateStateVal(val, fromInput = false) {
+            const block = blocksArray.find(b => b.id === blockId);
+            if (!block) return;
+
+            const parsed = parseFloat(val);
+            if (isNaN(parsed)) return;
+
+            block[stateProp] = parsed;
+
+            if (!fromInput) {
+                numInput.value = parsed;
+            } else {
+                slider.value = parsed;
+            }
+
             updateSliderTrack(slider);
 
             // Update badge usia if field is usia
@@ -278,13 +328,13 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         slider.addEventListener('input', () => {
-            numInput.value = slider.value;
-            updateStateVal(slider.value);
+            updateStateVal(slider.value, false);
         });
 
-        numInput.addEventListener('input', () => {
-            slider.value = numInput.value;
-            updateStateVal(numInput.value);
+        ['input', 'change', 'keyup'].forEach(evt => {
+            numInput.addEventListener(evt, () => {
+                updateStateVal(numInput.value, true);
+            });
         });
 
         updateSliderTrack(slider);
@@ -351,19 +401,36 @@ document.addEventListener('DOMContentLoaded', () => {
         let totalLuas = 0;
         let totalPohon = 0;
         let totalProduksiTahunan = 0;
+        let totalProduksiSiklus = 0;
 
         const blockDetails = blocksArray.map(block => {
             const ageInfo = getAgeFactor(block.usiaPohon);
-            const blockPohon = block.luasLahan * block.pohonPerHa;
-            const frekuensiPanenPerTahun = 12 / siklusBulan;
-            const yieldAnnualPerTree = block.produksiPerPanen * frekuensiPanenPerTahun * ageInfo.factor;
-            const blockProduksiTahunan = blockPohon * yieldAnnualPerTree * (block.persentasePanen / 100);
-            const blockProduksiSiklus = blockProduksiTahunan / 4; // per 3 bulan
-            const blockProduksiHarian = blockProduksiTahunan / (hariKerjaBulan * 12);
+            const blockPohon = Math.round(block.luasLahan * block.pohonPerHa);
+            
+            // Formula Produksi per Siklus Panen (3 Bulan) per blok:
+            // Populasi Pohon * Produksi/Pohon/Panen * Age Factor * (% Panen / 100)
+            const blockProduksiSiklus = Math.round(blockPohon * block.produksiPerPanen * ageInfo.factor * (block.persentasePanen / 100));
+            
+            // Produksi Tahunan (4 kali siklus panen per tahun)
+            const blockProduksiTahunan = blockProduksiSiklus * (12 / siklusBulan);
+            
+            // Produksi Harian (60 HK per siklus 3 bulan)
+            const totalHkSiklus = hariKerjaBulan * 3;
+            const blockProduksiHarian = totalHkSiklus > 0 ? (blockProduksiSiklus / totalHkSiklus) : 0;
 
             totalLuas += block.luasLahan;
             totalPohon += blockPohon;
+            totalProduksiSiklus += blockProduksiSiklus;
             totalProduksiTahunan += blockProduksiTahunan;
+
+            // Live Update inner block card summary box
+            const treesEl = document.getElementById(`summary_trees_${block.id}`);
+            const yield3bEl = document.getElementById(`summary_yield3b_${block.id}`);
+            const yieldDailyEl = document.getElementById(`summary_yielddaily_${block.id}`);
+
+            if (treesEl) treesEl.textContent = `${formatNumber(blockPohon)} Pohon`;
+            if (yield3bEl) yield3bEl.textContent = `${formatNumber(blockProduksiSiklus)} Btr`;
+            if (yieldDailyEl) yieldDailyEl.textContent = `${formatNumber(blockProduksiHarian)} Btr/HK`;
 
             return {
                 ...block,
@@ -374,7 +441,6 @@ document.addEventListener('DOMContentLoaded', () => {
             };
         });
 
-        const totalProduksiSiklus = totalProduksiTahunan / 4;
         const totalProduksiBulanan = totalProduksiTahunan / 12;
         const totalProduksiHarian = totalProduksiTahunan / (hariKerjaBulan * 12);
 
@@ -386,7 +452,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const pembelianLuarSiklus = Math.max(0, kebutuhanPabrikSiklus - totalProduksiSiklus);
         const pembelianLuarTahunan = Math.max(0, kebutuhanPabrikTahunan - totalProduksiTahunan);
 
-        // Gap Analysis (Berapa Ha atau Butir lagi yang dibutuhkan untuk capai Target Kebun)
+        // Gap Analysis
         const gapSiklus = targetKebunSiklus - totalProduksiSiklus;
         const avgYieldTahunanPerHa = totalLuas > 0 ? (totalProduksiTahunan / totalLuas) : 0;
         const gapLuasHa = avgYieldTahunanPerHa > 0 ? (gapSiklus * 4) / avgYieldTahunanPerHa : 0;
@@ -423,61 +489,69 @@ document.addEventListener('DOMContentLoaded', () => {
     function recalculatePortfolio() {
         const data = calculatePortfolioData();
 
+        // Total Portfolio Live Banner Updates
+        if (elements.lblTotalBlokCountBadge) elements.lblTotalBlokCountBadge.textContent = `${blocksArray.length} Blok Terdaftar`;
+        if (elements.lblTotalLuasBanner) elements.lblTotalLuasBanner.textContent = `${formatNumber(data.totalLuas)} Ha`;
+        if (elements.lblTotalPohonBanner) elements.lblTotalPohonBanner.textContent = `${formatNumber(data.totalPohon)} Pohon`;
+        if (elements.lblTotalHasil3bBanner) elements.lblTotalHasil3bBanner.textContent = `${formatNumber(data.totalProduksiSiklus)} Butir`;
+        if (elements.lblTotalPasokanHarianBanner) elements.lblTotalPasokanHarianBanner.textContent = `${formatNumber(data.totalProduksiHarian)} Btr/HK`;
+
         // Update Labels & Titles
-        elements.lblKpiTargetKebunTitle.textContent = `Target Pasokan Kebun (${data.targetKebunPct}%)`;
-        elements.lblKebutuhan3Bulan.textContent = formatNumber(data.kebutuhanPabrikSiklus);
-        elements.lblKebutuhanTahunan.textContent = formatNumber(data.kebutuhanPabrikTahunan);
-        elements.lblTotalKebutuhanSiklus.textContent = formatNumber(data.kebutuhanPabrikSiklus);
+        if (elements.lblKpiTargetKebunTitle) elements.lblKpiTargetKebunTitle.textContent = `Target Pasokan Kebun (${data.targetKebunPct}%)`;
+        if (elements.lblTotalKebutuhanSiklus) elements.lblTotalKebutuhanSiklus.textContent = formatNumber(data.kebutuhanPabrikSiklus);
 
-        // KPI Cards
-        elements.kpiTotalLuas.textContent = `${formatNumber(data.totalLuas)} Ha`;
-        elements.kpiTotalBlokSubtext.textContent = `${blocksArray.length} Blok Lahan Terdaftar (${formatNumber(data.totalPohon)} Pohon)`;
+        // KPI Cards Update
+        if (elements.kpiTotalLuas) elements.kpiTotalLuas.textContent = `${formatNumber(data.totalLuas)} Ha`;
+        if (elements.kpiTotalBlokSubtext) elements.kpiTotalBlokSubtext.textContent = `${blocksArray.length} Blok Lahan Terdaftar (${formatNumber(data.totalPohon)} Pohon)`;
 
-        elements.kpiProduksiSiklus.textContent = `${formatNumber(data.totalProduksiSiklus)}`;
-        elements.kpiProduksiHarianSubtext.textContent = `${formatNumber(data.totalProduksiHarian)} Butir / HK (Rata-rata)`;
+        if (elements.kpiProduksiSiklus) elements.kpiProduksiSiklus.textContent = `${formatNumber(data.totalProduksiSiklus)}`;
+        if (elements.kpiProduksiHarianSubtext) elements.kpiProduksiHarianSubtext.textContent = `${formatNumber(data.totalProduksiHarian)} Butir / HK (Rata-rata)`;
 
-        elements.kpiTargetKebunVal.textContent = `${formatNumber(data.targetKebunHarian)}`;
-        elements.kpiCoverageKebun.textContent = `Aktual: ${formatNumber(data.totalProduksiHarian)} / HK (${data.coverageTargetKebun.toFixed(1)}% tercapai)`;
+        if (elements.kpiTargetKebunVal) elements.kpiTargetKebunVal.textContent = `${formatNumber(data.targetKebunSiklus)}`;
+        if (elements.kpiCoverageKebun) elements.kpiCoverageKebun.textContent = `Target: ${formatNumber(data.targetKebunHarian)}/HK | Aktual: ${formatNumber(data.totalProduksiHarian)}/HK (${data.coverageTargetKebun.toFixed(1)}% tercapai)`;
 
-        elements.kpiPembelianLuarSiklus.textContent = `${formatNumber(data.pembelianLuarSiklus)}`;
+        if (elements.kpiPembelianLuarSiklus) elements.kpiPembelianLuarSiklus.textContent = `${formatNumber(data.pembelianLuarSiklus)}`;
+        if (elements.kpiPembelianLuarSubtext) elements.kpiPembelianLuarSubtext.textContent = `Defisit Pasokan 60 HK (${formatNumber(data.pembelianLuarHarian)} / HK)`;
 
         // Progress Gauge & Marker Position
         const progressPct = Math.min(100, data.coverageTotalPabrik);
-        elements.kebunProgressBar.style.width = `${progressPct}%`;
+        if (elements.kebunProgressBar) elements.kebunProgressBar.style.width = `${progressPct}%`;
 
         const markerPosPct = Math.min(100, Math.max(1, data.targetKebunPct));
-        elements.progressTargetMarker.style.left = `${markerPosPct}%`;
-        elements.markerLabel.textContent = `Target ${data.targetKebunPct}%`;
+        if (elements.progressTargetMarker) elements.progressTargetMarker.style.left = `${markerPosPct}%`;
+        if (elements.markerLabel) elements.markerLabel.textContent = `Target ${data.targetKebunPct}%`;
 
-        elements.lblPercentTercapai.textContent = `${data.coverageTotalPabrik.toFixed(1)}% tercover dari kebun sendiri (${formatNumber(data.totalProduksiSiklus)} / ${formatNumber(data.kebutuhanPabrikSiklus)} per 3 bulan)`;
+        if (elements.lblPercentTercapai) elements.lblPercentTercapai.textContent = `${data.coverageTotalPabrik.toFixed(1)}% tercover dari kebun sendiri (${formatNumber(data.totalProduksiSiklus)} / ${formatNumber(data.kebutuhanPabrikSiklus)} per 3 bulan)`;
 
         // Target Gap Banner Update
-        if (data.gapSiklus <= 0) {
-            elements.gapAnalysisCard.className = 'card gap-analysis-card mb-4';
-            elements.gapStatusTitle.innerHTML = `<i data-lucide="check-circle-2"></i> Target Pasokan Kebun Terpenuhi! 🎉`;
-            elements.gapStatusDesc.textContent = `Total portofolio (${formatNumber(data.totalLuas)} Ha) menghasilkan ${formatNumber(data.totalProduksiSiklus)} butir per 3 bulan, melampaui target kebun ${data.targetKebunPct}% (${formatNumber(data.targetKebunSiklus)} butir).`;
-        } else {
-            elements.gapAnalysisCard.className = 'card gap-analysis-card status-warning mb-4';
-            elements.gapStatusTitle.innerHTML = `<i data-lucide="alert-triangle"></i> Sisa Kekurangan untuk Mencapai Target Kebun (${data.targetKebunPct}%)`;
-            elements.gapStatusDesc.textContent = `Masih kurang ${formatNumber(data.gapSiklus)} butir per 3 bulan (${formatNumber(data.gapSiklus / 60)} butir/HK). Membutuhkan tambahan lahan sekitar +${formatNumber(data.gapLuasHa)} Ha untuk mencapai target!`;
+        if (elements.gapAnalysisCard) {
+            if (data.gapSiklus <= 0) {
+                elements.gapAnalysisCard.className = 'card gap-analysis-card mb-4';
+                if (elements.gapStatusTitle) elements.gapStatusTitle.innerHTML = `<i data-lucide="check-circle-2"></i> Target Pasokan Kebun Terpenuhi! 🎉`;
+                if (elements.gapStatusDesc) elements.gapStatusDesc.textContent = `Total portofolio (${formatNumber(data.totalLuas)} Ha) menghasilkan ${formatNumber(data.totalProduksiSiklus)} butir per 3 bulan (${formatNumber(data.totalProduksiHarian)} / HK), melampaui target kebun ${data.targetKebunPct}% (${formatNumber(data.targetKebunHarian)} / HK).`;
+            } else {
+                elements.gapAnalysisCard.className = 'card gap-analysis-card status-warning mb-4';
+                if (elements.gapStatusTitle) elements.gapStatusTitle.innerHTML = `<i data-lucide="alert-triangle"></i> Sisa Kekurangan untuk Mencapai Target Kebun (${data.targetKebunPct}%)`;
+                if (elements.gapStatusDesc) elements.gapStatusDesc.textContent = `Masih kurang ${formatNumber(data.gapSiklus)} butir per 3 bulan (${formatNumber(data.gapSiklus / 60)} butir/HK). Membutuhkan tambahan lahan sekitar +${formatNumber(data.gapLuasHa)} Ha untuk mencapai 100% target pasokan!`;
+            }
         }
 
         // Table Breakdown Updates
-        elements.tblProduksiHarian.textContent = formatNumber(data.totalProduksiHarian);
-        elements.tblBeliHarian.textContent = formatNumber(data.pembelianLuarHarian);
-        elements.tblTotalHarian.textContent = formatNumber(data.kebutuhanPabrikHarian);
+        if (elements.tblProduksiHarian) elements.tblProduksiHarian.textContent = formatNumber(data.totalProduksiHarian);
+        if (elements.tblBeliHarian) elements.tblBeliHarian.textContent = formatNumber(data.pembelianLuarHarian);
+        if (elements.tblTotalHarian) elements.tblTotalHarian.textContent = formatNumber(data.kebutuhanPabrikHarian);
 
-        elements.tblProduksiBulanan.textContent = formatNumber(data.totalProduksiBulanan);
-        elements.tblBeliBulanan.textContent = formatNumber(data.pembelianLuarBulanan);
-        elements.tblTotalBulanan.textContent = formatNumber(data.kebutuhanPabrikBulan);
+        if (elements.tblProduksiBulanan) elements.tblProduksiBulanan.textContent = formatNumber(data.totalProduksiBulanan);
+        if (elements.tblBeliBulanan) elements.tblBeliBulanan.textContent = formatNumber(data.pembelianLuarBulanan);
+        if (elements.tblTotalBulanan) elements.tblTotalBulanan.textContent = formatNumber(data.kebutuhanPabrikBulan);
 
-        elements.tblProduksiSiklus.textContent = formatNumber(data.totalProduksiSiklus);
-        elements.tblBeliSiklus.textContent = formatNumber(data.pembelianLuarSiklus);
-        elements.tblTotalSiklus.textContent = formatNumber(data.kebutuhanPabrikSiklus);
+        if (elements.tblProduksiSiklus) elements.tblProduksiSiklus.textContent = formatNumber(data.totalProduksiSiklus);
+        if (elements.tblBeliSiklus) elements.tblBeliSiklus.textContent = formatNumber(data.pembelianLuarSiklus);
+        if (elements.tblTotalSiklus) elements.tblTotalSiklus.textContent = formatNumber(data.kebutuhanPabrikSiklus);
 
-        elements.tblProduksiTahunan.textContent = formatNumber(data.totalProduksiTahunan);
-        elements.tblBeliTahunan.textContent = formatNumber(data.pembelianLuarTahunan);
-        elements.tblTotalTahunan.textContent = formatNumber(data.kebutuhanPabrikTahunan);
+        if (elements.tblProduksiTahunan) elements.tblProduksiTahunan.textContent = formatNumber(data.totalProduksiTahunan);
+        if (elements.tblBeliTahunan) elements.tblBeliTahunan.textContent = formatNumber(data.pembelianLuarTahunan);
+        if (elements.tblTotalTahunan) elements.tblTotalTahunan.textContent = formatNumber(data.kebutuhanPabrikTahunan);
 
         if (window.lucide) lucide.createIcons();
         updateMultiBlockChart(data);
