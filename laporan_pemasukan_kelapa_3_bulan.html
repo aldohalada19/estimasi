@@ -1,0 +1,1367 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laporan Pemasukan Kelapa Perkebunan TMC ke PT TMC (Juni - Agustus 2026)</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Outfit:wght@600;700;800&display=swap');
+
+        @page {
+            size: A4 portrait;
+            margin: 10mm 12mm 10mm 12mm;
+        }
+
+        * {
+            box-sizing: border-box;
+            -webkit-print-color-adjust: exact !important;
+            print-color-adjust: exact !important;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            color: #1e293b;
+            background: #f1f5f9;
+            margin: 0;
+            padding: 0;
+            line-height: 1.4;
+            font-size: 8.5pt;
+        }
+
+        /* Toolbar Screen Only */
+        .no-print-toolbar {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: #064e3b;
+            color: #ffffff;
+            padding: 10px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        .no-print-toolbar h1 {
+            font-size: 13pt;
+            font-weight: 700;
+            margin: 0;
+            font-family: 'Outfit', sans-serif;
+            color: #a7f3d0;
+        }
+
+        .toolbar-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn-action {
+            background: #10b981;
+            color: #ffffff;
+            border: none;
+            padding: 6px 14px;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 8.5pt;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .btn-action:hover {
+            background: #059669;
+            transform: translateY(-1px);
+        }
+
+        .btn-secondary {
+            background: rgba(255,255,255,0.15);
+            color: #ffffff;
+        }
+        .btn-secondary:hover {
+            background: rgba(255,255,255,0.25);
+        }
+
+        /* Page Layout: Exact A4 Container */
+        .page-container {
+            width: 100%;
+            max-width: 210mm;
+            min-height: 275mm;
+            max-height: 277mm;
+            margin: 15px auto;
+            background: #ffffff;
+            padding: 0;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+            border-radius: 4px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            overflow: hidden;
+            box-sizing: border-box;
+            page-break-after: always;
+            break-after: page;
+        }
+
+        .page-container:last-child {
+            page-break-after: avoid;
+            break-after: avoid;
+            margin-bottom: 25px;
+        }
+
+        .page-content {
+            flex-grow: 1;
+        }
+
+        /* Header Document */
+        .doc-header {
+            border-bottom: 2px solid #059669;
+            padding-bottom: 6px;
+            margin-bottom: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .header-brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .brand-logo {
+            width: 42px;
+            height: 42px;
+            background: linear-gradient(135deg, #064e3b 0%, #059669 100%);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ffffff;
+            font-size: 18pt;
+            font-weight: 800;
+        }
+
+        .brand-info h2 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 13.5pt;
+            font-weight: 800;
+            color: #064e3b;
+            margin: 0;
+            letter-spacing: 0.3px;
+            text-transform: uppercase;
+        }
+
+        .brand-info p {
+            margin: 2px 0 0 0;
+            font-size: 7.5pt;
+            color: #475569;
+        }
+
+        .header-meta {
+            text-align: right;
+        }
+
+        .badge-periode {
+            display: inline-block;
+            background: #ecfdf5;
+            color: #065f46;
+            font-size: 7.5pt;
+            font-weight: 700;
+            padding: 2px 8px;
+            border-radius: 20px;
+            border: 1px solid #a7f3d0;
+            margin-bottom: 3px;
+        }
+
+        .doc-no {
+            font-size: 7.2pt;
+            color: #64748b;
+            font-weight: 500;
+        }
+
+        .doc-title-block {
+            text-align: center;
+            margin: 6px 0 10px 0;
+        }
+
+        .doc-title-block h3 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 12.5pt;
+            font-weight: 800;
+            color: #0f172a;
+            margin: 0 0 2px 0;
+            letter-spacing: -0.2px;
+        }
+
+        .doc-title-block p {
+            margin: 0;
+            font-size: 8pt;
+            color: #475569;
+        }
+
+        /* KPI Cards Grid */
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 8px;
+            margin-bottom: 10px;
+        }
+
+        .kpi-card {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 6px;
+            padding: 6px 8px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .kpi-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2.5px;
+            background: #cbd5e1;
+        }
+
+        .kpi-card.green::before { background: #059669; }
+        .kpi-card.blue::before { background: #0284c7; }
+        .kpi-card.amber::before { background: #d97706; }
+        .kpi-card.purple::before { background: #7c3aed; }
+
+        .kpi-title {
+            font-size: 6.8pt;
+            font-weight: 700;
+            color: #64748b;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+            margin-bottom: 2px;
+        }
+
+        .kpi-value {
+            font-family: 'Outfit', sans-serif;
+            font-size: 12.5pt;
+            font-weight: 800;
+            color: #0f172a;
+            line-height: 1.15;
+        }
+
+        .kpi-sub {
+            font-size: 6.8pt;
+            color: #64748b;
+            margin-top: 2px;
+            font-weight: 500;
+        }
+
+        .kpi-sub strong {
+            color: #059669;
+        }
+
+        /* Section Title */
+        .section-header {
+            font-family: 'Outfit', sans-serif;
+            font-size: 9.2pt;
+            font-weight: 700;
+            color: #064e3b;
+            border-left: 3px solid #059669;
+            padding-left: 7px;
+            margin: 8px 0 5px 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .section-tag {
+            font-size: 6.8pt;
+            font-weight: 600;
+            color: #64748b;
+            background: #f1f5f9;
+            padding: 1.5px 6px;
+            border-radius: 4px;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        /* Visual Charts Row */
+        .charts-row {
+            display: grid;
+            grid-template-columns: 1.4fr 1fr;
+            gap: 10px;
+            margin-bottom: 8px;
+        }
+
+        .chart-box {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 6px;
+            padding: 8px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+        }
+
+        .chart-title {
+            font-size: 7.8pt;
+            font-weight: 700;
+            color: #1e293b;
+            margin-bottom: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .chart-legend {
+            display: flex;
+            gap: 8px;
+            font-size: 6.8pt;
+            color: #475569;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .legend-color {
+            width: 8px;
+            height: 8px;
+            border-radius: 2px;
+        }
+
+        /* Tables */
+        table.custom-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 7.5pt;
+            margin-bottom: 6px;
+        }
+
+        table.custom-table th {
+            background: #f1f5f9;
+            color: #0f172a;
+            font-weight: 700;
+            text-align: left;
+            padding: 4px 5px;
+            border: 1px solid #cbd5e1;
+            font-size: 7.2pt;
+            text-transform: uppercase;
+            letter-spacing: 0.1px;
+        }
+
+        table.custom-table th.center, table.custom-table td.center {
+            text-align: center;
+        }
+
+        table.custom-table th.right, table.custom-table td.right {
+            text-align: right;
+        }
+
+        table.custom-table td {
+            padding: 3.5px 5px;
+            border: 1px solid #e2e8f0;
+            color: #334155;
+            line-height: 1.25;
+        }
+
+        table.custom-table tr:nth-child(even) td {
+            background: #f8fafc;
+        }
+
+        table.custom-table tr.total-row td {
+            background: #ecfdf5 !important;
+            font-weight: 800;
+            color: #064e3b;
+            border-top: 1.5px solid #059669;
+            border-bottom: 2px solid #059669;
+        }
+
+        table.custom-table tr.subtotal-row td {
+            background: #f0fdf4 !important;
+            font-weight: 700;
+            color: #166534;
+        }
+
+        .badge-kebun {
+            display: inline-block;
+            padding: 1px 5px;
+            border-radius: 3px;
+            font-size: 6.5pt;
+            font-weight: 700;
+            text-align: center;
+        }
+
+        .badge-sapa { background: #dcfce7; color: #166534; border: 1px solid #bbf7d0; }
+        .badge-popang { background: #e0f2fe; color: #075985; border: 1px solid #bae6fd; }
+        .badge-winor { background: #fef3c7; color: #92400e; border: 1px solid #fde68a; }
+        .badge-katuwisan { background: #ede9fe; color: #5b21b6; border: 1px solid #ddd6fe; }
+
+        /* Footer */
+        .doc-footer {
+            border-top: 1px solid #e2e8f0;
+            padding-top: 4px;
+            margin-top: 4px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 7pt;
+            color: #94a3b8;
+        }
+
+        .doc-footer .footer-left {
+            font-weight: 600;
+            color: #64748b;
+        }
+
+        /* Signatures */
+        .signature-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-top: 8px;
+            text-align: center;
+        }
+
+        .signature-box {
+            border: 1px solid #e2e8f0;
+            border-radius: 6px;
+            padding: 6px;
+            background: #fafafa;
+        }
+
+        .sign-title {
+            font-size: 7.2pt;
+            font-weight: 700;
+            color: #64748b;
+            text-transform: uppercase;
+            margin-bottom: 24px;
+        }
+
+        .sign-name {
+            font-size: 8pt;
+            font-weight: 800;
+            color: #0f172a;
+            border-top: 1px dashed #cbd5e1;
+            padding-top: 3px;
+            display: inline-block;
+            min-width: 130px;
+        }
+
+        .sign-role {
+            font-size: 6.8pt;
+            color: #64748b;
+        }
+
+        /* Callout Box */
+        .callout {
+            background: #f8fafc;
+            border-left: 3px solid #059669;
+            padding: 5px 8px;
+            margin: 4px 0 6px 0;
+            border-radius: 4px;
+            font-size: 7.5pt;
+            line-height: 1.35;
+            color: #334155;
+        }
+
+        .callout strong {
+            color: #064e3b;
+        }
+
+        @media print {
+            body {
+                background: #ffffff;
+            }
+            .no-print-toolbar {
+                display: none !important;
+            }
+            .page-container {
+                margin: 0;
+                padding: 0;
+                box-shadow: none;
+                border-radius: 0;
+                width: 100%;
+                min-height: 275mm;
+                max-height: 277mm;
+                page-break-after: always;
+                break-after: page;
+            }
+            .page-container:last-child {
+                page-break-after: avoid;
+                break-after: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Toolbar Screen Only -->
+    <div class="no-print-toolbar">
+        <div>
+            <h1>LAPORAN PEMASUKAN KELAPA PERKEBUNAN TMC (JUNI - AGUSTUS 2026)</h1>
+            <div style="font-size: 8pt; opacity: 0.85;">PT Trimustika Cocominaesa &bull; Divisi Pengadaan Bahan Baku & Perkebunan</div>
+        </div>
+        <div class="toolbar-buttons">
+            <button class="btn-action" onclick="window.print()">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
+                Cetak / Simpan PDF
+            </button>
+            <button class="btn-action btn-secondary" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">Ke Atas</button>
+        </div>
+    </div>
+
+    <!-- ========================================== PAGE 1: RINGKASAN EKSEKUTIF & GRAFIK UTAMA ========================================== -->
+    <div class="page-container" id="page-1">
+        <div class="page-content">
+            <!-- Header Dokumen -->
+            <div class="doc-header">
+                <div class="header-brand">
+                    <div class="brand-logo">🌴</div>
+                    <div class="brand-info">
+                        <h2>PERKEBUNAN TMC</h2>
+                        <p>Jl. Raya A.K.D. Km. 90, Desa Teep, Kec. Amurang Barat, Kab. Minahasa Selatan, Sulawesi Utara 95924</p>
+                    </div>
+                </div>
+                <div class="header-meta">
+                    <div class="badge-periode">Periode: Juni 2026 – Agustus 2026</div>
+                    <div class="doc-no">Doc Ref: TMC-PLANT-REP/2026/Q3-01</div>
+                </div>
+            </div>
+
+            <!-- Title Block -->
+            <div class="doc-title-block">
+                <h3>LAPORAN PEMASUKAN KELAPA KE PABRIK PT TMC</h3>
+                <p>Rekapitulasi Volume (Kg/Ton), Pendapatan Finansial, dan Evaluasi Harga Bahan Baku Tiga Bulan Berjalan</p>
+            </div>
+
+            <!-- KPI Cards -->
+            <div class="kpi-grid">
+                <div class="kpi-card green">
+                    <div class="kpi-title">Total Volume Pasokan</div>
+                    <div class="kpi-value">112,15 <span style="font-size: 8.5pt; font-weight: 600; color: #059669;">Ton</span></div>
+                    <div class="kpi-sub">Total: <strong>112.150,00 Kg</strong></div>
+                </div>
+                <div class="kpi-card blue">
+                    <div class="kpi-title">Total Pendapatan Bruto</div>
+                    <div class="kpi-value" style="font-size: 11.2pt; color: #0369a1;">Rp 300.985.500</div>
+                    <div class="kpi-sub">Rata-rata: <strong>Rp 9,12 Juta</strong>/rit</div>
+                </div>
+                <div class="kpi-card amber">
+                    <div class="kpi-title">Harga Rata-Rata Tertimbang</div>
+                    <div class="kpi-value">Rp 2.684 <span style="font-size: 8.5pt; font-weight: 600; color: #b45309;">/Kg</span></div>
+                    <div class="kpi-sub">Rentang: <strong>Rp 2.500 – 2.900</strong></div>
+                </div>
+                <div class="kpi-card purple">
+                    <div class="kpi-title">Frekuensi Pengiriman</div>
+                    <div class="kpi-value">33 <span style="font-size: 8.5pt; font-weight: 600; color: #6d28d9;">Ritase</span></div>
+                    <div class="kpi-sub">Kapasitas: <strong>3,40 Ton</strong>/rit</div>
+                </div>
+            </div>
+
+            <!-- Visual Charts -->
+            <div class="section-header">
+                <span>1. GRAFIK KINERJA PEMASUKAN KELAPA & PENDAPATAN BULANAN</span>
+                <span class="section-tag">Visualisasi Triwulan Berjalan</span>
+            </div>
+
+            <div class="charts-row">
+                <!-- Chart 1: Bar & Line Chart Volume & Pendapatan -->
+                <div class="chart-box">
+                    <div class="chart-title">
+                        <span>Volume Pasokan (Ton) & Nilai Pendapatan (Juta Rp)</span>
+                        <div class="chart-legend">
+                            <div class="legend-item"><span class="legend-color" style="background: #059669;"></span> Volume (Ton)</div>
+                            <div class="legend-item"><span class="legend-color" style="background: #0284c7;"></span> Nilai (Juta Rp)</div>
+                        </div>
+                    </div>
+                    <!-- SVG Vector Bar & Line Chart -->
+                    <svg viewBox="0 0 320 140" style="width: 100%; height: 135px; display: block; overflow: visible;">
+                        <!-- Grid lines -->
+                        <line x1="35" y1="15" x2="305" y2="15" stroke="#f1f5f9" stroke-width="1" />
+                        <line x1="35" y1="45" x2="305" y2="45" stroke="#f1f5f9" stroke-width="1" />
+                        <line x1="35" y1="75" x2="305" y2="75" stroke="#f1f5f9" stroke-width="1" />
+                        <line x1="35" y1="105" x2="305" y2="105" stroke="#f1f5f9" stroke-width="1" />
+                        <line x1="35" y1="120" x2="305" y2="120" stroke="#cbd5e1" stroke-width="1" />
+
+                        <!-- Left Y Axis Labels (Ton: 0 to 50) -->
+                        <text x="30" y="18" font-size="6.5" fill="#94a3b8" text-anchor="end">50T</text>
+                        <text x="30" y="48" font-size="6.5" fill="#94a3b8" text-anchor="end">35T</text>
+                        <text x="30" y="78" font-size="6.5" fill="#94a3b8" text-anchor="end">25T</text>
+                        <text x="30" y="105" font-size="6.5" fill="#94a3b8" text-anchor="end">10T</text>
+                        <text x="30" y="122" font-size="6.5" fill="#94a3b8" text-anchor="end">0</text>
+
+                        <!-- Right Y Axis Labels (Juta: 0 to 140 Jt) -->
+                        <text x="310" y="18" font-size="6.5" fill="#0284c7" text-anchor="start">140Jt</text>
+                        <text x="310" y="70" font-size="6.5" fill="#0284c7" text-anchor="start">70Jt</text>
+                        <text x="310" y="122" font-size="6.5" fill="#0284c7" text-anchor="start">0</text>
+
+                        <!-- Month 1: Juni (x=80) -> Vol: 45.61T (h=95.8, y=24.2), Pend: 119.56 Jt (y=30.3) -->
+                        <rect x="65" y="24.2" width="30" height="95.8" fill="url(#greenGrad)" rx="3" />
+                        <text x="80" y="20" font-size="7.5" font-weight="bold" fill="#065f46" text-anchor="middle">45,61 T</text>
+
+                        <!-- Month 2: Juli (x=170) -> Vol: 45.85T (h=96.3, y=23.7), Pend: 124.23 Jt (y=26.8) -->
+                        <rect x="155" y="23.7" width="30" height="96.3" fill="url(#greenGrad)" rx="3" />
+                        <text x="170" y="19" font-size="7.5" font-weight="bold" fill="#065f46" text-anchor="middle">45,85 T</text>
+
+                        <!-- Month 3: Agustus (x=260) -> Vol: 20.69T (h=43.4, y=76.6), Pend: 57.20 Jt (y=77.1) -->
+                        <rect x="245" y="76.6" width="30" height="43.4" fill="url(#greenGrad)" rx="3" />
+                        <text x="260" y="72" font-size="7.5" font-weight="bold" fill="#065f46" text-anchor="middle">20,69 T</text>
+
+                        <!-- Line Overlay for Pendapatan (Blue) -->
+                        <!-- Points: (80, 30.3) -> (170, 26.8) -> (260, 77.1) -->
+                        <polyline points="80,30.3 170,26.8 260,77.1" fill="none" stroke="#0284c7" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+                        
+                        <!-- Value Dots & Labels for Line -->
+                        <circle cx="80" cy="30.3" r="3.2" fill="#ffffff" stroke="#0284c7" stroke-width="2" />
+                        <text x="80" y="40" font-size="6.8" font-weight="bold" fill="#0369a1" text-anchor="middle">Rp119,6M</text>
+
+                        <circle cx="170" cy="26.8" r="3.2" fill="#ffffff" stroke="#0284c7" stroke-width="2" />
+                        <text x="170" y="37" font-size="6.8" font-weight="bold" fill="#0369a1" text-anchor="middle">Rp124,2M</text>
+
+                        <circle cx="260" cy="77.1" r="3.2" fill="#ffffff" stroke="#0284c7" stroke-width="2" />
+                        <text x="260" y="89" font-size="6.8" font-weight="bold" fill="#0369a1" text-anchor="middle">Rp57,2M</text>
+
+                        <!-- X Labels -->
+                        <text x="80" y="132" font-size="7.5" font-weight="600" fill="#334155" text-anchor="middle">Juni 2026</text>
+                        <text x="170" y="132" font-size="7.5" font-weight="600" fill="#334155" text-anchor="middle">Juli 2026</text>
+                        <text x="260" y="132" font-size="7.5" font-weight="600" fill="#334155" text-anchor="middle">Agustus 2026</text>
+
+                        <!-- Gradients -->
+                        <defs>
+                            <linearGradient id="greenGrad" x1="0" y1="0" x2="0" y2="1">
+                                <stop offset="0%" stop-color="#10b981" />
+                                <stop offset="100%" stop-color="#059669" />
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                </div>
+
+                <!-- Chart 2: Donut Chart Komposisi Kebun -->
+                <div class="chart-box">
+                    <div class="chart-title">
+                        <span>Pangsa Pasokan per Asal Kebun</span>
+                        <span style="font-size: 6.8pt; color: #059669; font-weight: 700;">112,15 Ton</span>
+                    </div>
+                    <div style="display: flex; align-items: center; justify-content: space-between;">
+                        <svg viewBox="0 0 200 200" style="width: 115px; height: 115px; display: block;">
+                            <!-- SAPA: 70.33% -->
+                            <path d="M 28.20 121.67 A 75 75 0 1 0 100.00 25.00 L 100.00 55.00 A 45 45 0 1 1 56.92 113.00 Z" fill="#059669" />
+                            <!-- POPANG: 13.64% -->
+                            <path d="M 36.62 59.91 A 75 75 0 0 0 28.20 121.67 L 56.92 113.00 A 45 45 0 0 1 61.97 75.94 Z" fill="#0284c7" />
+                            <!-- WINOR: 11.37% -->
+                            <path d="M 78.38 28.18 A 75 75 0 0 0 36.62 59.91 L 61.97 75.94 A 45 45 0 0 1 87.03 56.91 Z" fill="#f59e0b" />
+                            <!-- KATUWISAN: 4.65% -->
+                            <path d="M 100.00 25.00 A 75 75 0 0 0 78.38 28.18 L 87.03 56.91 A 45 45 0 0 1 100.00 55.00 Z" fill="#8b5cf6" />
+                            <!-- Center Info -->
+                            <text x="100" y="96" font-size="11" font-weight="800" fill="#0f172a" text-anchor="middle" font-family="'Outfit', sans-serif">112,15</text>
+                            <text x="100" y="108" font-size="6.8" font-weight="600" fill="#64748b" text-anchor="middle">TON</text>
+                        </svg>
+
+                        <!-- Legend Items -->
+                        <div style="flex-grow: 1; padding-left: 6px; font-size: 6.8pt;">
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 3px;">
+                                <span><span style="display:inline-block;width:7px;height:7px;background:#059669;border-radius:2px;margin-right:4px;"></span><strong>SAPA</strong></span>
+                                <span style="font-weight:700;">78,88 T (70,3%)</span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 3px;">
+                                <span><span style="display:inline-block;width:7px;height:7px;background:#0284c7;border-radius:2px;margin-right:4px;"></span><strong>POPANG</strong></span>
+                                <span style="font-weight:700;">15,30 T (13,6%)</span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 3px;">
+                                <span><span style="display:inline-block;width:7px;height:7px;background:#f59e0b;border-radius:2px;margin-right:4px;"></span><strong>WINOR</strong></span>
+                                <span style="font-weight:700;">12,75 T (11,4%)</span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; align-items: center;">
+                                <span><span style="display:inline-block;width:7px;height:7px;background:#8b5cf6;border-radius:2px;margin-right:4px;"></span><strong>KATUWISAN</strong></span>
+                                <span style="font-weight:700;">5,22 T (4,7%)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tabel 1: Rekapitulasi Bulanan -->
+            <div class="section-header">
+                <span>2. REKAPITULASI KINERJA PEMASUKAN PER BULAN</span>
+                <span class="section-tag">Konsolidasi Finansial</span>
+            </div>
+
+            <table class="custom-table">
+                <thead>
+                    <tr>
+                        <th>Periode Bulan</th>
+                        <th class="center">Frekuensi (Rit)</th>
+                        <th class="right">Volume (Kg)</th>
+                        <th class="right">Volume (Ton)</th>
+                        <th class="center">Porsi Vol</th>
+                        <th class="right">Total Pendapatan (Rp)</th>
+                        <th class="center">Porsi Nilai</th>
+                        <th class="right">Harga Rata-Rata (Rp/Kg)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Juni 2026</strong></td>
+                        <td class="center">13 Rit</td>
+                        <td class="right">45.610,00</td>
+                        <td class="right"><strong>45,61 Ton</strong></td>
+                        <td class="center">40,67%</td>
+                        <td class="right"><strong>Rp 119.557.000</strong></td>
+                        <td class="center">39,72%</td>
+                        <td class="right">Rp 2.621,29</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Juli 2026</strong></td>
+                        <td class="center">13 Rit</td>
+                        <td class="right">45.850,00</td>
+                        <td class="right"><strong>45,85 Ton</strong></td>
+                        <td class="center">40,88%</td>
+                        <td class="right"><strong>Rp 124.233.000</strong></td>
+                        <td class="center">41,28%</td>
+                        <td class="right">Rp 2.709,55</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Agustus 2026</strong></td>
+                        <td class="center">7 Rit</td>
+                        <td class="right">20.690,00</td>
+                        <td class="right"><strong>20,69 Ton</strong></td>
+                        <td class="center">18,45%</td>
+                        <td class="right"><strong>Rp 57.195.500</strong></td>
+                        <td class="center">19,00%</td>
+                        <td class="right">Rp 2.764,40</td>
+                    </tr>
+                    <tr class="total-row">
+                        <td>TOTAL REKAPITULASI</td>
+                        <td class="center">33 Rit</td>
+                        <td class="right">112.150,00 Kg</td>
+                        <td class="right">112,15 Ton</td>
+                        <td class="center">100,00%</td>
+                        <td class="right">Rp 300.985.500</td>
+                        <td class="center">100,00%</td>
+                        <td class="right">Rp 2.683,78</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- Tabel 2: Rekapitulasi per Kebun -->
+            <div class="section-header" style="margin-top: 8px;">
+                <span>3. REKAPITULASI BERDASARKAN BLOK PERKEBUNAN PENGHASIL</span>
+                <span class="section-tag">Kontribusi Sentra Kebun</span>
+            </div>
+
+            <table class="custom-table">
+                <thead>
+                    <tr>
+                        <th>Nama Blok Perkebunan</th>
+                        <th class="center">Jumlah Rit</th>
+                        <th class="right">Volume (Kg)</th>
+                        <th class="right">Volume (Ton)</th>
+                        <th class="center">Kontribusi Vol</th>
+                        <th class="right">Pendapatan Bruto (Rp)</th>
+                        <th class="center">Kontribusi Nilai</th>
+                        <th class="right">Rentang Harga</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="badge-kebun badge-sapa">SAPA</span> <strong>Kebun Sapa (Desa Sapa)</strong></td>
+                        <td class="center">23 Rit</td>
+                        <td class="right">78.880,00</td>
+                        <td class="right"><strong>78,88 Ton</strong></td>
+                        <td class="center">70,33%</td>
+                        <td class="right"><strong>Rp 210.524.500</strong></td>
+                        <td class="center">69,94%</td>
+                        <td class="right">Rp 2.500 &ndash; Rp 2.850</td>
+                    </tr>
+                    <tr>
+                        <td><span class="badge-kebun badge-popang">POPANG</span> <strong>Ranoketang Tua - Popang</strong></td>
+                        <td class="center">5 Rit</td>
+                        <td class="right">15.300,00</td>
+                        <td class="right"><strong>15,30 Ton</strong></td>
+                        <td class="center">13,64%</td>
+                        <td class="right"><strong>Rp 42.826.000</strong></td>
+                        <td class="center">14,23%</td>
+                        <td class="right">Rp 2.700 &ndash; Rp 2.900</td>
+                    </tr>
+                    <tr>
+                        <td><span class="badge-kebun badge-winor">WINOR</span> <strong>Tombatu - Winor</strong></td>
+                        <td class="center">3 Rit</td>
+                        <td class="right">12.750,00</td>
+                        <td class="right"><strong>12,75 Ton</strong></td>
+                        <td class="center">11,37%</td>
+                        <td class="right"><strong>Rp 34.425.000</strong></td>
+                        <td class="center">11,44%</td>
+                        <td class="right">Rp 2.700 Rata</td>
+                    </tr>
+                    <tr>
+                        <td><span class="badge-kebun badge-katuwisan">KATUWISAN</span> <strong>Ranoketang Tua - Katuwisan</strong></td>
+                        <td class="center">2 Rit</td>
+                        <td class="right">5.220,00</td>
+                        <td class="right"><strong>5,22 Ton</strong></td>
+                        <td class="center">4,65%</td>
+                        <td class="right"><strong>Rp 13.210.000</strong></td>
+                        <td class="center">4,39%</td>
+                        <td class="right">Rp 2.500 &ndash; Rp 2.600</td>
+                    </tr>
+                    <tr class="total-row">
+                        <td>TOTAL SEMUA BLOK KEBUN</td>
+                        <td class="center">33 Rit</td>
+                        <td class="right">112.150,00 Kg</td>
+                        <td class="right">112,15 Ton</td>
+                        <td class="center">100,00%</td>
+                        <td class="right">Rp 300.985.500</td>
+                        <td class="center">100,00%</td>
+                        <td class="right">Rp 2.684 Tertimbang</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="doc-footer">
+            <span class="footer-left">Perkebunan TMC &bull; Laporan Pembelian Bahan Baku Pabrik TMC</span>
+            <span>Halaman 1 dari 3</span>
+        </div>
+    </div>
+
+    <!-- ========================================== PAGE 2: ANALISIS TREN HARGA & TABEL TRANSAKSI BAGIAN 1 ========================================== -->
+    <div class="page-container" id="page-2">
+        <div class="page-content">
+            <!-- Header Ringkas Halaman 2 -->
+            <div class="doc-header" style="margin-bottom: 6px; padding-bottom: 5px;">
+                <div class="header-brand">
+                    <span style="font-size: 15pt;">📊</span>
+                    <div>
+                        <h4 style="margin: 0; font-size: 10pt; font-family: 'Outfit', sans-serif; color: #064e3b; text-transform: uppercase;">
+                            ANALISIS TREN HARGA & BUKU BESAR TRANSAKSI (BAGIAN I: TRANSAKSI NO 1 &ndash; 21)
+                        </h4>
+                        <span style="font-size: 7pt; color: #64748b;">Periode Pengiriman: 03 Juni 2026 s/d 22 Juli 2026</span>
+                    </div>
+                </div>
+                <div class="header-meta">
+                    <span class="badge-periode">Dokumen Resmi TMC</span>
+                </div>
+            </div>
+
+            <!-- Visual Chart Tren Harga -->
+            <div class="chart-box" style="margin-bottom: 8px; padding: 6px 10px;">
+                <div class="chart-title">
+                    <span>Grafik Tren Kenaikan Harga Beli Kelapa Per Kg (Juni &ndash; Agustus 2026)</span>
+                    <span style="font-size: 6.8pt; color: #059669; font-weight: 700;">Apresiasi +16,0% (Rp 2.500 &rarr; Rp 2.900/Kg)</span>
+                </div>
+                <svg viewBox="0 0 520 80" style="width: 100%; height: 75px; display: block; overflow: visible;">
+                    <!-- Grid Lines -->
+                    <line x1="45" y1="12" x2="500" y2="12" stroke="#f1f5f9" stroke-width="1" />
+                    <line x1="45" y1="30" x2="500" y2="30" stroke="#f1f5f9" stroke-width="1" />
+                    <line x1="45" y1="48" x2="500" y2="48" stroke="#f1f5f9" stroke-width="1" />
+                    <line x1="45" y1="65" x2="500" y2="65" stroke="#cbd5e1" stroke-width="1" />
+
+                    <!-- Y Axis Labels -->
+                    <text x="40" y="15" font-size="6.5" fill="#94a3b8" text-anchor="end">Rp 2.900</text>
+                    <text x="40" y="33" font-size="6.5" fill="#94a3b8" text-anchor="end">Rp 2.750</text>
+                    <text x="40" y="51" font-size="6.5" fill="#94a3b8" text-anchor="end">Rp 2.600</text>
+                    <text x="40" y="67" font-size="6.5" fill="#94a3b8" text-anchor="end">Rp 2.500</text>
+
+                    <!-- Monthly Average Trend Line Area -->
+                    <polygon points="120,49 275,37 430,29 430,65 120,65" fill="rgba(5, 150, 105, 0.08)" />
+                    <polyline points="120,49 275,37 430,29" fill="none" stroke="#059669" stroke-width="2.5" stroke-linecap="round" />
+
+                    <!-- Monthly Nodes -->
+                    <circle cx="120" cy="49" r="3.5" fill="#ffffff" stroke="#059669" stroke-width="2" />
+                    <text x="120" y="41" font-size="7.2" font-weight="bold" fill="#065f46" text-anchor="middle">Rata: Rp 2.621</text>
+                    <text x="120" y="74" font-size="7" font-weight="600" fill="#64748b" text-anchor="middle">Juni 2026</text>
+
+                    <circle cx="275" cy="37" r="3.5" fill="#ffffff" stroke="#059669" stroke-width="2" />
+                    <text x="275" y="29" font-size="7.2" font-weight="bold" fill="#065f46" text-anchor="middle">Rata: Rp 2.710</text>
+                    <text x="275" y="74" font-size="7" font-weight="600" fill="#64748b" text-anchor="middle">Juli 2026</text>
+
+                    <circle cx="430" cy="29" r="3.5" fill="#ffffff" stroke="#059669" stroke-width="2" />
+                    <text x="430" y="21" font-size="7.2" font-weight="bold" fill="#065f46" text-anchor="middle">Rata: Rp 2.764</text>
+                    <text x="430" y="74" font-size="7" font-weight="600" fill="#64748b" text-anchor="middle">Agustus 2026</text>
+
+                    <!-- Peak Price Annotation -->
+                    <path d="M 430,29 L 475,12" stroke="#d97706" stroke-width="1.2" stroke-dasharray="2,2" />
+                    <circle cx="475" cy="12" r="2.8" fill="#d97706" />
+                    <text x="480" y="10" font-size="6.8" font-weight="bold" fill="#d97706" text-anchor="start">Puncak: Rp 2.900/Kg</text>
+                </svg>
+            </div>
+
+            <!-- Tabel Transaksi 1 s/d 21 -->
+            <div class="section-header">
+                <span>4. DAFTAR NOTA PENERIMAAN (NP) KELAPA &ndash; BATCH I (JUNI s/d 22 JULI 2026)</span>
+                <span class="section-tag">Transaksi #1 &ndash; #21</span>
+            </div>
+
+            <table class="custom-table">
+                <thead>
+                    <tr>
+                        <th class="center" style="width: 25px;">No</th>
+                        <th class="center" style="width: 65px;">Tanggal</th>
+                        <th>Blok Kebun Asal</th>
+                        <th>Nomor Referensi (NP)</th>
+                        <th class="right">Qty (Kg)</th>
+                        <th class="right">Tonase</th>
+                        <th class="right">Harga (Rp)</th>
+                        <th class="right">Total Nilai (Rp)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Juni 2026 -->
+                    <tr>
+                        <td class="center">1</td>
+                        <td class="center">03-Jun-26</td>
+                        <td><span class="badge-kebun badge-sapa">SAPA</span> SAPA</td>
+                        <td>88-NP-03-06-2026</td>
+                        <td class="right">3.710,00</td>
+                        <td class="right">3,71 Ton</td>
+                        <td class="right">2.700</td>
+                        <td class="right">10.017.000</td>
+                    </tr>
+                    <tr>
+                        <td class="center">2</td>
+                        <td class="center">05-Jun-26</td>
+                        <td><span class="badge-kebun badge-sapa">SAPA</span> SAPA</td>
+                        <td>129-NP-05-06-2026</td>
+                        <td class="right">3.130,00</td>
+                        <td class="right">3,13 Ton</td>
+                        <td class="right">2.500</td>
+                        <td class="right">7.825.000</td>
+                    </tr>
+                    <tr>
+                        <td class="center">3</td>
+                        <td class="center">06-Jun-26</td>
+                        <td><span class="badge-kebun badge-katuwisan">KATUWISAN</span> RANOKETANG TUA - KATUWISAN</td>
+                        <td>155-NP-06-06-2026</td>
+                        <td class="right">3.620,00</td>
+                        <td class="right">3,62 Ton</td>
+                        <td class="right">2.500</td>
+                        <td class="right">9.050.000</td>
+                    </tr>
+                    <tr>
+                        <td class="center">4</td>
+                        <td class="center">09-Jun-26</td>
+                        <td><span class="badge-kebun badge-sapa">SAPA</span> SAPA</td>
+                        <td>248-NP-09-06-2026</td>
+                        <td class="right">3.630,00</td>
+                        <td class="right">3,63 Ton</td>
+                        <td class="right">2.600</td>
+                        <td class="right">9.438.000</td>
+                    </tr>
+                    <tr>
+                        <td class="center">5</td>
+                        <td class="center">10-Jun-26</td>
+                        <td><span class="badge-kebun badge-sapa">SAPA</span> SAPA</td>
+                        <td>279-NP-10-06-2026</td>
+                        <td class="right">3.420,00</td>
+                        <td class="right">3,42 Ton</td>
+                        <td class="right">2.600</td>
+                        <td class="right">8.892.000</td>
+                    </tr>
+                    <tr>
+                        <td class="center">6</td>
+                        <td class="center">10-Jun-26</td>
+                        <td><span class="badge-kebun badge-katuwisan">KATUWISAN</span> RANOKETANG TUA - KATUWISAN</td>
+                        <td>283-NP-10-06-2026</td>
+                        <td class="right">1.600,00</td>
+                        <td class="right">1,60 Ton</td>
+                        <td class="right">2.600</td>
+                        <td class="right">4.160.000</td>
+                    </tr>
+                    <tr>
+                        <td class="center">7</td>
+                        <td class="center">15-Jun-26</td>
+                        <td><span class="badge-kebun badge-sapa">SAPA</span> SAPA</td>
+                        <td>361-NP-15-06-2026</td>
+                        <td class="right">2.990,00</td>
+                        <td class="right">2,99 Ton</td>
+                        <td class="right">2.600</td>
+                        <td class="right">7.774.000</td>
+                    </tr>
+                    <tr>
+                        <td class="center">8</td>
+                        <td class="center">18-Jun-26</td>
+                        <td><span class="badge-kebun badge-sapa">SAPA</span> SAPA</td>
+                        <td>479-NP-18-06-2026</td>
+                        <td class="right">3.520,00</td>
+                        <td class="right">3,52 Ton</td>
+                        <td class="right">2.600</td>
+                        <td class="right">9.152.000</td>
+                    </tr>
+                    <tr>
+                        <td class="center">9</td>
+                        <td class="center">20-Jun-26</td>
+                        <td><span class="badge-kebun badge-sapa">SAPA</span> SAPA</td>
+                        <td>534-NP-20-06-2026</td>
+                        <td class="right">3.600,00</td>
+                        <td class="right">3,60 Ton</td>
+                        <td class="right">2.600</td>
+                        <td class="right">9.360.000</td>
+                    </tr>
+                    <tr>
+                        <td class="center">10</td>
+                        <td class="center">24-Jun-26</td>
+                        <td><span class="badge-kebun badge-winor">WINOR</span> TOMBATU - WINOR</td>
+                        <td>618-NP-24-06-2026</td>
+                        <td class="right">3.500,00</td>
+                        <td class="right">3,50 Ton</td>
+                        <td class="right">2.700</td>
+                        <td class="right">9.450.000</td>
+                    </tr>
+                    <tr>
+                        <td class="center">11</td>
+                        <td class="center">25-Jun-26</td>
+                        <td><span class="badge-kebun badge-winor">WINOR</span> TOMBATU - WINOR</td>
+                        <td>647-NP-25-06-2026</td>
+                        <td class="right">3.450,00</td>
+                        <td class="right">3,45 Ton</td>
+                        <td class="right">2.700</td>
+                        <td class="right">9.315.000</td>
+                    </tr>
+                    <tr>
+                        <td class="center">12</td>
+                        <td class="center">25-Jun-26</td>
+                        <td><span class="badge-kebun badge-winor">WINOR</span> TOMBATU - WINOR</td>
+                        <td>625-NP-25-06-2026</td>
+                        <td class="right">5.800,00</td>
+                        <td class="right">5,80 Ton</td>
+                        <td class="right">2.700</td>
+                        <td class="right">15.660.000</td>
+                    </tr>
+                    <tr>
+                        <td class="center">13</td>
+                        <td class="center">26-Jun-26</td>
+                        <td><span class="badge-kebun badge-sapa">SAPA</span> SAPA</td>
+                        <td>664-NP-26-06-2026</td>
+                        <td class="right">3.640,00</td>
+                        <td class="right">3,64 Ton</td>
+                        <td class="right">2.600</td>
+                        <td class="right">9.464.000</td>
+                    </tr>
+                    <tr class="subtotal-row">
+                        <td colspan="4"><strong>SUBTOTAL BULAN JUNI 2026 (13 PENGIRIMAN)</strong></td>
+                        <td class="right"><strong>45.610,00</strong></td>
+                        <td class="right"><strong>45,61 Ton</strong></td>
+                        <td class="right"><strong>2.621</strong></td>
+                        <td class="right"><strong>119.557.000</strong></td>
+                    </tr>
+
+                    <!-- Juli 2026 (14 s/d 21) -->
+                    <tr>
+                        <td class="center">14</td>
+                        <td class="center">02-Jul-26</td>
+                        <td><span class="badge-kebun badge-sapa">SAPA</span> SAPA</td>
+                        <td>53 -NP-02-07-2026</td>
+                        <td class="right">3.600,00</td>
+                        <td class="right">3,60 Ton</td>
+                        <td class="right">2.700</td>
+                        <td class="right">9.720.000</td>
+                    </tr>
+                    <tr>
+                        <td class="center">15</td>
+                        <td class="center">04-Jul-26</td>
+                        <td><span class="badge-kebun badge-sapa">SAPA</span> SAPA</td>
+                        <td>120 -NP-04-07-2026</td>
+                        <td class="right">3.630,00</td>
+                        <td class="right">3,63 Ton</td>
+                        <td class="right">2.700</td>
+                        <td class="right">9.801.000</td>
+                    </tr>
+                    <tr>
+                        <td class="center">16</td>
+                        <td class="center">07-Jul-26</td>
+                        <td><span class="badge-kebun badge-sapa">SAPA</span> SAPA</td>
+                        <td>179 -NP-07-07-2026</td>
+                        <td class="right">3.670,00</td>
+                        <td class="right">3,67 Ton</td>
+                        <td class="right">2.750</td>
+                        <td class="right">10.092.500</td>
+                    </tr>
+                    <tr>
+                        <td class="center">17</td>
+                        <td class="center">08-Jul-26</td>
+                        <td><span class="badge-kebun badge-sapa">SAPA</span> SAPA</td>
+                        <td>218 -NP-08-07-2026</td>
+                        <td class="right">3.610,00</td>
+                        <td class="right">3,61 Ton</td>
+                        <td class="right">2.600</td>
+                        <td class="right">9.386.000</td>
+                    </tr>
+                    <tr>
+                        <td class="center">18</td>
+                        <td class="center">09-Jul-26</td>
+                        <td><span class="badge-kebun badge-sapa">SAPA</span> SAPA</td>
+                        <td>245 -NP-09-07-2026</td>
+                        <td class="right">3.190,00</td>
+                        <td class="right">3,19 Ton</td>
+                        <td class="right">2.600</td>
+                        <td class="right">8.294.000</td>
+                    </tr>
+                    <tr>
+                        <td class="center">19</td>
+                        <td class="center">17-Jul-26</td>
+                        <td><span class="badge-kebun badge-sapa">SAPA</span> SAPA</td>
+                        <td>449 -NP-17-07-2026</td>
+                        <td class="right">3.390,00</td>
+                        <td class="right">3,39 Ton</td>
+                        <td class="right">2.700</td>
+                        <td class="right">9.153.000</td>
+                    </tr>
+                    <tr>
+                        <td class="center">20</td>
+                        <td class="center">18-Jul-26</td>
+                        <td><span class="badge-kebun badge-sapa">SAPA</span> SAPA</td>
+                        <td>493 -NP-18-07-2026</td>
+                        <td class="right">1.760,00</td>
+                        <td class="right">1,76 Ton</td>
+                        <td class="right">2.700</td>
+                        <td class="right">4.752.000</td>
+                    </tr>
+                    <tr>
+                        <td class="center">21</td>
+                        <td class="center">22-Jul-26</td>
+                        <td><span class="badge-kebun badge-sapa">SAPA</span> SAPA</td>
+                        <td>565 -NP-22-07-2026</td>
+                        <td class="right">3.540,00</td>
+                        <td class="right">3,54 Ton</td>
+                        <td class="right">2.750</td>
+                        <td class="right">9.735.000</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="doc-footer">
+            <span class="footer-left">Perkebunan TMC &bull; Laporan Pembelian Bahan Baku Pabrik TMC</span>
+            <span>Halaman 2 dari 3</span>
+        </div>
+    </div>
+
+    <!-- ========================================== PAGE 3: TABEL TRANSAKSI BAGIAN 2 & KESIMPULAN STRATEGIS ========================================== -->
+    <div class="page-container" id="page-3">
+        <div class="page-content">
+            <!-- Header Ringkas Halaman 3 -->
+            <div class="doc-header" style="margin-bottom: 6px; padding-bottom: 5px;">
+                <div class="header-brand">
+                    <span style="font-size: 15pt;">📋</span>
+                    <div>
+                        <h4 style="margin: 0; font-size: 10pt; font-family: 'Outfit', sans-serif; color: #064e3b; text-transform: uppercase;">
+                            BUKU BESAR TRANSAKSI (BAGIAN II: TRANSAKSI NO 22 &ndash; 33) & PENGESAHAN
+                        </h4>
+                        <span style="font-size: 7pt; color: #64748b;">Periode Pengiriman: 23 Juli 2026 s/d 29 Agustus 2026</span>
+                    </div>
+                </div>
+                <div class="header-meta">
+                    <span class="badge-periode">Dokumen Resmi TMC</span>
+                </div>
+            </div>
+
+            <!-- Tabel Transaksi 22 s/d 33 -->
+            <div class="section-header">
+                <span>5. DAFTAR NOTA PENERIMAAN (NP) KELAPA &ndash; BATCH II (23 JULI s/d AGUSTUS 2026)</span>
+                <span class="section-tag">Transaksi #22 &ndash; #33</span>
+            </div>
+
+            <table class="custom-table">
+                <thead>
+                    <tr>
+                        <th class="center" style="width: 25px;">No</th>
+                        <th class="center" style="width: 65px;">Tanggal</th>
+                        <th>Blok Kebun Asal</th>
+                        <th>Nomor Referensi (NP)</th>
+                        <th class="right">Qty (Kg)</th>
+                        <th class="right">Tonase</th>
+                        <th class="right">Harga (Rp)</th>
+                        <th class="right">Total Nilai (Rp)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Sisa Juli 2026 (22 s/d 26) -->
+                    <tr>
+                        <td class="center">22</td>
+                        <td class="center">23-Jul-26</td>
+                        <td><span class="badge-kebun badge-sapa">SAPA</span> SAPA</td>
+                        <td>597 -NP-23-07-2026</td>
+                        <td class="right">3.730,00</td>
+                        <td class="right">3,73 Ton</td>
+                        <td class="right">2.850</td>
+                        <td class="right">10.630.500</td>
+                    </tr>
+                    <tr>
+                        <td class="center">23</td>
+                        <td class="center">24-Jul-26</td>
+                        <td><span class="badge-kebun badge-sapa">SAPA</span> SAPA</td>
+                        <td>626 -NP-24-07-2026</td>
+                        <td class="right">3.960,00</td>
+                        <td class="right">3,96 Ton</td>
+                        <td class="right">2.750</td>
+                        <td class="right">10.890.000</td>
+                    </tr>
+                    <tr>
+                        <td class="center">24</td>
+                        <td class="center">28-Jul-26</td>
+                        <td><span class="badge-kebun badge-sapa">SAPA</span> SAPA</td>
+                        <td>722 -NP-28-07-2026</td>
+                        <td class="right">3.860,00</td>
+                        <td class="right">3,86 Ton</td>
+                        <td class="right">2.700</td>
+                        <td class="right">10.422.000</td>
+                    </tr>
+                    <tr>
+                        <td class="center">25</td>
+                        <td class="center">29-Jul-26</td>
+                        <td><span class="badge-kebun badge-sapa">SAPA</span> SAPA</td>
+                        <td>746 -NP-29-07-2026</td>
+                        <td class="right">3.960,00</td>
+                        <td class="right">3,96 Ton</td>
+                        <td class="right">2.700</td>
+                        <td class="right">10.692.000</td>
+                    </tr>
+                    <tr>
+                        <td class="center">26</td>
+                        <td class="center">30-Jul-26</td>
+                        <td><span class="badge-kebun badge-sapa">SAPA</span> SAPA</td>
+                        <td>775 -NP-30-07-2026</td>
+                        <td class="right">3.950,00</td>
+                        <td class="right">3,95 Ton</td>
+                        <td class="right">2.700</td>
+                        <td class="right">10.665.000</td>
+                    </tr>
+                    <tr class="subtotal-row">
+                        <td colspan="4"><strong>SUBTOTAL BULAN JULI 2026 (13 PENGIRIMAN)</strong></td>
+                        <td class="right"><strong>45.850,00</strong></td>
+                        <td class="right"><strong>45,85 Ton</strong></td>
+                        <td class="right"><strong>2.710</strong></td>
+                        <td class="right"><strong>124.233.000</strong></td>
+                    </tr>
+
+                    <!-- Agustus 2026 (27 s/d 33) -->
+                    <tr>
+                        <td class="center">27</td>
+                        <td class="center">03-Agt-26</td>
+                        <td><span class="badge-kebun badge-sapa">SAPA</span> SAPA</td>
+                        <td>33 -NP-03-08-2026</td>
+                        <td class="right">3.670,00</td>
+                        <td class="right">3,67 Ton</td>
+                        <td class="right">2.650</td>
+                        <td class="right">9.725.500</td>
+                    </tr>
+                    <tr>
+                        <td class="center">28</td>
+                        <td class="center">04-Agt-26</td>
+                        <td><span class="badge-kebun badge-sapa">SAPA</span> SAPA</td>
+                        <td>91 -NP-04-08-2026</td>
+                        <td class="right">1.720,00</td>
+                        <td class="right">1,72 Ton</td>
+                        <td class="right">2.700</td>
+                        <td class="right">4.644.000</td>
+                    </tr>
+                    <tr>
+                        <td class="center">29</td>
+                        <td class="center">22-Agt-26</td>
+                        <td><span class="badge-kebun badge-popang">POPANG</span> RANOKETANG TUA - POPANG</td>
+                        <td>617 -NP-22-08-2026</td>
+                        <td class="right">3.080,00</td>
+                        <td class="right">3,08 Ton</td>
+                        <td class="right">2.700</td>
+                        <td class="right">8.316.000</td>
+                    </tr>
+                    <tr>
+                        <td class="center">30</td>
+                        <td class="center">24-Agt-26</td>
+                        <td><span class="badge-kebun badge-popang">POPANG</span> RANOKETANG TUA - POPANG</td>
+                        <td>648 -NP-24-08-2026</td>
+                        <td class="right">3.120,00</td>
+                        <td class="right">3,12 Ton</td>
+                        <td class="right">2.700</td>
+                        <td class="right">8.424.000</td>
+                    </tr>
+                    <tr>
+                        <td class="center">31</td>
+                        <td class="center">24-Agt-26</td>
+                        <td><span class="badge-kebun badge-popang">POPANG</span> RANOKETANG TUA - POPANG</td>
+                        <td>682 -NP-26-08-2026</td>
+                        <td class="right">3.040,00</td>
+                        <td class="right">3,04 Ton</td>
+                        <td class="right">2.800</td>
+                        <td class="right">8.512.000</td>
+                    </tr>
+                    <tr>
+                        <td class="center">32</td>
+                        <td class="center">28-Agt-26</td>
+                        <td><span class="badge-kebun badge-popang">POPANG</span> RANOKETANG TUA - POPANG</td>
+                        <td>732 -NP-28-08-2026</td>
+                        <td class="right">3.000,00</td>
+                        <td class="right">3,00 Ton</td>
+                        <td class="right">2.900</td>
+                        <td class="right">8.700.000</td>
+                    </tr>
+                    <tr>
+                        <td class="center">33</td>
+                        <td class="center">29-Agt-26</td>
+                        <td><span class="badge-kebun badge-popang">POPANG</span> RANOKETANG TUA - POPANG</td>
+                        <td>769 -NP-29-08-2026</td>
+                        <td class="right">3.060,00</td>
+                        <td class="right">3,06 Ton</td>
+                        <td class="right">2.900</td>
+                        <td class="right">8.874.000</td>
+                    </tr>
+                    <tr class="subtotal-row">
+                        <td colspan="4"><strong>SUBTOTAL BULAN AGUSTUS 2026 (7 PENGIRIMAN)</strong></td>
+                        <td class="right"><strong>20.690,00</strong></td>
+                        <td class="right"><strong>20,69 Ton</strong></td>
+                        <td class="right"><strong>2.764</strong></td>
+                        <td class="right"><strong>57.195.500</strong></td>
+                    </tr>
+
+                    <!-- GRAND TOTAL RESMI -->
+                    <tr class="total-row">
+                        <td colspan="4" style="text-align: center;"><strong>GRAND TOTAL PEMASUKAN KELAPA (JUNI &ndash; AGUSTUS 2026)</strong></td>
+                        <td class="right"><strong>112.150,00 Kg</strong></td>
+                        <td class="right"><strong>112,15 Ton</strong></td>
+                        <td class="right"><strong>Rp 2.684</strong></td>
+                        <td class="right"><strong>Rp 300.985.500</strong></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- Analisis Strategis & Catatan Operasional -->
+            <div class="section-header" style="margin-top: 8px;">
+                <span>6. KESIMPULAN OPERASIONAL & INSIGHT MANAJERIAL</span>
+                <span class="section-tag">Rekomendasi Holding</span>
+            </div>
+
+            <div class="callout">
+                <strong>1. Efektivitas Suplai Internal</strong>: Kontribusi pasokan mandiri sebesar <strong>112,15 Ton</strong> mampu mengurangi ketergantungan pabrik terhadap pedagang perantara eksternal, sekaligus memastikan kualitas mutu butir kelapa segar terjamin langsung dari pohon.<br>
+                <strong>2. Apresiasi Harga & Nilai Likuiditas</strong>: Terjadi kenaikan harga beli dari Rp 2.500/Kg pada awal Juni menjadi Rp 2.900/Kg pada akhir Agustus. Dinamika ini meningkatkan pendapatan perkebunan hingga mencapai total bruto <strong>Rp 300.985.500,-</strong>.<br>
+                <strong>3. Pola Rotasi Panen</strong>: Kebun SAPA menjadi tulang punggung utama (78,88 Ton / 70,3%), disusul kebun Popang (15,30 Ton) yang panen intensif di akhir Agustus. Perlu penjadwalan rotasi panen berkesinambungan untuk menjaga kontinuitas suplai di triwulan berikutnya.
+            </div>
+
+            <!-- Tanda Tangan Pengesahan -->
+            <div class="signature-grid">
+                <div class="signature-box">
+                    <div class="sign-title">Dibuat Oleh:</div>
+                    <div class="sign-name">Logistik & Timbangan</div>
+                    <div class="sign-role">Unit Perkebunan TMC</div>
+                </div>
+                <div class="signature-box">
+                    <div class="sign-title">Diverifikasi Oleh:</div>
+                    <div class="sign-name">Manajer Operasional</div>
+                    <div class="sign-role">Divisi Perkebunan TMC</div>
+                </div>
+                <div class="signature-box">
+                    <div class="sign-title">Diterima & Disetujui:</div>
+                    <div class="sign-name">Direksi Holding</div>
+                    <div class="sign-role">PT Trimustika Cocominaesa</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="doc-footer">
+            <span class="footer-left">Perkebunan TMC &bull; Laporan Pembelian Bahan Baku Pabrik TMC</span>
+            <span>Halaman 3 dari 3 (Akhir Dokumen)</span>
+        </div>
+    </div>
+
+</body>
+</html>
