@@ -1,0 +1,1190 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>ANALISIS KOMPARASI JARAK, LOKASI, DAN PRODUKSI PERUSAHAAN SEKITAR PT TMC</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Outfit:wght@600;700;800&display=swap');
+
+        @page {
+            size: A4 portrait;
+            margin: 10mm 12mm 10mm 12mm;
+        }
+
+        * {
+            box-sizing: border-box;
+            -webkit-print-color-adjust: exact !important;
+            print-color-adjust: exact !important;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            color: #1e293b;
+            background: #ffffff;
+            margin: 0;
+            padding: 0;
+            line-height: 1.42;
+            font-size: 8.6pt;
+        }
+
+        .page-container {
+            width: 100%;
+            min-height: 275mm;
+            max-height: 277mm;
+            position: relative;
+            page-break-after: always;
+            break-after: page;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            overflow: hidden;
+            box-sizing: border-box;
+            padding-bottom: 2px;
+        }
+
+        .page-container:last-child {
+            page-break-after: avoid;
+            break-after: avoid;
+        }
+
+        .page-content {
+            flex-grow: 1;
+        }
+
+        /* ==================== HEADER UTAMA ==================== */
+        .main-header {
+            text-align: center;
+            padding-bottom: 4px;
+            margin-bottom: 8px;
+        }
+
+        .brand-badge {
+            display: inline-block;
+            background: #ecfdf5;
+            color: #065f46;
+            font-size: 7.5pt;
+            font-weight: 800;
+            letter-spacing: 1px;
+            padding: 2px 10px;
+            border-radius: 20px;
+            border: 1px solid #a7f3d0;
+            margin-bottom: 4px;
+            text-transform: uppercase;
+        }
+
+        .main-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 17pt;
+            font-weight: 800;
+            color: #064e3b;
+            letter-spacing: -0.3px;
+            line-height: 1.2;
+            margin: 0 0 3px 0;
+            text-transform: uppercase;
+        }
+
+        .main-subtitle {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 9.2pt;
+            font-weight: 700;
+            color: #059669;
+            letter-spacing: 0.3px;
+            line-height: 1.3;
+            margin: 0;
+            text-transform: uppercase;
+        }
+
+        .main-meta {
+            font-size: 7.8pt;
+            color: #64748b;
+            margin-top: 4px;
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+        }
+
+        .header-divider {
+            border-top: 2.5px solid #059669;
+            border-bottom: 1px solid #cbd5e1;
+            height: 2px;
+            margin-top: 6px;
+            margin-bottom: 10px;
+        }
+
+        /* ==================== RUNNING HEADER ==================== */
+        .running-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 7.8pt;
+            color: #64748b;
+            padding-bottom: 4px;
+        }
+
+        .running-title {
+            font-family: 'Outfit', sans-serif;
+            font-weight: 800;
+            color: #064e3b;
+            letter-spacing: 0.4px;
+            font-size: 8.8pt;
+        }
+
+        .running-subtitle {
+            color: #059669;
+            font-weight: 700;
+            font-size: 8pt;
+        }
+
+        .running-divider {
+            border-bottom: 1.5px solid #059669;
+            margin-bottom: 10px;
+        }
+
+        /* ==================== SECTION STYLING ==================== */
+        h3.section-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 9.6pt;
+            font-weight: 800;
+            color: #0f172a;
+            border-left: 3.5px solid #059669;
+            padding-left: 7px;
+            margin: 8px 0 4px 0;
+            text-transform: uppercase;
+            letter-spacing: 0.2px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .section-badge {
+            font-size: 7.2pt;
+            font-weight: 700;
+            background: #f1f5f9;
+            color: #475569;
+            padding: 1px 6px;
+            border-radius: 4px;
+            text-transform: none;
+            letter-spacing: 0;
+        }
+
+        p {
+            margin: 0 0 5px 0;
+            color: #334155;
+            text-align: justify;
+            line-height: 1.38;
+        }
+
+        /* ==================== HIGHLIGHT CALLOUTS ==================== */
+        .callout-box {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-left: 3.5px solid #059669;
+            border-radius: 5px;
+            padding: 5px 8px;
+            margin: 5px 0;
+            font-size: 8.1pt;
+            line-height: 1.38;
+        }
+
+        .callout-box.blue {
+            border-left-color: #0284c7;
+            background: #f0f9ff;
+        }
+
+        .callout-box.amber {
+            border-left-color: #d97706;
+            background: #fffbeb;
+        }
+
+        .callout-box.purple {
+            border-left-color: #7c3aed;
+            background: #faf5ff;
+        }
+
+        .callout-box strong {
+            color: #0f172a;
+        }
+
+        /* ==================== KPI GRID ==================== */
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 6px;
+            margin: 6px 0 10px 0;
+        }
+
+        .kpi-card {
+            background: #f8fafc;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+            padding: 6px 4px;
+            text-align: center;
+        }
+
+        .kpi-card.highlight {
+            background: #ecfdf5;
+            border-color: #86efac;
+        }
+
+        .kpi-card.accent {
+            background: #eff6ff;
+            border-color: #93c5fd;
+        }
+
+        .kpi-title {
+            font-size: 7.2pt;
+            font-weight: 700;
+            color: #64748b;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+            margin-bottom: 2px;
+        }
+
+        .kpi-value {
+            font-family: 'Outfit', sans-serif;
+            font-size: 13pt;
+            font-weight: 800;
+            color: #0f172a;
+            line-height: 1.1;
+        }
+
+        .kpi-value.green {
+            color: #047857;
+        }
+
+        .kpi-value.blue {
+            color: #0284c7;
+        }
+
+        .kpi-value.amber {
+            color: #b45309;
+        }
+
+        .kpi-desc {
+            font-size: 6.8pt;
+            color: #64748b;
+            margin-top: 2px;
+        }
+
+        /* ==================== TABEL ==================== */
+        table.custom-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 7.8pt;
+            margin: 6px 0 8px 0;
+            background: #ffffff;
+        }
+
+        table.custom-table th {
+            background-color: #064e3b;
+            color: #ffffff;
+            font-weight: 700;
+            padding: 5px 6px;
+            border: 1px solid #0f766e;
+            text-align: left;
+            font-size: 7.7pt;
+            letter-spacing: 0.2px;
+        }
+
+        table.custom-table th.center {
+            text-align: center;
+        }
+
+        table.custom-table td {
+            padding: 4.5px 6px;
+            border: 1px solid #cbd5e1;
+            color: #334155;
+            vertical-align: middle;
+            line-height: 1.3;
+        }
+
+        table.custom-table tr:nth-child(even) {
+            background-color: #f8fafc;
+        }
+
+        table.custom-table tr.highlight-tmc {
+            background-color: #ecfdf5 !important;
+            font-weight: 700;
+        }
+
+        table.custom-table tr.highlight-tmc td {
+            border-top: 1.5px solid #059669;
+            border-bottom: 1.5px solid #059669;
+            color: #064e3b;
+        }
+
+        /* ==================== BADGES ==================== */
+        .badge {
+            display: inline-block;
+            padding: 1.5px 5px;
+            border-radius: 4px;
+            font-size: 6.9pt;
+            font-weight: 700;
+            text-align: center;
+            white-space: nowrap;
+        }
+
+        .badge-ring1 { background: #fee2e2; color: #991b1b; border: 0.5px solid #f87171; }
+        .badge-ring2 { background: #fef3c7; color: #92400e; border: 0.5px solid #fcd34d; }
+        .badge-ring3 { background: #e0e7ff; color: #3730a3; border: 0.5px solid #a5b4fc; }
+        .badge-tmc { background: #d1fae5; color: #065f46; border: 0.5px solid #34d399; }
+        .badge-product { background: #f1f5f9; color: #334155; border: 0.5px solid #cbd5e1; margin: 1px; }
+
+        /* ==================== COMPANY PROFILE CARDS ==================== */
+        .company-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 7px;
+            margin: 6px 0;
+        }
+
+        .company-card {
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+            padding: 7px 9px;
+            background: #ffffff;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.03);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .company-card.border-red { border-top: 3px solid #ef4444; }
+        .company-card.border-amber { border-top: 3px solid #f59e0b; }
+        .company-card.border-emerald { border-top: 3px solid #10b981; }
+        .company-card.border-blue { border-top: 3px solid #3b82f6; }
+        .company-card.border-indigo { border-top: 3px solid #6366f1; }
+        .company-card.border-purple { border-top: 3px solid #8b5cf6; }
+
+        .company-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 3px;
+        }
+
+        .company-name {
+            font-family: 'Outfit', sans-serif;
+            font-size: 9.2pt;
+            font-weight: 800;
+            color: #0f172a;
+        }
+
+        .company-dist {
+            font-family: 'Outfit', sans-serif;
+            font-size: 9pt;
+            font-weight: 800;
+            color: #047857;
+            background: #ecfdf5;
+            padding: 1px 6px;
+            border-radius: 12px;
+            border: 0.5px solid #a7f3d0;
+        }
+
+        .company-row {
+            display: flex;
+            font-size: 7.6pt;
+            margin-bottom: 2px;
+            line-height: 1.32;
+        }
+
+        .company-label {
+            width: 78px;
+            flex-shrink: 0;
+            font-weight: 700;
+            color: #64748b;
+        }
+
+        .company-val {
+            flex-grow: 1;
+            color: #1e293b;
+        }
+
+        .company-impact {
+            background: #f8fafc;
+            border-left: 2.5px solid #64748b;
+            padding: 3px 6px;
+            margin-top: 4px;
+            font-size: 7.3pt;
+            color: #334155;
+            line-height: 1.32;
+            border-radius: 0 4px 4px 0;
+        }
+
+        .company-impact.alert {
+            border-left-color: #f59e0b;
+            background: #fffbeb;
+        }
+
+        .company-impact.success {
+            border-left-color: #10b981;
+            background: #ecfdf5;
+        }
+
+        /* ==================== RADIAL RING VISUALIZATION ==================== */
+        .diagram-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin: 6px 0;
+            align-items: stretch;
+        }
+
+        .radial-box {
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+            padding: 8px;
+            background: #fafaf9;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .logistics-flow {
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+            padding: 8px 10px;
+            background: #ffffff;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .flow-step {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 5px;
+            font-size: 7.6pt;
+        }
+
+        .flow-icon {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #064e3b;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 7.5pt;
+            margin-right: 7px;
+            flex-shrink: 0;
+            margin-top: 1px;
+        }
+
+        .flow-text strong {
+            color: #0f172a;
+            display: block;
+            font-size: 7.8pt;
+        }
+
+        /* ==================== SWOT GRID ==================== */
+        .swot-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6px;
+            margin: 6px 0;
+        }
+
+        .swot-card {
+            border: 1px solid #cbd5e1;
+            border-radius: 5px;
+            padding: 6px 8px;
+            background: #ffffff;
+        }
+
+        .swot-card.s { border-top: 3px solid #10b981; background: #f0fdf4; }
+        .swot-card.w { border-top: 3px solid #ef4444; background: #fef2f2; }
+        .swot-card.o { border-top: 3px solid #3b82f6; background: #eff6ff; }
+        .swot-card.t { border-top: 3px solid #f59e0b; background: #fffbeb; }
+
+        .swot-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 8.4pt;
+            font-weight: 800;
+            margin-bottom: 4px;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .swot-card.s .swot-title { color: #065f46; }
+        .swot-card.w .swot-title { color: #991b1b; }
+        .swot-card.o .swot-title { color: #1e40af; }
+        .swot-card.t .swot-title { color: #92400e; }
+
+        .swot-list {
+            margin: 0;
+            padding-left: 14px;
+            font-size: 7.4pt;
+            line-height: 1.32;
+            color: #334155;
+        }
+
+        .swot-list li {
+            margin-bottom: 2px;
+        }
+
+        /* ==================== STRATEGIC ACTIONS LIST ==================== */
+        .strategy-list {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6px;
+            margin: 6px 0;
+        }
+
+        .strategy-card {
+            border: 1px solid #e2e8f0;
+            border-left: 3.5px solid #059669;
+            background: #f8fafc;
+            border-radius: 4px;
+            padding: 6px 8px;
+        }
+
+        .strategy-card strong {
+            display: block;
+            color: #064e3b;
+            font-size: 8pt;
+            margin-bottom: 2px;
+        }
+
+        .strategy-card p {
+            margin: 0;
+            font-size: 7.4pt;
+            line-height: 1.32;
+        }
+
+        /* ==================== SIGNATURE & FOOTER ==================== */
+        .signature-box {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-top: 10px;
+            padding-top: 6px;
+            border-top: 1px solid #cbd5e1;
+        }
+
+        .sig-item {
+            text-align: center;
+            width: 170px;
+        }
+
+        .sig-role {
+            font-size: 7.6pt;
+            color: #475569;
+            margin-bottom: 35px;
+            font-weight: 600;
+        }
+
+        .sig-name {
+            font-family: 'Outfit', sans-serif;
+            font-weight: 800;
+            font-size: 8.6pt;
+            color: #0f172a;
+            border-top: 1px solid #0f172a;
+            padding-top: 3px;
+        }
+
+        .sig-company {
+            font-size: 7pt;
+            color: #64748b;
+        }
+
+        .page-footer {
+            border-top: 1px solid #e2e8f0;
+            padding-top: 4px;
+            display: flex;
+            justify-content: space-between;
+            font-size: 7pt;
+            color: #94a3b8;
+            margin-top: 6px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ========================================== HALAMAN 1 ========================================== -->
+    <div class="page-container">
+        <div class="page-content">
+            <!-- MAIN HEADER -->
+            <div class="main-header">
+                <span class="brand-badge">PT TRIMUSTIKA COCOMINAESA &bull; MEMBER OF RAI GROUP</span>
+                <h1 class="main-title">LAPORAN ANALISIS STRATEGIS PEMETAAN KOMPETITOR</h1>
+                <div class="main-subtitle">KOMPARASI JARAK, LOKASI, DAN PRODUKSI INDUSTRI PENGOLAHAN KELAPA SEKITAR TMC</div>
+                <div class="main-meta">
+                    <span><strong>Titik Acuan:</strong> Pabrik TMC, Tenga, Minahasa Selatan</span>
+                    <span><strong>Kebutuhan Pabrik:</strong> 400.000 Butir Kelapa / Hari</span>
+                    <span><strong>Klasifikasi:</strong> Kajian Rantai Pasok Strategis</span>
+                    <span><strong>Periode:</strong> September 2026</span>
+                </div>
+                <div class="header-divider"></div>
+            </div>
+
+            <!-- EXECUTIVE HIGHLIGHT KPI -->
+            <div class="kpi-grid">
+                <div class="kpi-card highlight">
+                    <div class="kpi-title">Titik Acuan (TMC)</div>
+                    <div class="kpi-value green">0,0 KM</div>
+                    <div class="kpi-desc">Kec. Tenga (400k Btr/HK)</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-title">Kompetitor Terdekat</div>
+                    <div class="kpi-value">2,1 KM</div>
+                    <div class="kpi-desc">PT KJL (Kuota Terbatas)</div>
+                </div>
+                <div class="kpi-card accent">
+                    <div class="kpi-title">Rival Multifungsi</div>
+                    <div class="kpi-value blue">6,7 KM</div>
+                    <div class="kpi-desc">PT SASA (Tepung & Santan)</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-title">Barometer Kopra/CCO</div>
+                    <div class="kpi-value amber">7,2 KM</div>
+                    <div class="kpi-desc">PT Cargill Indonesia</div>
+                </div>
+            </div>
+
+            <!-- SECTION 1: RINGKASAN EKSEKUTIF -->
+            <h3 class="section-title">
+                1. Ringkasan Eksekutif & Karakteristik Pasar Bahan Baku
+                <span class="section-badge">Minahasa Selatan Coconut Hub</span>
+            </h3>
+            <p>
+                Kabupaten Minahasa Selatan merupakan episentrum industri kelapa di Sulawesi Utara dengan klaster pabrik pengolahan kelapa yang padat dan bersaing aktif dalam menyerap kelapa butir petani. PT Trimustika Cocominaesa (TMC) sebagai produsen tepung kelapa (<em>desiccated coconut</em>) dengan kebutuhan bahan baku sebesar <strong>400.000 butir kelapa per hari kerja (8.000.000 butir/bulan)</strong>, bertindak sebagai jangkar industri di koridor selatan (Kecamatan Tenga).
+            </p>
+            <p>
+                Analisis ini memetakan <strong>6 perusahaan pengolahan kelapa terdekat</strong> dalam radius 2,1 km hingga 25 km dari TMC. Pemetaan menunjukkan bahwa persaingan bahan baku terbagi menjadi tiga zona (Ring 1: 0–10 km, Ring 2: 10–20 km, dan Ring 3: 20–25 km). Keberadaan <strong>PT KJL (2,1 km)</strong> yang membatasi pasokan harian serta <strong>PT SASA (6,7 km)</strong> dan <strong>PT Cargill (7,2 km)</strong> di Ring 1 menciptakan dinamika harga harian yang sangat cepat, menuntut TMC memiliki kebijakan penyerapan bahan baku yang adaptif dan ketahanan kebun mandiri.
+            </p>
+
+            <!-- SECTION 2: TABEL KOMPARASI LENGKAP -->
+            <h3 class="section-title">
+                2. Matriks Komparasi Jarak, Lokasi, dan Spesifikasi Produksi
+                <span class="section-badge">Radius 0,0 - 25,0 KM</span>
+            </h3>
+            <table class="custom-table">
+                <thead>
+                    <tr>
+                        <th class="center" style="width: 25px;">No</th>
+                        <th style="width: 145px;">Nama Perusahaan</th>
+                        <th class="center" style="width: 55px;">Jarak</th>
+                        <th class="center" style="width: 60px;">Zonasi</th>
+                        <th style="width: 130px;">Lokasi Administratif</th>
+                        <th>Lini Produk Utama</th>
+                        <th style="width: 125px;">Dinamika Bahan Baku & Dampak ke TMC</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="highlight-tmc">
+                        <td class="center"><strong>0</strong></td>
+                        <td><strong>PT Trimustika Cocominaesa (TMC)</strong></td>
+                        <td class="center"><strong>0,0 km</strong></td>
+                        <td class="center"><span class="badge badge-tmc">PUSAT</span></td>
+                        <td>Jl. Raya AKD, Tenga / Sapa, Minahasa Selatan</td>
+                        <td>Tepung Kelapa (<em>Desiccated Coconut</em>) Kualitas Ekspor</td>
+                        <td><strong>Target 400k btr/HK</strong>. Integrasi kebun mandiri 10% (40k btr) & kemitraan luar.</td>
+                    </tr>
+                    <tr>
+                        <td class="center">1</td>
+                        <td><strong>PT Kelapa Jaya Lestari (KJL)</strong></td>
+                        <td class="center"><strong>2,1 km</strong></td>
+                        <td class="center"><span class="badge badge-ring1">Ring 1</span></td>
+                        <td>Desa Kapitu, Kec. Amurang Barat</td>
+                        <td>Tepung Kelapa (<em>Desiccated Coconut</em>)</td>
+                        <td><strong>Membatasi supply kelapa biji harian</strong>; limpahan pasokan berpotensi diserap TMC.</td>
+                    </tr>
+                    <tr>
+                        <td class="center">2</td>
+                        <td><strong>PT Sasa Inti (PT SASA)</strong></td>
+                        <td class="center"><strong>6,7 km</strong></td>
+                        <td class="center"><span class="badge badge-ring1">Ring 1</span></td>
+                        <td>Desa Ranolambot, Kec. Amurang Barat</td>
+                        <td>Tepung Kelapa, Santan Kelapa (<em>Cream/Milk</em>), Kuah/Kaldu Kelapa</td>
+                        <td><strong>Serapan masif & modal kuat</strong>; pesaing harga beli kelapa butir paling agresif di Ring 1.</td>
+                    </tr>
+                    <tr>
+                        <td class="center">3</td>
+                        <td><strong>PT Cargill Indonesia</strong></td>
+                        <td class="center"><strong>7,2 km</strong></td>
+                        <td class="center"><span class="badge badge-ring1">Ring 1</span></td>
+                        <td>Kel. Mobongo, Kec. Amurang</td>
+                        <td>Kopra, Minyak Kelapa Mentah (<em>Crude Coconut Oil</em> / CCO), <em>Copra Meal</em></td>
+                        <td>Menyerap <strong>kopra</strong>; menjadi penentu harga dasar kelapa bagi petani (pilihan kopra vs kelapa butir).</td>
+                    </tr>
+                    <tr>
+                        <td class="center">4</td>
+                        <td><strong>PT Kawanua Coconut Nusantara (KCN)</strong></td>
+                        <td class="center"><strong>18,0 km</strong></td>
+                        <td class="center"><span class="badge badge-ring2">Ring 2</span></td>
+                        <td>Desa Tumpaan Dua, Kec. Tumpaan</td>
+                        <td>Santan Kelapa, Air Kelapa, Kopra, Olahan Terpadu (PMA)</td>
+                        <td>Menyerap pasokan koridor utara (Tumpaan-Manado); bertindak sebagai <em>filter</em> sebelum masuk Amurang.</td>
+                    </tr>
+                    <tr>
+                        <td class="center">5</td>
+                        <td><strong>PT Tropica Cocoprima (Cocoprima)</strong></td>
+                        <td class="center"><strong>25,0 km</strong></td>
+                        <td class="center"><span class="badge badge-ring3">Ring 3</span></td>
+                        <td>Desa Lelema, Kec. Tumpaan / Tareran</td>
+                        <td>Spesialis Kelapa Parut Kering (<em>Desiccated Coconut</em>), <em>Chips</em>, <em>Frozen Cream</em></td>
+                        <td>Pemain ekspor bersertifikasi HACCP; standar mutu tinggi (grade A), bersaing pada supplier regional.</td>
+                    </tr>
+                    <tr>
+                        <td class="center">6</td>
+                        <td><strong>PT Putra Karangetang</strong></td>
+                        <td class="center"><strong>25,0 km</strong></td>
+                        <td class="center"><span class="badge badge-ring3">Ring 3</span></td>
+                        <td>Desa Popontolen, Kec. Tumpaan</td>
+                        <td>Tepung Kelapa (<em>Desiccated Coconut</em>), Minyak Nabati Kelapa (<em>Expeller</em>)</td>
+                        <td>Fokus tepung kelapa dan minyak kelapa expeller di klaster pesisir Tumpaan.</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- CALLOUT BOX HIGHLIGHT STRATEGIS -->
+            <div class="callout-box blue">
+                <strong>Catatan Analitis Kritis Rantai Pasok TMC:</strong> Terdapat dua pabrik pengolahan kelapa yang berada di bawah radius 7 km dari TMC (PT KJL 2,1 km dan PT SASA 6,7 km) yang sama-sama menyerap kelapa butir segar untuk produksi tepung kelapa. Namun, adanya regulasi internal <em>PT KJL yang membatasi kuota pasokan harian</em> menjadi keunggulan taktis bagi TMC untuk menjadi penampung utama limpahan truk pasokan dari arah Amurang Barat.
+            </div>
+        </div>
+
+        <!-- FOOTER HALAMAN 1 -->
+        <div class="page-footer">
+            <span>Dokumen Strategis TMC &bull; Pemetaan Kompetitor Industri Kelapa Minahasa Selatan</span>
+            <span>Halaman 1 dari 3</span>
+        </div>
+    </div>
+
+    <!-- ========================================== HALAMAN 2 ========================================== -->
+    <div class="page-container">
+        <div class="page-content">
+            <!-- RUNNING HEADER -->
+            <div class="running-header">
+                <span class="running-title">PT TRIMUSTIKA COCOMINAESA (TMC)</span>
+                <span class="running-subtitle">PROFIL MENDALAM KOMPETITOR & ANALISIS DAMPAK OPERASIONAL</span>
+            </div>
+            <div class="running-divider"></div>
+
+            <h3 class="section-title">
+                3. Profil Rinci Perusahaan Pesaing & Analisis Dampak terhadap Pasokan TMC
+                <span class="section-badge">Detailed Entity Profiles</span>
+            </h3>
+
+            <!-- GRID PROFIL PERUSAHAAN (6 PERUSAHAAN) -->
+            <div class="company-grid">
+                <!-- CARD 1: PT KJL -->
+                <div class="company-card border-red">
+                    <div>
+                        <div class="company-header">
+                            <span class="company-name">1. PT KELAPA JAYA LESTARI (PT KJL)</span>
+                            <span class="company-dist">2,1 KM</span>
+                        </div>
+                        <div class="company-row">
+                            <span class="company-label">Lokasi:</span>
+                            <span class="company-val">Desa Kapitu, Kec. Amurang Barat, Minsel</span>
+                        </div>
+                        <div class="company-row">
+                            <span class="company-label">Produk:</span>
+                            <span class="company-val">Tepung Kelapa (<em>Desiccated Coconut</em>)</span>
+                        </div>
+                        <div class="company-row">
+                            <span class="company-label">Bahan Baku:</span>
+                            <span class="company-val">Kelapa Biji Segar (Kupas Sabut)</span>
+                        </div>
+                        <div class="company-row">
+                            <span class="company-label">Ciri Khusus:</span>
+                            <span class="company-val"><strong>Membatasi pasokan supply harian</strong> (kuota penerimaan)</span>
+                        </div>
+                    </div>
+                    <div class="company-impact success">
+                        <strong>Peluang TMC:</strong> Truk supplier kelapa yang tertolak atau antre lama akibat kuota harian KJL penuh dapat diarahkan langsung ke pabrik TMC (hanya 5 menit berkendara / 2,1 km).
+                    </div>
+                </div>
+
+                <!-- CARD 2: PT SASA INTI -->
+                <div class="company-card border-emerald">
+                    <div>
+                        <div class="company-header">
+                            <span class="company-name">2. PT SASA INTI (PT SASA)</span>
+                            <span class="company-dist">6,7 KM</span>
+                        </div>
+                        <div class="company-row">
+                            <span class="company-label">Lokasi:</span>
+                            <span class="company-val">Desa Ranolambot, Kec. Amurang Barat, Minsel</span>
+                        </div>
+                        <div class="company-row">
+                            <span class="company-label">Produk:</span>
+                            <span class="company-val">Tepung Kelapa, Santan Kelapa Cair/Kental, Kuah Kelapa</span>
+                        </div>
+                        <div class="company-row">
+                            <span class="company-label">Bahan Baku:</span>
+                            <span class="company-val">Kelapa Biji Segar & Air Kelapa (Volume Masif)</span>
+                        </div>
+                        <div class="company-row">
+                            <span class="company-label">Skala Usaha:</span>
+                            <span class="company-val">Multinasional (Rodamas Group) dengan modal sangat kuat</span>
+                        </div>
+                    </div>
+                    <div class="company-impact alert">
+                        <strong>Ancaman bagi TMC:</strong> Pesaing terberat dalam penetapan harga beli harian. Diversifikasi produk (santan & kuah) membuat SASA mampu menyerap kelapa dengan spek lebih fleksibel.
+                    </div>
+                </div>
+
+                <!-- CARD 3: PT CARGILL INDONESIA -->
+                <div class="company-card border-amber">
+                    <div>
+                        <div class="company-header">
+                            <span class="company-name">3. PT CARGILL INDONESIA</span>
+                            <span class="company-dist">7,2 KM</span>
+                        </div>
+                        <div class="company-row">
+                            <span class="company-label">Lokasi:</span>
+                            <span class="company-val">Kel. Mobongo / Amurang, Teluk Amurang, Minsel</span>
+                        </div>
+                        <div class="company-row">
+                            <span class="company-label">Produk:</span>
+                            <span class="company-val">Kopra, Minyak Kelapa Kasar (CCO), <em>Copra Pellet</em></span>
+                        </div>
+                        <div class="company-row">
+                            <span class="company-label">Bahan Baku:</span>
+                            <span class="company-val">Kopra Kering (Asap / Jemur Matahari)</span>
+                        </div>
+                        <div class="company-row">
+                            <span class="company-label">Fasilitas:</span>
+                            <span class="company-val">Pelabuhan laut & pabrik ekstraksi berkapasitas besar</span>
+                        </div>
+                    </div>
+                    <div class="company-impact">
+                        <strong>Keterkaitan TMC:</strong> Tidak bersaing produk tepung, namun mematok harga dasar kopra. Jika harga CCO global naik, petani memilih mengeringkan kelapa menjadi kopra dibanding menjual segar.
+                    </div>
+                </div>
+
+                <!-- CARD 4: PT KAWANUA COCONUT NUSANTARA -->
+                <div class="company-card border-blue">
+                    <div>
+                        <div class="company-header">
+                            <span class="company-name">4. PT KAWANUA COCONUT NUSANTARA (KCN)</span>
+                            <span class="company-dist">18,0 KM</span>
+                        </div>
+                        <div class="company-row">
+                            <span class="company-label">Lokasi:</span>
+                            <span class="company-val">Desa Tumpaan Dua, Kec. Tumpaan, Minsel</span>
+                        </div>
+                        <div class="company-row">
+                            <span class="company-label">Produk:</span>
+                            <span class="company-val">Santan Kelapa, Air Kelapa, Kopra Terpadu (PMA)</span>
+                        </div>
+                        <div class="company-row">
+                            <span class="company-label">Bahan Baku:</span>
+                            <span class="company-val">Kelapa Biji Segar & Kelapa Kupas</span>
+                        </div>
+                        <div class="company-row">
+                            <span class="company-label">Zonasi:</span>
+                            <span class="company-val">Ring 2 (Pintu Gerbang Utara Minahasa Selatan)</span>
+                        </div>
+                    </div>
+                    <div class="company-impact">
+                        <strong>Dinamika Logistik:</strong> Menyerap pasokan dari sub-area Tatapaan dan Minahasa induk. Efektif menjadi pembatas agar TMC fokus menjaring pasokan dari wilayah koridor selatan.
+                    </div>
+                </div>
+
+                <!-- CARD 5: PT TROPICA COCOPRIMA -->
+                <div class="company-card border-indigo">
+                    <div>
+                        <div class="company-header">
+                            <span class="company-name">5. PT TROPICA COCOPRIMA</span>
+                            <span class="company-dist">25,0 KM</span>
+                        </div>
+                        <div class="company-row">
+                            <span class="company-label">Lokasi:</span>
+                            <span class="company-val">Desa Lelema, Kec. Tumpaan / Tareran, Minsel</span>
+                        </div>
+                        <div class="company-row">
+                            <span class="company-label">Produk:</span>
+                            <span class="company-val">Tepung Kelapa Parut Kering Ekspor, <em>Coconut Chips</em></span>
+                        </div>
+                        <div class="company-row">
+                            <span class="company-label">Bahan Baku:</span>
+                            <span class="company-val">Kelapa Biji Segar Standar Ekspor Mutu Tinggi (Grade A)</span>
+                        </div>
+                        <div class="company-row">
+                            <span class="company-label">Sertifikasi:</span>
+                            <span class="company-val">HACCP, ISO, Kosher, Halal Internasional</span>
+                        </div>
+                    </div>
+                    <div class="company-impact">
+                        <strong>Persaingan Ekspor:</strong> Pesaing reputasi kualitas tepung kelapa di pasar internasional. Mengingat jarak 25 km, TMC memiliki keunggulan biaya logistik untuk pasokan kebun selatan.
+                    </div>
+                </div>
+
+                <!-- CARD 6: PT PUTRA KARANGETANG -->
+                <div class="company-card border-purple">
+                    <div>
+                        <div class="company-header">
+                            <span class="company-name">6. PT PUTRA KARANGETANG</span>
+                            <span class="company-dist">25,0 KM</span>
+                        </div>
+                        <div class="company-row">
+                            <span class="company-label">Lokasi:</span>
+                            <span class="company-val">Desa Popontolen, Kec. Tumpaan, Minsel</span>
+                        </div>
+                        <div class="company-row">
+                            <span class="company-label">Produk:</span>
+                            <span class="company-val">Tepung Kelapa (<em>Desiccated Coconut</em>), Minyak Nabati Kelapa</span>
+                        </div>
+                        <div class="company-row">
+                            <span class="company-label">Bahan Baku:</span>
+                            <span class="company-val">Kelapa Biji Segar & Parings (Kulit Ari)</span>
+                        </div>
+                        <div class="company-row">
+                            <span class="company-label">Teknologi:</span>
+                            <span class="company-val">Lini tepung kelapa + mesin <em>oil expeller</em> pengolah parings</span>
+                        </div>
+                    </div>
+                    <div class="company-impact">
+                        <strong>Sinergi Produk Samping:</strong> Model utilisasi minyak expeller dari kulit ari kelapa dapat dicontoh TMC guna meningkatkan nilai tambah limbah parings produksi tepung kelapa.
+                    </div>
+                </div>
+            </div>
+
+            <!-- TABEL PEMBAGIAN ZONASI LOGISTIK -->
+            <h3 class="section-title" style="margin-top: 6px;">
+                Klasifikasi Zonasi Logistik & Radius Pengaruh Penyerapan Pasokan
+            </h3>
+            <table class="custom-table" style="margin-top: 4px;">
+                <thead>
+                    <tr>
+                        <th style="width: 100px;">Zonasi Radius</th>
+                        <th style="width: 130px;">Perusahaan Terkait</th>
+                        <th class="center" style="width: 100px;">Tingkat Persaingan</th>
+                        <th>Implikasi Strategis bagi Pabrik PT TMC</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Ring 1 (0 – 10 km)</strong><br><span class="badge badge-ring1">Zona Kritis</span></td>
+                        <td>PT KJL (2,1 km)<br>PT SASA (6,7 km)<br>PT Cargill (7,2 km)</td>
+                        <td class="center"><strong style="color: #b91c1c;">SANGAT TINGGI</strong><br>(Friksi Harian)</td>
+                        <td>Zona perebutan armada truk langsung di koridor Tenga - Amurang. TMC harus mengunci supplier dengan pembayaran kilat, grading transparan, dan menyerap limpahan kuota KJL.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Ring 2 (10 – 20 km)</strong><br><span class="badge badge-ring2">Penyangga Tengah</span></td>
+                        <td>PT KCN (18,0 km)</td>
+                        <td class="center"><strong style="color: #b45309;">SEDANG</strong></td>
+                        <td>Menyaring bahan baku dari arah utara. TMC tidak perlu memaksakan ekspansi angkutan ke utara, melainkan memfokuskan armada ke arah selatan.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Ring 3 (20 – 30 km)</strong><br><span class="badge badge-ring3">Klaster Tumpaan</span></td>
+                        <td>PT Cocoprima (25 km)<br>PT Putra Karangetang (25 km)</td>
+                        <td class="center"><strong style="color: #4338ca;">KOMPETISI PRODUK</strong><br>(Jarak Terkendali)</td>
+                        <td>Kompetisi terjadi pada penetapan harga ekspor dan pedagang pengumpul besar. Selisih jarak 25 km memberi TMC efisiensi ongkos angkut Rp 150 – 250/butir untuk kelapa asal selatan.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- FOOTER HALAMAN 2 -->
+        <div class="page-footer">
+            <span>Dokumen Strategis TMC &bull; Pemetaan Kompetitor Industri Kelapa Minahasa Selatan</span>
+            <span>Halaman 2 dari 3</span>
+        </div>
+    </div>
+
+    <!-- ========================================== HALAMAN 3 ========================================== -->
+    <div class="page-container">
+        <div class="page-content">
+            <!-- RUNNING HEADER -->
+            <div class="running-header">
+                <span class="running-title">PT TRIMUSTIKA COCOMINAESA (TMC)</span>
+                <span class="running-subtitle">ANALISIS SWOT & REKOMENDASI STRATEGIS DIREKSI</span>
+            </div>
+            <div class="running-divider"></div>
+
+            <!-- SECTION 4: VISUALISASI RADIUS & ALIRAN PASOKAN -->
+            <h3 class="section-title">
+                4. Visualisasi Radius Logistik & Keunggulan Koridor Selatan
+                <span class="section-badge">Radial Geographic Analysis</span>
+            </h3>
+            <div class="diagram-container">
+                <!-- RADIAL RING VISUAL (SVG) -->
+                <div class="radial-box">
+                    <svg viewBox="0 0 320 185" style="width: 100%; max-height: 180px;">
+                        <!-- Concentric Circles -->
+                        <circle cx="160" cy="95" r="85" fill="#e0e7ff" fill-opacity="0.3" stroke="#6366f1" stroke-width="1" stroke-dasharray="3,3" />
+                        <circle cx="160" cy="95" r="58" fill="#fef3c7" fill-opacity="0.35" stroke="#f59e0b" stroke-width="1" stroke-dasharray="3,3" />
+                        <circle cx="160" cy="95" r="32" fill="#fee2e2" fill-opacity="0.4" stroke="#ef4444" stroke-width="1.2" />
+                        
+                        <!-- Center TMC -->
+                        <circle cx="160" cy="95" r="14" fill="#064e3b" stroke="#34d399" stroke-width="2" />
+                        <text x="160" y="98" fill="#ffffff" font-family="'Outfit', sans-serif" font-size="7.5" font-weight="800" text-anchor="middle">TMC</text>
+                        <text x="160" y="118" fill="#064e3b" font-family="'Plus Jakarta Sans', sans-serif" font-size="6" font-weight="800" text-anchor="middle">0,0 KM (TENGA)</text>
+
+                        <!-- Ring 1 Points -->
+                        <!-- KJL 2.1km (NW) -->
+                        <line x1="160" y1="95" x2="148" y2="78" stroke="#ef4444" stroke-width="1.2" />
+                        <circle cx="148" cy="78" r="4.5" fill="#ef4444" />
+                        <text x="142" y="74" fill="#991b1b" font-size="6.2" font-weight="800" text-anchor="end">KJL (2,1 km)</text>
+
+                        <!-- SASA 6.7km (N) -->
+                        <line x1="160" y1="95" x2="160" y2="67" stroke="#ef4444" stroke-width="1.2" />
+                        <circle cx="160" cy="67" r="4.5" fill="#10b981" />
+                        <text x="160" y="61" fill="#065f46" font-size="6.2" font-weight="800" text-anchor="middle">SASA (6,7 km)</text>
+
+                        <!-- CARGILL 7.2km (NE) -->
+                        <line x1="160" y1="95" x2="175" y2="70" stroke="#ef4444" stroke-width="1.2" />
+                        <circle cx="175" cy="70" r="4.5" fill="#f59e0b" />
+                        <text x="181" y="68" fill="#92400e" font-size="6.2" font-weight="800" text-anchor="start">CARGILL (7,2 km)</text>
+
+                        <!-- Ring 2 Points -->
+                        <!-- KCN 18km (N) -->
+                        <line x1="160" y1="95" x2="160" y2="39" stroke="#f59e0b" stroke-width="1" stroke-dasharray="2,2" />
+                        <circle cx="160" cy="39" r="4.5" fill="#3b82f6" />
+                        <text x="166" y="41" fill="#1e40af" font-size="6.2" font-weight="800" text-anchor="start">KCN (18 km)</text>
+
+                        <!-- Ring 3 Points -->
+                        <!-- COCOPRIMA 25km (NW-N) -->
+                        <line x1="160" y1="95" x2="120" y2="25" stroke="#6366f1" stroke-width="1" stroke-dasharray="2,2" />
+                        <circle cx="120" cy="25" r="4.5" fill="#6366f1" />
+                        <text x="114" y="24" fill="#3730a3" font-size="6.2" font-weight="800" text-anchor="end">COCOPRIMA (25 km)</text>
+
+                        <!-- PUTRA KARANGETANG 25km (NE-N) -->
+                        <line x1="160" y1="95" x2="200" y2="25" stroke="#6366f1" stroke-width="1" stroke-dasharray="2,2" />
+                        <circle cx="200" cy="25" r="4.5" fill="#8b5cf6" />
+                        <text x="206" y="24" fill="#5b21b6" font-size="6.2" font-weight="800" text-anchor="start">P. KARANGETANG (25 km)</text>
+
+                        <!-- Legend Labels -->
+                        <rect x="5" y="160" width="75" height="18" rx="3" fill="#ffffff" stroke="#cbd5e1" />
+                        <circle cx="12" cy="169" r="3" fill="#ef4444" />
+                        <text x="18" y="172" font-size="5.8" fill="#475569" font-weight="700">Ring 1 (&lt;10km)</text>
+
+                        <rect x="85" y="160" width="80" height="18" rx="3" fill="#ffffff" stroke="#cbd5e1" />
+                        <circle cx="92" cy="169" r="3" fill="#f59e0b" />
+                        <text x="98" y="172" font-size="5.8" fill="#475569" font-weight="700">Ring 2 (10-20km)</text>
+
+                        <rect x="170" y="160" width="80" height="18" rx="3" fill="#ffffff" stroke="#cbd5e1" />
+                        <circle cx="177" cy="169" r="3" fill="#6366f1" />
+                        <text x="183" y="172" font-size="5.8" fill="#475569" font-weight="700">Ring 3 (20-25km)</text>
+                    </svg>
+                </div>
+
+                <!-- STRATEGIC CORRIDOR ADVANTAGE -->
+                <div class="logistics-flow">
+                    <div class="flow-step">
+                        <div class="flow-icon">S</div>
+                        <div class="flow-text">
+                            <strong>Keunggulan Logistik Koridor Selatan (Moinit - Bolmong)</strong>
+                            Pabrik TMC berada di Tenga, paling selatan di antara seluruh kompetitor. Truk dari Sinonsayang, Poigar, Ranoyapo, & Bolmong hemat 15–25 km menuju TMC dibanding ke Tumpaan.
+                        </div>
+                    </div>
+                    <div class="flow-step">
+                        <div class="flow-icon">K</div>
+                        <div class="flow-text">
+                            <strong>Absorpsi Limpahan Pasokan PT KJL (2,1 km)</strong>
+                            Kebijakan kuota terbatas KJL menyebabkan antrean dan penolakan truk supplier. TMC dapat menempatkan tim logistik untuk mengalihkan muatan ke pabrik TMC secara harian.
+                        </div>
+                    </div>
+                    <div class="flow-step" style="margin-bottom: 0;">
+                        <div class="flow-icon">B</div>
+                        <div class="flow-text">
+                            <strong>Bantalan Kebun Mandiri (Target 10% / 40k Butir)</strong>
+                            Pasokan kebun inti TMC mengamankan operasi pabrik saat kompetitor Ring 1 (SASA & KJL) melakukan pengetatan harga di pasar terbuka.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SECTION 5: SWOT MATRIX -->
+            <h3 class="section-title">
+                5. Analisis SWOT Posisi Rantai Pasok Bahan Baku PT TMC
+                <span class="section-badge">Strategic Supply SWOT</span>
+            </h3>
+            <div class="swot-grid">
+                <div class="swot-card s">
+                    <div class="swot-title">&#10004; STRENGTHS (Kekuatan TMC)</div>
+                    <ul class="swot-list">
+                        <li>Memiliki basis kebun sendiri (200 Ha eksisting + rencana ekspansi kebun 10%).</li>
+                        <li>Lokasi pabrik paling strategis menjaring sentra kelapa selatan (Bolmong/Poigar).</li>
+                        <li>Fleksibilitas kapasitas tampung harian yang besar (400.000 butir/hari).</li>
+                        <li>Reputasi penerimaan bahan baku yang konsisten dan kemitraan supplier lokal.</li>
+                    </ul>
+                </div>
+                <div class="swot-card w">
+                    <div class="swot-title">&#10006; WEAKNESSES (Kelemahan TMC)</div>
+                    <ul class="swot-list">
+                        <li>Kebutuhan harian sangat masif (400k btr), ketergantungan pasar luar masih tinggi.</li>
+                        <li>Belum mendiversifikasi produk santan cair/kuah kemasan komersial seperti SASA.</li>
+                        <li>Kecepatan un-loading truk saat jam sibuk perlu terus dioptimalkan agar tidak antre.</li>
+                    </ul>
+                </div>
+                <div class="swot-card o">
+                    <div class="swot-title">&#9733; OPPORTUNITIES (Peluang Pasar)</div>
+                    <ul class="swot-list">
+                        <li>Menyerap limpahan pasokan dari pembatasan kuota harian PT KJL (2,1 km).</li>
+                        <li>Kontrak pasokan eksklusif dengan kelompok tani kelapa di Bolaang Mongondow.</li>
+                        <li>Pemanfaatan parings (kulit ari kelapa) untuk minyak expeller bernilai tambah.</li>
+                        <li>Integrasi kebun sendiri untuk meredam volatilitas harga beli di pasar spot.</li>
+                    </ul>
+                </div>
+                <div class="swot-card t">
+                    <div class="swot-title">&#9888; THREATS (Ancaman Eksternal)</div>
+                    <ul class="swot-list">
+                        <li>Perang harga beli kelapa butir harian akibat agresivitas modal PT SASA (6,7 km).</li>
+                        <li>Lonjakan harga CCO global di PT Cargill yang memicu petani mengolah kelapa jadi kopra.</li>
+                        <li>Musim trek (penurunan panen alami kelapa) yang memperketat perebutan bahan baku.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- SECTION 6: REKOMENDASI STRATEGIS DIREKSI -->
+            <h3 class="section-title">
+                6. Rekomendasi Langkah Strategis Direksi Holding & Manajemen TMC
+                <span class="section-badge">Action Plan</span>
+            </h3>
+            <div class="strategy-list">
+                <div class="strategy-card">
+                    <strong>1. Sistem Quick-Response Limpahan Kuota PT KJL (2,1 km)</strong>
+                    <p>Membentuk tim komunikasi lapangan di simpang Kapitu/Tenga guna mengarahkan sopir truk supplier yang terkena pembatasan kuota di KJL langsung menuju pabrik TMC dengan jaminan bongkar cepat.</p>
+                </div>
+                <div class="strategy-card">
+                    <strong>2. Mengunci Pasokan Koridor Selatan (Bolmong & Poigar)</strong>
+                    <p>Memanfaatkan keunggulan selisih jarak 15–40 km lebih hemat ke pabrik TMC dibandingkan ke klaster Tumpaan untuk mengikat kemitraan eksklusif pedagang pengumpul wilayah selatan.</p>
+                </div>
+                <div class="strategy-card">
+                    <strong>3. Program Loyalitas Vendor Menghadapi PT SASA (6,7 km)</strong>
+                    <p>Menerapkan skema pembayaran transparan tanpa potongan tersembunyi, grading yang adil, serta insentif kontinuitas pasokan guna memagari vendor inti dari godaan harga beli sesaat kompetitor.</p>
+                </div>
+                <div class="strategy-card">
+                    <strong>4. Akselerasi Pemenuhan Pasokan Kebun Sendiri 10% (40k Butir/Hari)</strong>
+                    <p>Mempercepat realisasi integrasi kebun eksisting (200 Ha) dan lahan baru agar pasokan inti 40.000 butir/hari segera tercapai sebagai bantalan ketahanan bahan baku saat persaingan pasar memanas.</p>
+                </div>
+            </div>
+
+            <!-- LEMBAR PENGESAHAN DOKUMEN -->
+            <div class="signature-box">
+                <div class="sig-item">
+                    <div class="sig-role">Disusun Oleh:<br>Tim Analisis Pasokan & Logistik</div>
+                    <div class="sig-name">ALDO HALADA</div>
+                    <div class="sig-company">PT Trimustika Cocominaesa</div>
+                </div>
+                <div class="sig-item">
+                    <div class="sig-role">Ditinjau & Disetujui Oleh:<br>General Manager Operasional</div>
+                    <div class="sig-name">OPERATIONAL DIRECTOR</div>
+                    <div class="sig-company">PT Trimustika Cocominaesa</div>
+                </div>
+                <div class="sig-item">
+                    <div class="sig-role">Mengetahui & Menyetujui:<br>Direksi Holding</div>
+                    <div class="sig-name">BOARD OF DIRECTORS</div>
+                    <div class="sig-company">RAI Group Holding</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- FOOTER HALAMAN 3 -->
+        <div class="page-footer">
+            <span>Dokumen Strategis TMC &bull; Pemetaan Kompetitor Industri Kelapa Minahasa Selatan</span>
+            <span>Halaman 3 dari 3</span>
+        </div>
+    </div>
+
+</body>
+</html>
