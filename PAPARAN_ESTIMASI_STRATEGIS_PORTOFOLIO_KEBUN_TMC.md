@@ -6,7 +6,7 @@
 ## 1. Ringkasan Eksekutif: Kebutuhan Pasokan Kelapa & Target Supply Kebun Sendiri (10%)
 
 ### Profil Kebutuhan Bahan Baku Produksi Pabrik:
-- **Target Kebutuhan Produksi Pabrik**: 400.000 butir kelapa / hari kerja (20 HK/bulan = 8.000.000 butir/bulan atau 24.000.000 butir per kuartal 3 bulan / 96.000.000 butir per tahun). *(Catatan: Merupakan target pemenuhan kebutuhan bahan baku operasional pabrik yang harus dipenuhi secara berkesinambungan, bukan kapasitas olah aktual yang telah berjalan saat ini)*.
+- **Target Kebutuhan Produksi Pabrik**: 400.000 butir kelapa / hari kerja (20 HK/bulan = 8.000.000 butir/bulan atau 24.000.000 butir per kuartal 3 bulan / 96.000.000 butir per tahun).
 - **Hari Kerja Operasional**: 20 Hari Kerja (HK) / bulan (60 HK per kuartal 3 bulan).
 - **Target Kebutuhan Harian Pabrik**: 400.000 butir / HK.
 
