@@ -2,7 +2,7 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <title>MEMORANDUM ANALISIS STRATEGIS PORTOFOLIO KEBUN TMC</title>
+    <title>PERKEBUNAN TMC (MEMBER OF RAI) - ANALISIS KEBUTUHAN LAHAN DAN STRATEGI PASOKAN KELAPA PERKEBUNAN 10%</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Outfit:wght@600;700;800&display=swap');
 
@@ -23,131 +23,91 @@
             background: #ffffff;
             margin: 0;
             padding: 0;
-            line-height: 1.5;
-            font-size: 9pt;
+            line-height: 1.52;
+            font-size: 9.2pt;
         }
 
-        /* ==================== KOP SURAT RESMI ==================== */
-        .letterhead {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-end;
-            padding-bottom: 10px;
+        /* ==================== HEADER DOKUMEN UTAMA ==================== */
+        .main-header {
+            text-align: center;
+            padding-bottom: 8px;
+            margin-bottom: 12px;
         }
 
-        .company-brand {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .company-title {
+        .main-title {
             font-family: 'Outfit', sans-serif;
-            font-size: 22pt;
+            font-size: 21pt;
             font-weight: 800;
             color: #064e3b;
             letter-spacing: -0.5px;
-            line-height: 1.1;
-            margin: 0 0 2px 0;
+            line-height: 1.15;
+            margin: 0 0 4px 0;
+            text-transform: uppercase;
         }
 
-        .company-subtitle {
-            font-size: 9.5pt;
+        .main-subtitle {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 11pt;
             font-weight: 800;
             color: #059669;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            margin: 0 0 3px 0;
-        }
-
-        .company-address {
-            font-size: 8pt;
-            color: #64748b;
+            letter-spacing: 0.5px;
             line-height: 1.35;
+            margin: 0;
+            text-transform: uppercase;
         }
 
-        .letterhead-right {
-            text-align: right;
-        }
-
-        .memo-badge {
-            display: inline-block;
-            background: #ecfdf5;
-            border: 1.5px solid #10b981;
-            color: #065f46;
-            font-weight: 800;
-            font-size: 8pt;
-            padding: 3px 10px;
-            border-radius: 4px;
-            letter-spacing: 1px;
-            margin-bottom: 6px;
-        }
-
-        .memo-ref {
-            font-size: 8pt;
-            color: #475569;
-        }
-
-        .memo-ref strong {
-            color: #0f172a;
-        }
-
-        .letterhead-divider {
-            border-top: 3px solid #059669;
+        .header-divider {
+            border-top: 3.5px solid #059669;
             border-bottom: 1px solid #cbd5e1;
             height: 3px;
-            margin-top: 6px;
-            margin-bottom: 12px;
+            margin-top: 10px;
+            margin-bottom: 14px;
         }
 
-        /* ==================== TABEL METADATA MEMO ==================== */
-        .memo-routing-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-bottom: 12px;
-            background: #f8fafc;
-            border: 1px solid #e2e8f0;
-            border-radius: 6px;
-            overflow: hidden;
+        /* ==================== RUNNING HEADER HALAMAN BERIKUTNYA ==================== */
+        .running-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 8.5pt;
+            color: #64748b;
+            padding-bottom: 4px;
+        }
+
+        .running-title {
+            font-family: 'Outfit', sans-serif;
+            font-weight: 800;
+            color: #064e3b;
+            letter-spacing: 0.5px;
+            font-size: 9.5pt;
+        }
+
+        .running-subtitle {
+            color: #059669;
+            font-weight: 700;
             font-size: 8.5pt;
         }
 
-        .memo-routing-table td {
-            padding: 5px 10px;
-            vertical-align: top;
-            border-bottom: 1px solid #f1f5f9;
-        }
-
-        .memo-routing-table tr:last-child td {
-            border-bottom: none;
-        }
-
-        .memo-label {
-            width: 11%;
-            font-weight: 700;
-            color: #064e3b;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .memo-val {
-            color: #1e293b;
+        .running-divider {
+            border-bottom: 1.5px solid #059669;
+            margin-bottom: 12px;
         }
 
         /* ==================== SECTION STYLING ==================== */
         h3.section-title {
             font-family: 'Outfit', sans-serif;
-            font-size: 10pt;
+            font-size: 10.5pt;
             font-weight: 800;
             color: #0f172a;
             border-left: 4px solid #059669;
             padding-left: 8px;
-            margin: 12px 0 6px 0;
+            margin: 13px 0 6px 0;
             text-transform: uppercase;
             letter-spacing: 0.2px;
         }
 
         p {
-            margin: 0 0 7px 0;
+            margin: 0 0 8px 0;
             color: #334155;
             text-align: justify;
         }
@@ -160,8 +120,8 @@
             border-radius: 6px;
             padding: 8px 12px;
             margin: 8px 0;
-            font-size: 8.5pt;
-            line-height: 1.45;
+            font-size: 8.8pt;
+            line-height: 1.48;
         }
 
         .callout-box.blue {
@@ -190,7 +150,7 @@
             background: #f8fafc;
             border: 1px solid #cbd5e1;
             border-radius: 6px;
-            padding: 7px 8px;
+            padding: 8px;
             text-align: center;
         }
 
@@ -205,7 +165,7 @@
         }
 
         .kpi-label {
-            font-size: 7pt;
+            font-size: 7.2pt;
             font-weight: 700;
             color: #64748b;
             text-transform: uppercase;
@@ -215,7 +175,7 @@
 
         .kpi-val {
             font-family: 'Outfit', sans-serif;
-            font-size: 13pt;
+            font-size: 13.5pt;
             font-weight: 800;
             color: #0f172a;
             line-height: 1.1;
@@ -230,7 +190,7 @@
         }
 
         .kpi-sub {
-            font-size: 7pt;
+            font-size: 7.2pt;
             color: #64748b;
             margin-top: 2px;
         }
@@ -258,16 +218,16 @@
 
         .block-box h4 {
             margin: 0 0 5px 0;
-            font-size: 9pt;
+            font-size: 9.2pt;
             font-weight: 800;
             color: #0f172a;
         }
 
         .badge {
             display: inline-block;
-            font-size: 6.5pt;
+            font-size: 6.8pt;
             font-weight: 700;
-            padding: 2px 5px;
+            padding: 2px 6px;
             border-radius: 3px;
             margin-bottom: 5px;
             text-transform: uppercase;
@@ -282,11 +242,11 @@
             list-style: none;
             padding: 0;
             margin: 0;
-            font-size: 7.5pt;
+            font-size: 7.8pt;
         }
 
         .block-details-list li {
-            padding: 2px 0;
+            padding: 2.2px 0;
             border-bottom: 1px dashed #e2e8f0;
             display: flex;
             justify-content: space-between;
@@ -306,11 +266,11 @@
             width: 100%;
             border-collapse: collapse;
             margin: 8px 0;
-            font-size: 7.8pt;
+            font-size: 8pt;
         }
 
         table.data-table th, table.data-table td {
-            padding: 4.5px 7px;
+            padding: 4.8px 7px;
             border: 1px solid #cbd5e1;
             text-align: right;
         }
@@ -355,19 +315,19 @@
             border: 1px solid #cbd5e1;
             border-top: 3px solid #059669;
             border-radius: 6px;
-            padding: 8px;
+            padding: 8px 10px;
             background: #ffffff;
         }
 
         .pillar-title {
-            font-size: 8pt;
+            font-size: 8.2pt;
             font-weight: 800;
             color: #059669;
             margin-bottom: 3px;
         }
 
         .pillar-desc {
-            font-size: 7.5pt;
+            font-size: 7.6pt;
             color: #475569;
             line-height: 1.35;
         }
@@ -377,7 +337,7 @@
             width: 100%;
             border-collapse: collapse;
             margin-top: 14px;
-            font-size: 8pt;
+            font-size: 8.2pt;
         }
 
         .signature-table td {
@@ -432,55 +392,23 @@
 <body>
 
     <!-- ========================================================= -->
-    <!-- HALAMAN 1: KOP SURAT, RINGKASAN EKSEKUTIF & EVALUASI LAHAN -->
+    <!-- HALAMAN 1: JUDUL UTAMA, RINGKASAN EKSEKUTIF & EVALUASI    -->
     <!-- ========================================================= -->
 
-    <!-- KOP SURAT RESMI PERKEBUNAN TMC -->
-    <div class="letterhead">
-        <div class="company-brand">
-            <div class="company-title">PERKEBUNAN TMC</div>
-            <div class="company-subtitle">MEMBER OF RAI</div>
-            <div class="company-address">
-                Divisi Estimasi & Pengembangan Kebun Kelapa Terpadu<br>
-                PT Tri Mustika Cemerlang (TMC) &bull; Gedung Operasional Perkebunan
-            </div>
-        </div>
-        <div class="letterhead-right">
-            <div class="memo-badge">MEMORANDUM EKSEKUTIF</div>
-            <div class="memo-ref">No: <strong>024/DIR-TMC/MEMO-EST/IX/2026</strong></div>
-            <div class="memo-ref">Tanggal: <strong>30 September 2026</strong></div>
-            <div class="memo-ref">Sifat: <strong>Penting / Strategis</strong></div>
-        </div>
+    <!-- JUDUL DOKUMEN RESMI -->
+    <div class="main-header">
+        <h1 class="main-title">PERKEBUNAN TMC (MEMBER OF RAI)</h1>
+        <h2 class="main-subtitle">ANALISIS KEBUTUHAN LAHAN DAN STRATEGI PASOKAN KELAPA PERKEBUNAN 10%</h2>
+        <div class="header-divider"></div>
     </div>
-    <div class="letterhead-divider"></div>
-
-    <!-- METADATA ROUTING SURAT -->
-    <table class="memo-routing-table">
-        <tr>
-            <td class="memo-label">KEPADA</td>
-            <td class="memo-val" style="width: 40%;">: <strong>Yth. Dewan Direksi PT Tri Mustika Cemerlang (TMC)</strong></td>
-            <td class="memo-label">KLASIFIKASI</td>
-            <td class="memo-val">: Analisis Investasi & Portofolio Lahan</td>
-        </tr>
-        <tr>
-            <td class="memo-label">DARI</td>
-            <td class="memo-val">: Divisi Estimasi & Pengembangan Kebun TMC</td>
-            <td class="memo-label">DATABASE</td>
-            <td class="memo-val">: Skenario Multi-Blok Terverifikasi (SQLite Laravel)</td>
-        </tr>
-        <tr>
-            <td class="memo-label">PERIHAL</td>
-            <td class="memo-val" colspan="3">: <strong>Analisis Kebutuhan Lahan & Strategi Pasokan Kelapa Mandiri 10% (40.000 Butir/Hari dari Kebutuhan Pabrik 400.000 Butir/Hari)</strong></td>
-        </tr>
-    </table>
 
     <!-- 1. RINGKASAN EKSEKUTIF & PENEGASAN TARGET PABRIK -->
     <h3 class="section-title">1. Ringkasan Eksekutif & Penetapan Kebutuhan Bahan Baku Pabrik</h3>
     <p>
-        Berdasarkan rencana pengembangan industri kelapa terpadu PT Tri Mustika Cemerlang (TMC), pasokan kelapa untuk diproduksi ke pabrik pengolahan perusahaan TMC membutuhkan <strong>400.000 butir kelapa per hari kerja</strong> (dengan ritme operasional standar <strong>20 Hari Kerja/bulan</strong>, setara <strong>8.000.000 butir per bulan</strong> atau <strong>24.000.000 butir per kuartal 3 bulan / 96.000.000 butir per tahun</strong>). Angka ini merupakan target kebutuhan bahan baku operasional yang harus dipenuhi secara kontinyu untuk menjamin efisiensi mesin pabrik.
+        Berdasarkan rencana pengembangan operasional industri kelapa terpadu PT Tri Mustika Cemerlang (TMC), pasokan kelapa untuk diproduksi ke perusahaan TMC membutuhkan <strong>400.000 butir kelapa per hari kerja</strong> (dengan ritme operasional <strong>20 Hari Kerja/bulan</strong>, setara <strong>8.000.000 butir per bulan</strong> atau <strong>24.000.000 butir per kuartal 3 bulan / 96.000.000 butir per tahun</strong>). Angka ini merupakan target kebutuhan bahan baku operasional yang harus dipenuhi secara kontinyu untuk menjamin kelancaran utilitas pabrik.
     </p>
     <p>
-        Guna menjamin kepastian pasokan bahan baku, menciptakan <em>core buffer stock</em>, mengendalikan HPP (Harga Pokok Produksi), serta memitigasi fluktuasi harga dan risiko kelangkaan di pasar bebas, manajemen menetapkan pemenuhan kebutuhan <strong>supply dari kebun mandiri TMC sebesar 10% atau 40.000 butir per hari kerja</strong> (setara <strong>2.400.000 butir per kuartal 3 bulan</strong>). Sisa 90% kebutuhan pabrik (360.000 butir/HK atau 21.600.000 butir/kuartal) dipasok dari kemitraan petani dan pengepul luar.
+        Guna menjamin kepastian pasokan bahan baku, menciptakan <em>core buffer stock</em>, mengendalikan HPP (Harga Pokok Produksi), serta memitigasi fluktuasi harga dan risiko kelangkaan di pasar bebas, perusahaan menetapkan pemenuhan kebutuhan <strong>supply dari kebun mandiri TMC sebesar 10% atau 40.000 butir per hari kerja</strong> (setara <strong>2.400.000 butir per kuartal 3 bulan / 9.600.000 butir per tahun</strong>). Sisa 90% kebutuhan pabrik (360.000 butir/HK atau 21.600.000 butir/kuartal) dipasok dari kemitraan petani dan pengepul luar.
     </p>
 
     <!-- KPI BOXES -->
@@ -513,7 +441,7 @@
         Sesuai dengan pencatatan hasil panen saat ini di seluruh kebun produktif TMC, lahan eksisting milik perusahaan (Blok 1 seluas 200 Ha dengan populasi 10.000 pohon usia 15 tahun pada kerapatan 50 pohon/Ha dan yield 20 butir/pohon) telah membukukan hasil aktual mencapai <strong>hampir 200.000 butir kelapa per kuartal 3 bulan (rata-rata 3.333 butir / hari kerja)</strong>.
     </p>
     <div class="callout-box">
-        <strong>Analisis GAP Defisit Pasokan:</strong> Hasil panen Blok 1 saat ini baru menutup <strong>8,33% dari target supply kebun mandiri</strong> (atau baru <strong>0,83%</strong> dari total kebutuhan produksi pabrik). Masih terdapat <strong>defisit pasokan sebesar 2.200.000 butir per kuartal (36.667 butir / hari kerja)</strong> atau 91,67% dari target pasokan mandiri. Lahan eksisting terbukti produktif, namun luasannya belum mencukupi sehingga memerlukan penambahan portofolio lahan.
+        <strong>Analisis GAP Defisit Pasokan:</strong> Hasil panen Blok 1 saat ini baru menutup <strong>8,33% dari target supply kebun mandiri</strong> (atau baru <strong>0,83%</strong> dari total kebutuhan produksi pabrik). Masih terdapat <strong>defisit pasokan sebesar 2.200.000 butir per kuartal (36.667 butir / hari kerja)</strong> atau 91,67% dari target pasokan mandiri. Lahan eksisting terbukti produktif, namun luasannya belum mencukupi sehingga memerlukan penambahan portofolio lahan baru.
     </div>
 
     <!-- 3. STRUKTUR PORTOFOLIO SKENARIO UTAMA (3 BLOK) -->
@@ -576,7 +504,7 @@
 
     <!-- FOOTER HALAMAN 1 -->
     <div class="doc-footer">
-        <div><strong>PERKEBUNAN TMC (MEMBER OF RAI)</strong> &bull; Laporan Analisis Portofolio Pasokan Kelapa 10%</div>
+        <div><strong>PERKEBUNAN TMC (MEMBER OF RAI)</strong> &bull; Analisis Kebutuhan Lahan & Pasokan Kelapa 10%</div>
         <div>Halaman <strong>1</strong> dari 3</div>
     </div>
 
@@ -585,17 +513,11 @@
     <!-- ========================================================= -->
     <div class="page-break"></div>
 
-    <div class="letterhead" style="padding-bottom: 6px;">
-        <div class="company-brand">
-            <div class="company-title" style="font-size: 16pt;">PERKEBUNAN TMC</div>
-            <div class="company-subtitle" style="font-size: 8pt;">MEMBER OF RAI</div>
-        </div>
-        <div class="letterhead-right">
-            <div class="memo-ref">Lampiran: <strong>Analisis Komparasi Skenario Portofolio</strong></div>
-            <div class="memo-ref">No Dokumen: <strong>024/DIR-TMC/MEMO-EST/IX/2026</strong></div>
-        </div>
+    <div class="running-header">
+        <span class="running-title">PERKEBUNAN TMC (MEMBER OF RAI)</span>
+        <span class="running-subtitle">ANALISIS KEBUTUHAN LAHAN DAN STRATEGI PASOKAN KELAPA PERKEBUNAN 10%</span>
     </div>
-    <div class="letterhead-divider" style="margin-bottom: 10px;"></div>
+    <div class="running-divider"></div>
 
     <!-- 4. ANALISIS SKENARIO ALTERNATIF -->
     <h3 class="section-title">4. Analisis Skenario Alternatif: Pemenuhan Mandiri Tanpa Blok 2 (Hanya Blok 1 + Lahan Baru)</h3>
@@ -779,7 +701,7 @@
 
     <!-- FOOTER HALAMAN 2 -->
     <div class="doc-footer">
-        <div><strong>PERKEBUNAN TMC (MEMBER OF RAI)</strong> &bull; Laporan Analisis Portofolio Pasokan Kelapa 10%</div>
+        <div><strong>PERKEBUNAN TMC (MEMBER OF RAI)</strong> &bull; Analisis Kebutuhan Lahan & Pasokan Kelapa 10%</div>
         <div>Halaman <strong>2</strong> dari 3</div>
     </div>
 
@@ -788,17 +710,11 @@
     <!-- ========================================================= -->
     <div class="page-break"></div>
 
-    <div class="letterhead" style="padding-bottom: 6px;">
-        <div class="company-brand">
-            <div class="company-title" style="font-size: 16pt;">PERKEBUNAN TMC</div>
-            <div class="company-subtitle" style="font-size: 8pt;">MEMBER OF RAI</div>
-        </div>
-        <div class="letterhead-right">
-            <div class="memo-ref">Lampiran: <strong>Kesimpulan & Lembar Pengesahan Direksi</strong></div>
-            <div class="memo-ref">No Dokumen: <strong>024/DIR-TMC/MEMO-EST/IX/2026</strong></div>
-        </div>
+    <div class="running-header">
+        <span class="running-title">PERKEBUNAN TMC (MEMBER OF RAI)</span>
+        <span class="running-subtitle">ANALISIS KEBUTUHAN LAHAN DAN STRATEGI PASOKAN KELAPA PERKEBUNAN 10%</span>
     </div>
-    <div class="letterhead-divider" style="margin-bottom: 12px;"></div>
+    <div class="running-divider"></div>
 
     <!-- 7. TIGA PILAR STRATEGIS -->
     <h3 class="section-title">7. Tiga Pilar Strategis Ketahanan Pasokan Mandiri (10%)</h3>
@@ -842,7 +758,7 @@
     </div>
 
     <p style="margin-top: 10px;">
-        Demikian memorandum analisis strategis ini disampaikan sebagai bahan pertimbangan dan penetapan keputusan investasi Direksi PT Tri Mustika Cemerlang (TMC).
+        Demikian analisis strategis ini disampaikan sebagai bahan pertimbangan dan penetapan keputusan investasi Direksi PT Tri Mustika Cemerlang (TMC).
     </p>
 
     <!-- LEMBAR PENGESAHAN EKSEKUTIF -->
