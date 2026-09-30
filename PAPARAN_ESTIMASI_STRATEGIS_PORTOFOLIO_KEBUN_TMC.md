@@ -1,6 +1,12 @@
-# PAPARAN ESTIMASI STRATEGIS PORTOFOLIO KEBUN TMC
-## Rencana Pencapaian Target Pasokan Mandiri 10% Pabrik Kelapa Terpadu
-### Basis Data: Skenario 3 Blok (2.379 Ha) [Kebun TMC + Binjeita + Lahan Ekspansi] - 23.47
+# PERKEBUNAN TMC
+## MEMBER OF RAI
+### MEMORANDUM EKSEKUTIF ANALISIS STRATEGIS PORTOFOLIO KEBUN TMC
+**Nomor Dokumen**: 024/DIR-TMC/MEMO-EST/IX/2026  
+**Kepada**: Yth. Dewan Direksi PT Tri Mustika Cemerlang (TMC)  
+**Dari**: Divisi Estimasi & Pengembangan Kebun TMC  
+**Perihal**: Analisis Kebutuhan Lahan & Strategi Pasokan Kelapa Mandiri 10% (40.000 Butir/Hari dari Kebutuhan Pabrik 400.000 Butir/Hari)  
+**Tanggal**: 30 September 2026  
+**Basis Database**: Skenario Multi-Blok Terverifikasi (SQLite Laravel Backend - ID: 13 / 23.47)
 
 ---
 
